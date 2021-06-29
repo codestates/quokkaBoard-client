@@ -1,8 +1,9 @@
 import React from 'react';
-import './App.css';
+import './sections/App.css';
+import Loading from '../views/loading/Loading';
 
 function App() {
-  return <h1>Hello, World!</h1>;
+  return <Loading />;
 }
 
 export default App;
