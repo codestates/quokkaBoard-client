@@ -1,0 +1,47 @@
+.container {
+	z-index: 2;
+	position: absolute;
+	width: 14rem;
+	background-color: var(--beige-dark);
+	top: 3.5rem;
+	left: 12rem;
+	border-radius: 0.5rem;
+	padding: 1rem 1rem;
+	cursor: pointer;
+	/* display: none; */
+}
+
+/* modal */
+.hidden {
+	display: block;
+}
+
+.modal {
+}
+
+.close_btn {
+	position: absolute;
+	right: 1rem;
+}
+
+.ul > :first-child {
+	margin-bottom: 0.3rem;
+	margin-top: 2rem;
+}
+
+.div {
+	display: flex;
+	align-items: center;
+	border-top: 1px solid var(--orange);
+	margin-top: 1rem;
+}
+
+.div > * {
+	margin-top: 0.5rem;
+}
+
+.project_add_btn {
+	font-size: 2rem;
+	color: var(--orange-light);
+	margin-right: 0.5rem;
+}

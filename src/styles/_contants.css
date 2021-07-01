@@ -1,36 +1,37 @@
 /* 변수 */
 :root {
-  /* Common */
-  --black: #000;
-  --gray1: #3f4150;
-  --gray2: #8c8d96;
-  --gray3: #b2b3b9;
-  --gray4: #e0e2e7;
-  --gray5: #f7f8fa;
-  --white: #fff;
+	/* Common */
+	--black: #000;
+	--gray1: #3f4150;
+	--gray2: #8c8d96;
+	--gray3: #b2b3b9;
+	--gray4: #e0e2e7;
+	--gray5: #f7f8fa;
+	--white: #fff;
 
-  /* main */
-  --mint: #28c2c6;
-  --mint-dark: #27b6ba;
-  --mint-light: #78edf0;
-  --blue: #1f5d87;
-  --blue-dark: #154566;
-  --blue-light: #4882aa;
+	/* main */
+	--mint: #28c2c6;
+	--mint-dark: #27b6ba;
+	--mint-light: #78edf0;
+	--blue: #1f5d87;
+	--blue-dark: #154566;
+	--blue-light: #4882aa;
 
-  /* etc */
-  --orange: #ff8400;
-  --orange-light: #ffa200;
-  --beige: #fff7e9;
-  --red: #ef492d;
+	/* etc */
+	--orange: #ff8400;
+	--orange-light: #ffa200;
+	--beige-dark: #f3b976;
+	--beige: #fff7e9;
+	--red: #ef492d;
 
-  /* font-family */
-  --font: 'Noto Sans KR', sans-serif;
-  --font-sub1: 'Do Hyeon', sans-serif;
-  --font-sub2: 'Nanum Pen Script', cursive;
+	/* font-family */
+	--font: 'Noto Sans KR', sans-serif;
+	--font-sub1: 'Do Hyeon', sans-serif;
+	--font-sub2: 'Nanum Pen Script', cursive;
 
-  /* font-weight */
-  --light: 300;
-  --regular: 400;
-  --medium: 500;
-  --bold: 700;
+	/* font-weight */
+	--light: 300;
+	--regular: 400;
+	--medium: 500;
+	--bold: 700;
 }
