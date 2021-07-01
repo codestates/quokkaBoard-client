@@ -16,6 +16,10 @@
 	align-items: center;
 }
 
+.sub_menu_left > :first-child {
+	margin-right: 1rem;
+}
+
 .sub_menu_right {
 	display: flex;
 	align-items: center;
@@ -38,7 +42,7 @@
 }
 
 img {
-	margin: 0 2rem 0 -1rem;
 	width: 8rem;
 	height: 2rem;
+	margin-right: 1rem;
 }
