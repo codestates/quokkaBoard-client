@@ -1,9 +1,10 @@
 import React from 'react';
 import './sections/App.css';
-import Loading from '../views/loading/Loading';
+import LandingPage from '../views/landing/LandingPage';
+import Login from '../views/loading/Loading';
 
 function App() {
-  return <Loading />;
+	return <Login />;
 }
 
 export default App;
