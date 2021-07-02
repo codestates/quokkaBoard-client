@@ -36,12 +36,12 @@
 	cursor: pointer;
 }
 
-.img {
+.profile_img {
 	width: 2.3rem;
 	height: 2.2rem;
 }
 
-img {
+.main_logo {
 	width: 8rem;
 	height: 2rem;
 	margin-right: 1rem;

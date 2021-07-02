@@ -8,12 +8,6 @@
 	border-radius: 0.5rem;
 	padding: 1rem 1rem;
 	cursor: pointer;
-	/* display: none; */
-}
-
-/* modal */
-.hidden {
-	display: block;
 }
 
 .modal {
