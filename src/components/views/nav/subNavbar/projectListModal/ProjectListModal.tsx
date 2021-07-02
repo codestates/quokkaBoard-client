@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './sections/projectListModal.module.css';
 
-const ProjectListModal = () => {
+const ProjectListModal = (props: any) => {
 	return (
 		<section className={styles.container}>
-			<div className={styles.close_btn}>
+			<div className={styles.close_btn} onClick={props.isProjectModalClose}>
 				<i className="fas fa-times"></i>
 			</div>
 			<ul className={styles.ul}>
