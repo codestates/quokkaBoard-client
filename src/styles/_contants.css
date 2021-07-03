@@ -13,6 +13,7 @@
 	--mint: #28c2c6;
 	--mint-dark: #27b6ba;
 	--mint-light: #78edf0;
+	--mint-too-light: #8be9ec;
 	--blue: #1f5d87;
 	--blue-dark: #154566;
 	--blue-light: #4882aa;
@@ -20,8 +21,9 @@
 	/* etc */
 	--orange: #ff8400;
 	--orange-light: #ffa200;
-	--beige-dark: #f3b976;
-	--beige: #fff7e9;
+	--orange-dark: #f57f00;
+	--beige: #f3b976;
+	--beige-light: #fff7e9;
 	--red: #ef492d;
 
 	/* font-family */
