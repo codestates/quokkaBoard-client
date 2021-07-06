@@ -2,8 +2,9 @@ import React, { useCallback, useState } from 'react';
 import styles from './sections/navbar.module.css';
 import profileImg from './sections/profile_img.png';
 import mainLogo2 from './sections/main_logo2.png';
-import ProjectListModal from './projectListModal/ProjectListModal';
-import CreateProject from '../createProject/CreateProject';
+import ProjectListModal from '../../modal/projectListModal/ProjectListModal';
+import CreateProject from '../../modal/createProject/CreateProject';
+import Search from '../../modal/search/Search';
 
 const SubNavbar = () => {
 	const [projects, setProjects] = useState([]);
@@ -27,12 +28,13 @@ const SubNavbar = () => {
 		setNewProjectClick(false);
 	}, [isNewProjectClicked]);
 
-	const isSearchClick = useCallback(
-		(e: any) => {
-			console.log(e.target);
-		},
-		[isSearchClicked],
-	);
+	const isSearchModalOpen = useCallback(() => {
+		setSearchClick(true);
+	}, [isSearchClicked]);
+
+	const isSearchModalClose = useCallback(() => {
+		setSearchClick(false);
+	}, [isSearchClicked]);
 
 	return (
 		<nav className={styles.container}>
@@ -50,7 +52,7 @@ const SubNavbar = () => {
 				</div>
 				<div className={styles.sub_menu_right}>
 					<div className={styles.search}>
-						<button className={styles.button} onClick={isSearchClick}>
+						<button className={styles.button} onClick={isSearchModalOpen}>
 							<i className="fas fa-search"></i>
 						</button>
 					</div>
@@ -74,6 +76,7 @@ const SubNavbar = () => {
 			) : (
 				''
 			)}
+			{isSearchClicked ? <Search isSearchModalClose={isSearchModalClose} /> : ''}
 		</nav>
 	);
 };
