@@ -3,10 +3,12 @@ import styles from './sections/navbar.module.css';
 import profileImg from './sections/profile_img.png';
 import mainLogo2 from './sections/main_logo2.png';
 import ProjectListModal from './projectListModal/ProjectListModal';
+import CreateProject from '../createProject/CreateProject';
 
 const SubNavbar = () => {
 	const [projects, setProjects] = useState([]);
 	const [isProjectClicked, setProjectClick] = useState(false);
+	const [isNewProjectClicked, setNewProjectClick] = useState(false);
 	const [isSearchClicked, setSearchClick] = useState(false);
 
 	const isProjectModalOpen = useCallback(() => {
@@ -16,6 +18,14 @@ const SubNavbar = () => {
 	const isProjectModalClose = useCallback(() => {
 		setProjectClick(false);
 	}, [isProjectClicked]);
+
+	const isNewProjectModalOpen = useCallback(() => {
+		setNewProjectClick(true);
+	}, [isNewProjectClicked]);
+
+	const isNewProjectModalClose = useCallback(() => {
+		setNewProjectClick(false);
+	}, [isNewProjectClicked]);
 
 	const isSearchClick = useCallback(
 		(e: any) => {
@@ -50,7 +60,20 @@ const SubNavbar = () => {
 				</div>
 			</div>
 			{/* Project Modal */}
-			{isProjectClicked ? <ProjectListModal isProjectModalClose={isProjectModalClose} /> : ''}
+			{isProjectClicked ? (
+				<ProjectListModal
+					isProjectModalClose={isProjectModalClose}
+					isNewProjectModalOpen={isNewProjectModalOpen}
+					isNewProjectModalClose={isNewProjectModalClose}
+				/>
+			) : (
+				''
+			)}
+			{isNewProjectClicked ? (
+				<CreateProject isNewProjectModalOpen={isNewProjectModalOpen} isNewProjectModalClose={isNewProjectModalClose} />
+			) : (
+				''
+			)}
 		</nav>
 	);
 };
