@@ -1,0 +1,58 @@
+.container {
+	position: absolute;
+	z-index: 3;
+	width: 560px;
+	background-color: var(--green-a);
+	top: 50%;
+	left: 50%;
+	border-radius: 0.7rem;
+	padding: 1.5rem;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.close_btn {
+	position: absolute;
+	right: 1.2rem;
+	top: 1rem;
+	cursor: pointer;
+}
+
+.project__title {
+	padding: 2rem;
+}
+
+.div {
+	margin-bottom: 0.7rem;
+}
+
+.div input {
+	border-radius: 0.5rem;
+}
+
+.div:last-child {
+	display: flex;
+	align-items: center;
+	transform: translateX(17.5%);
+	margin-top: 1.5rem;
+}
+
+.subject__input,
+.discription__input {
+	width: 300px;
+	height: 2rem;
+	margin-left: 1rem;
+	padding: 0 0.5rem;
+	background-color: var(--green-b);
+	font-size: 1rem;
+}
+
+.project_member_add_btn {
+	font-size: 2rem;
+	color: var(--amber-dark);
+}
+
+.span {
+	color: var(--gray2);
+	margin-right: 1rem;
+}
