@@ -11,7 +11,13 @@ const ProjectListModal = (props: any) => {
 				<li>내 프로젝트</li>
 				<li>팀 프로젝트</li>
 			</ul>
-			<div className={styles.div}>
+			<div
+				className={styles.div}
+				onClick={() => {
+					props.isProjectModalClose();
+					props.isNewProjectModalOpen();
+				}}
+			>
 				<button className={styles.project_add_btn}>
 					<i className="fas fa-folder-plus"></i>
 				</button>
