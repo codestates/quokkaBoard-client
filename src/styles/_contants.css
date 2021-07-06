@@ -5,7 +5,7 @@
 	--gray1: #3f4150;
 	--gray2: #8c8d96;
 	--gray3: #b2b3b9;
-	--gray4: #e0e2e7;
+	--gray4: #eaebed;
 	--gray5: #f7f8fa;
 	--white: #fff;
 
@@ -25,6 +25,7 @@
 	--beige: #f3b976;
 	--beige-light: #fff7e9;
 	--red: #ef492d;
+	--red-gray: #ff435e;
 
 	/* font-family */
 	--font: 'Noto Sans KR', sans-serif;
