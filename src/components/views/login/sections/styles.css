@@ -298,3 +298,19 @@ p {
 .social-container a:active {
 	transform: scale(0.95);
 }
+
+.fa-kickstarter-k {
+	color: #f3db00;
+}
+
+.fa-gofore {
+	color: #db412d;
+}
+
+.fa-linkedin-in {
+	color: #0170ad;
+}
+
+.invalid-outline {
+	outline: 2px solid var(--red-gray);
+}
