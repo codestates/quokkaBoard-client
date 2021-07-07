@@ -9,6 +9,7 @@
 	padding: 1.5rem;
 	transform: translate(-50%, -50%);
 	text-align: center;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .close_btn {
@@ -33,7 +34,7 @@
 .div:last-child {
 	display: flex;
 	align-items: center;
-	transform: translateX(17.5%);
+	transform: translateX(16%);
 	margin-top: 1.5rem;
 }
 
@@ -44,15 +45,51 @@
 	margin-left: 1rem;
 	padding: 0 0.5rem;
 	background-color: var(--green-b);
-	font-size: 1rem;
+	font-size: 0.9rem;
 }
 
 .project_member_add_btn {
 	font-size: 2rem;
 	color: var(--amber-dark);
+	transition: all 0.3s ease-in;
+}
+
+.project_member_add_btn:hover {
+	color: var(--orange-dark);
+}
+
+.project_member_add_btn:active {
+	transform: scale(1.1);
 }
 
 .span {
 	color: var(--gray2);
 	margin-right: 1rem;
+}
+
+.buttons {
+	transform: translateX(33%);
+}
+
+.cancel_btn,
+.make_btn {
+	width: 5rem;
+	height: 2rem;
+	margin-right: 0.5rem;
+	border-radius: 0.3rem;
+	background-color: var(--green-d);
+	color: var(--white);
+	font-weight: bold;
+	transition: all 0.3s ease-in;
+}
+
+.cancel_btn:hover,
+.make_btn:hover {
+	color: var(--orange-dark);
+	background-color: var(--amber-dark);
+}
+
+.cancel_btn:active,
+.make_btn:active {
+	transform: scale(1.1);
 }
