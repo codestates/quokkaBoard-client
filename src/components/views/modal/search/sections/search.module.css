@@ -2,7 +2,7 @@
 	position: absolute;
 	top: 5rem;
 	right: 5rem;
-	width: 340px;
+	width: 400px;
 	background-color: var(--deep-orange-light);
 	border-radius: 0.7rem;
 	animation: project_modal_show 0.4s;
@@ -73,7 +73,7 @@
 }
 
 .ul {
-	height: 130px;
+	height: 180px;
 	overflow: auto;
 }
 

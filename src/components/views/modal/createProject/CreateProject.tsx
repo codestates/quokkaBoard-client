@@ -8,7 +8,7 @@ const CreateProject = (props: any) => {
 				<div className={styles.close_btn} onClick={props.isNewProjectModalClose}>
 					<i className="fas fa-times"></i>
 				</div>
-				<h1 className={styles.project__title}>새 프로젝트</h1>
+				<h2 className={styles.project__title}>새 프로젝트</h2>
 				<div className={styles.div}>
 					<label className={styles.subject} htmlFor="subject">
 						제목
