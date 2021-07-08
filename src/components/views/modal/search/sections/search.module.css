@@ -83,6 +83,7 @@
 	font-weight: var(--medium);
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .nickname,

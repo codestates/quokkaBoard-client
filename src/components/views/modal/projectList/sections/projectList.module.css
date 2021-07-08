@@ -16,6 +16,15 @@
 .close_btn {
 	position: absolute;
 	right: 1rem;
+	transition: all 0.3s ease-in;
+}
+
+.close_btn:hover {
+	color: var(--orange-dark);
+}
+
+.close_btn:active {
+	transform: scale(1.1);
 }
 
 .ul > :first-child {
@@ -43,6 +52,15 @@
 	font-size: 2rem;
 	color: var(--orange-light);
 	margin-right: 0.5rem;
+	transition: all 0.3s ease-in;
+}
+
+.project_add_btn:hover {
+	color: var(--orange-dark);
+}
+
+.project_add_btn:active {
+	transform: scale(1.1);
 }
 
 @keyframes project_modal_show {

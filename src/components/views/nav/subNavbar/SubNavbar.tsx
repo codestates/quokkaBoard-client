@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
-import styles from './sections/navbar.module.css';
+import styles from './sections/subNavbar.module.css';
 import profileImg from './sections/profile_img.png';
 import mainLogo2 from './sections/main_logo2.png';
-import ProjectListModal from '../../modal/projectListModal/ProjectListModal';
+import ProjectList from '../../modal/projectList/ProjectList';
 import CreateProject from '../../modal/createProject/CreateProject';
 import Search from '../../modal/search/Search';
 
@@ -57,13 +57,17 @@ const SubNavbar = () => {
 						</button>
 					</div>
 					<div>
+						<button className={styles.sign_out_button}>
+							<i className="fas fa-sign-out-alt"></i>
+						</button>
+					</div>
+					<div>
 						<img className={styles.profile_img} src={profileImg} alt="profile_img" />
 					</div>
 				</div>
 			</div>
-			{/* Project Modal */}
 			{isProjectClicked ? (
-				<ProjectListModal
+				<ProjectList
 					isProjectModalClose={isProjectModalClose}
 					isNewProjectModalOpen={isNewProjectModalOpen}
 					isNewProjectModalClose={isNewProjectModalClose}
