@@ -18,26 +18,47 @@
 	transition: all 0.3s ease-in;
 }
 
+.search_div {
+	margin-top: 1rem;
+}
+
 .label {
-	font-size: 0.7rem;
+	font-size: 0.8rem;
 }
 
 .search_name_input {
 	background-color: var(--white);
-	width: 80%;
-	height: 2rem;
-	font-size: 0.8rem;
-	padding: 0 0.7rem;
-	margin: 1rem 0 0.2rem 0;
+	width: 70%;
+	padding: 0.5rem 0.75rem;
+	border-radius: 0.3rem;
+	font-size: 0.9rem;
+	margin-right: 0.3rem;
+}
+
+.search_btn {
+	padding: 0.5rem 0.55rem;
+	font-size: 0.9rem;
+	font-weight: bold;
+	background-color: var(--deep-orange);
+	border-radius: 0.3rem;
+	transition: all 0.3s ease-in;
+}
+
+.search_btn:hover {
+	color: var(--white);
+	background-color: var(--deep-orange-dark);
+}
+
+.search_btn:active {
+	transform: scale(1.05);
 }
 
 .div_btn {
-	/* text-align: left; */
-	margin: 1.5rem 2rem 3rem 2rem;
+	margin: 2rem 2rem 1.5rem 2rem;
 }
 
-.search_btn,
-.friends_btn {
+.search_list,
+.friends_list {
 	background-color: var(--deep-orange);
 	width: 48%;
 	height: 2rem;
@@ -45,7 +66,7 @@
 	font-weight: bold;
 }
 
-.search_btn {
+.search_list {
 	margin-right: 0.35rem;
 }
 
@@ -53,16 +74,16 @@
 	color: var(--deep-orange-dark);
 }
 
-.search_btn:hover,
-.friends_btn:hover {
+.search_list:hover,
+.friends_list:hover {
 	color: var(--white);
 	background-color: var(--deep-orange-dark);
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .close_btn:active,
-.search_btn:active,
-.friends_btn:active {
+.search_list:active,
+.friends_list:active {
 	transform: scale(1.1);
 }
 
@@ -73,12 +94,13 @@
 }
 
 .ul {
-	height: 180px;
+	height: 175px;
 	overflow: auto;
+	margin-bottom: 1rem;
 }
 
 .li {
-	margin: 0.5rem 2rem;
+	margin: 0.5rem 2.2rem;
 	font-size: 0.85rem;
 	font-weight: var(--medium);
 	display: flex;
@@ -92,19 +114,19 @@
 }
 
 .plus_btn {
-	width: 1.8rem;
-	height: 1.8rem;
-	border-radius: 50%;
+	padding: 0.35rem 0.5rem;
+	border-radius: 0.3rem;
 	color: var(--deep-orange-dark);
 	background-color: var(--deep-orange);
+	font-weight: bold;
 	transition: all 0.3s ease-in;
 }
 
 .plus_btn:hover {
-	color: var(--deep-orange-dark);
+	color: var(--white);
 }
 
-.plus_btn :active {
+.plus_btn:active {
 	transform: scale(1.1);
 }
 

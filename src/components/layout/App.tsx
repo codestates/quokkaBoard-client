@@ -9,7 +9,7 @@ import UserInfo from '../views/userInfo/UserInfo';
 function App() {
 	return (
 		<>
-			<Login />
+			<Nav />
 		</>
 	);
 }
