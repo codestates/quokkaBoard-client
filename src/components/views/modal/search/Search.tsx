@@ -45,10 +45,10 @@ const Search = (props: any) => {
 			<ul className={styles.ul}>
 				{isSearchListClicked
 					? searchUser.map((result) => {
-							return <SearchUserResult result={result} />;
+							return <SearchUserResult key={result.id} result={result} />;
 					  })
 					: followerUser.map((result) => {
-							return <FollowerUserResult result={result} />;
+							return <FollowerUserResult key={result.id} result={result} />;
 					  })}
 			</ul>
 		</section>

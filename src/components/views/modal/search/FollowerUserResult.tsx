@@ -3,7 +3,7 @@ import styles from './sections/search.module.css';
 
 const FollowerUserResult = ({ result }: any) => {
 	return (
-		<li key={result.id} className={styles.li}>
+		<li className={styles.li}>
 			<span className={styles.nickname}>{result.nickname}</span>
 			<span className={styles.email}>{result.email} </span>
 			<button className={styles.plus_btn}>

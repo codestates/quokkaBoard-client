@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './sections/mainNavbar.module.css';
+import ProjectSetting from '../../projectSetting/ProjectSetting';
 
 const MainNavbar = () => {
 	return (
