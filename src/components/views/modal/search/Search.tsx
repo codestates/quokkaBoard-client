@@ -1,9 +1,22 @@
 import React, { useState } from 'react';
 import styles from './sections/search.module.css';
 import searchResult from './sections/searchResult';
+import followerResult from './sections/followerResult';
+import FollowerUserResult from './FollowerUserResult';
+import SearchUserResult from './SearchUserResult';
 
 const Search = (props: any) => {
-	const [searchPerson, setSearchPerson] = useState(searchResult);
+	const [searchUser, setSearchPerson] = useState(searchResult);
+	const [followerUser, setFollowerUser] = useState(followerResult);
+	const [isSearchListClicked, setSearchList] = useState(true);
+
+	const handleSearchListUpdate = () => {
+		setSearchList(true);
+	};
+
+	const handleSearchListReset = () => {
+		setSearchList(false);
+	};
 
 	return (
 		<section className={styles.container}>
@@ -15,25 +28,28 @@ const Search = (props: any) => {
 				<label className={styles.label} htmlFor="search_name">
 					검색할 닉네임 또는 이메일을 적어주세요 :)
 				</label>
-				<input className={styles.search_name_input} id="search_name" />
+				<div className={styles.search_div}>
+					<input className={styles.search_name_input} id="search_name" />
+					<button className={styles.search_btn}>검색</button>
+				</div>
 			</div>
 			<div className={styles.div_btn}>
-				<button className={styles.search_btn}>검색</button>
-				<button className={styles.friends_btn}>친구 목록</button>
+				<button className={styles.search_list} onClick={handleSearchListUpdate}>
+					검색 목록
+				</button>
+				<button className={styles.friends_list} onClick={handleSearchListReset}>
+					친구 목록
+				</button>
 			</div>
 
 			<ul className={styles.ul}>
-				{searchPerson.map((result) => {
-					return (
-						<li key={result.id} className={styles.li}>
-							<span className={styles.nickname}>{result.nickname}</span>
-							<span className={styles.email}>{result.email} </span>
-							<button className={styles.plus_btn}>
-								<i className="fas fa-plus"></i>
-							</button>
-						</li>
-					);
-				})}
+				{isSearchListClicked
+					? searchUser.map((result) => {
+							return <SearchUserResult result={result} />;
+					  })
+					: followerUser.map((result) => {
+							return <FollowerUserResult result={result} />;
+					  })}
 			</ul>
 		</section>
 	);
