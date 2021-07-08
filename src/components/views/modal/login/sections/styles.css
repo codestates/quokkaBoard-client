@@ -18,10 +18,20 @@
 	background-color: #fff;
 	border-radius: 10px;
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-	overflow: hidden;
+	/* overflow: hidden; */
 	width: 48rem;
 	max-width: 100%;
 	min-height: 30rem;
+}
+
+.container > svg {
+	color: var(--gray1);
+	position: absolute;
+	right: -0.4rem;
+	top: -0.4rem;
+	font-size: 1.3rem;
+	z-index: 101;
+	cursor: pointer;
 }
 
 .form-container {
@@ -99,6 +109,11 @@
 	animation: hide 0.6s;
 }
 
+.sign-up-container span {
+	color: var(--red-gray);
+	font-size: 0.8em;
+}
+
 .container.right-panel-active .sign-up-container {
 	transform: translateX(100%);
 	opacity: 1;
@@ -133,11 +148,13 @@
 }
 
 .sign-up-container h1 {
+	color: var(--gray1);
 	text-align: center;
 	margin: 2em 0 0.5em 0;
 }
 
-.sign-up-container span {
+.sign-up-container p {
+	color: var(--gray1);
 	display: block;
 	text-align: center;
 }
@@ -157,7 +174,7 @@
 }
 
 .sign-up-container form button {
-	margin: 2em auto;
+	margin-top: 0.7em;
 	padding: 0.6em 2.5em;
 	background-color: var(--red-gray);
 	border-radius: 1em;
