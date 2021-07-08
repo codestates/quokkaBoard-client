@@ -1,7 +1,7 @@
 .container {
 	position: absolute;
-	z-index: 3;
-	width: 560px;
+	z-index: 2;
+	width: 500px;
 	background-color: var(--green-a);
 	top: 50%;
 	left: 50%;
@@ -17,6 +17,15 @@
 	right: 1.2rem;
 	top: 1rem;
 	cursor: pointer;
+	transition: all 0.3s ease-in;
+}
+
+.close_btn:hover {
+	color: var(--green-d-dark);
+}
+
+.close_btn:active {
+	transform: scale(1.1);
 }
 
 .project__title {
@@ -34,12 +43,12 @@
 .div:last-child {
 	display: flex;
 	align-items: center;
-	transform: translateX(16%);
+	transform: translateX(12%);
 	margin-top: 1.5rem;
 }
 
 .subject__input,
-.discription__input {
+.description__input {
 	width: 300px;
 	height: 2rem;
 	margin-left: 1rem;
@@ -85,11 +94,21 @@
 
 .cancel_btn:hover,
 .make_btn:hover {
-	color: var(--orange-dark);
+	color: var(--green-d-dark);
 	background-color: var(--amber-dark);
 }
 
 .cancel_btn:active,
 .make_btn:active {
 	transform: scale(1.1);
+}
+
+.ul {
+	width: 340px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: auto;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
 }
