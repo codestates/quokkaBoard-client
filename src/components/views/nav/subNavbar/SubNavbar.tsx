@@ -57,6 +57,11 @@ const SubNavbar = () => {
 						</button>
 					</div>
 					<div>
+						<button className={styles.sign_out_button}>
+							<i className="fas fa-sign-out-alt"></i>
+						</button>
+					</div>
+					<div>
 						<img className={styles.profile_img} src={profileImg} alt="profile_img" />
 					</div>
 				</div>
