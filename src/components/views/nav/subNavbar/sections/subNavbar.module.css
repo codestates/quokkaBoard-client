@@ -1,0 +1,48 @@
+.container {
+	background-color: var(--green-b);
+	width: 100vw;
+}
+
+.sub_menu {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 1rem;
+	padding: 0.8rem 1rem;
+}
+
+.sub_menu_left {
+	display: flex;
+	align-items: center;
+}
+
+.sub_menu_left > :first-child {
+	margin-right: 1rem;
+}
+
+.sub_menu_right {
+	display: flex;
+	align-items: center;
+}
+
+.sub_menu_right > * {
+	margin-left: 1rem;
+}
+
+.project_button,
+.sub_menu_right > * {
+	font-family: var(--font-sub1);
+	font-size: 1.3rem;
+	cursor: pointer;
+}
+
+.profile_img {
+	width: 2.3rem;
+	height: 2.2rem;
+}
+
+.main_logo {
+	width: 8rem;
+	height: 2rem;
+	margin-right: 1rem;
+}

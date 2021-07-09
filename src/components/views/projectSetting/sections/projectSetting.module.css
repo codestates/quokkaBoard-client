@@ -1,0 +1,38 @@
+.container {
+	position: absolute;
+	top: 5rem;
+	left: 5rem;
+	padding: 1rem 3rem;
+}
+
+.container > * {
+	/* font-family: var(--font-sub1); */
+}
+
+.h2 {
+	margin: 2rem 0;
+}
+
+.ul {
+	margin-top: 3rem;
+}
+
+.li {
+	margin: 0.5rem 0;
+	background-color: var(--green-a);
+	border-radius: 0.3rem;
+	padding: 0.3rem 1.3rem;
+	display: flex;
+}
+
+.li > .span_nickname {
+	min-width: 100px;
+}
+
+.li > .span_email {
+	min-width: 200px;
+}
+
+.li > .select {
+	margin-right: 2rem;
+}

@@ -1,0 +1,63 @@
+/* 변수 */
+:root {
+	/* Common */
+	--black: #000;
+	--gray1: #3f4150;
+	--gray2: #8c8d96;
+	--gray3: #b2b3b9;
+	--gray4: #eaebed;
+	--gray5: #f7f8fa;
+	--white: #fff;
+
+	/* main */
+	--mint: #28c2c6;
+	--mint-dark: #27b6ba;
+	--mint-light: #78edf0;
+	--mint-too-light: #8be9ec;
+	--blue: #1f5d87;
+	--blue-dark: #154566;
+	--blue-light: #4882aa;
+	--green-a: #f1f8e9;
+	--green-a-dark: #bec5b7;
+	--green-b-light: #fffffb;
+	--green-b: #dcedc8;
+	--green-b-dark: #aabb97;
+	--green-c-light: #f8ffd7;
+	--green-c: #c5e1a5;
+	--green-c-dark: #94af76;
+	--green-d-light: #e1ffb1;
+	--green-d: #aed581;
+	--green-d-dark: #7da453;
+	--green-e: #4e7424;
+	--green-e-dark: #3b551d;
+	--yellow-light: #fffde7;
+	--yellow: #fff9c4;
+	--yellow-dark: #fff59d;
+	--amber-light: #fff8e1;
+	--amber: #ffecb3;
+	--amber-dark: #ffe082;
+	--orange: #ffa726;
+	--orange-light: #ffe0b2;
+	--orange-dark: #ff8400;
+	--deep-orange-light: #ffccbc;
+	--deep-orange: #ffab91;
+	--deep-orange-dark: #ff8a65;
+
+	/* etc */
+
+	--beige: #f3b976;
+	--beige-light: #fff7e9;
+	--red: #ef492d;
+	--red-gray: #ff435e;
+
+	/* font-family */
+	--font: 'Noto Sans KR', sans-serif;
+	--font-sub1: 'Do Hyeon', sans-serif;
+	--font-sub2: 'Nanum Pen Script', cursive;
+
+	/* font-weight */
+	--light: 300;
+	--regular: 400;
+	--medium: 500;
+	--bold: 700;
+}

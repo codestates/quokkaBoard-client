@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+.body_container {
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.22);
+}
+
+.body_container * {
+	font-family: var(--font-sub1);
+}
+
+.container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	/* overflow: hidden; */
+	width: 48rem;
+	max-width: 100%;
+	min-height: 30rem;
+}
+
+.container > svg {
+	color: var(--gray1);
+	position: absolute;
+	right: -0.4rem;
+	top: -0.4rem;
+	font-size: 1.3rem;
+	z-index: 101;
+	cursor: pointer;
+}
+
+.form-container {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+	left: 0;
+	width: 50%;
+	z-index: 2;
+	animation: show 0.6s;
+}
+
+.sign-in-container h1 {
+	text-align: center;
+	margin: 2em 0;
+}
+
+.sign-in-container span {
+	display: block;
+	text-align: center;
+}
+
+.sign-in-container input {
+	display: block;
+	background-color: var(--gray4);
+	padding: 0.5em;
+	border-radius: 0.15em;
+	width: 70%;
+	margin: 0.8em auto;
+}
+
+.sign-in-container span:last-of-type {
+	color: var(--red);
+	font-weight: var(--bold);
+	font-size: 0.8em;
+	margin-bottom: 0.3em;
+}
+
+.shake-animation {
+	animation: shake 0.5s linear;
+}
+
+@keyframes shake {
+	25% {
+		transform: rotate(5deg);
+	}
+
+	50% {
+		transform: rotate(-5deg);
+	}
+
+	75% {
+		transform: rotate(5deg);
+	}
+}
+
+.sign-in-container span:last-of-type {
+	color: var(--red);
+	font-weight: var(--bold);
+	font-size: 0.8em;
+	margin-bottom: 0.3em;
+}
+
+.sign-in-container .forgot_password {
+	color: var(--gray2);
+	display: block;
+	text-align: center;
+	font-size: 0.7rem;
+}
+
+.sign-in-container .forgot_password:hover {
+	color: var(--gray1);
+	transform: scale(1.01);
+}
+
+.sign-in-container button {
+	display: block;
+	margin: 2em auto;
+	padding: 0.6em 2.5em;
+	background-color: var(--red-gray);
+	border-radius: 1em;
+	color: var(--white);
+	font-weight: var(--bold);
+	transition: transform 0.05s linear;
+	z-index: 2;
+}
+
+.sign-in-container button:active {
+	transform: scale(0.98);
+}
+
+.container.right-panel-active .sign-in-container {
+	transform: translateX(100%);
+	animation: hide 0.6s;
+	opacity: 0;
+}
+
+.sign-up-container {
+	left: 0;
+	width: 50%;
+	opacity: 0;
+	z-index: 1;
+	animation: hide 0.6s;
+}
+
+.sign-up-container span {
+	color: var(--red-gray);
+	font-size: 0.8em;
+}
+
+.container.right-panel-active .sign-up-container {
+	transform: translateX(100%);
+	opacity: 1;
+	z-index: 5;
+	animation: show 0.6s;
+}
+
+@keyframes show {
+	0%,
+	49.99% {
+		opacity: 0;
+		z-index: 1;
+	}
+
+	50% {
+		opacity: 1;
+		z-index: 5;
+	}
+}
+
+@keyframes hide {
+	0%,
+	49.99% {
+		opacity: 1;
+		z-index: 5;
+	}
+
+	50% {
+		opacity: 0;
+		z-index: 1;
+	}
+}
+
+.sign-up-container h1 {
+	color: var(--gray1);
+	text-align: center;
+	margin: 2em 0 0.5em 0;
+}
+
+.sign-up-container p {
+	color: var(--gray1);
+	display: block;
+	text-align: center;
+}
+
+.sign-up-container form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1em 2em;
+}
+
+.sign-up-container form input {
+	background-color: var(--gray4);
+	width: 90%;
+	padding: 0.5em 0.7em;
+	margin: 0.4em 0;
+}
+
+.sign-up-container form button {
+	margin-top: 0.7em;
+	padding: 0.6em 2.5em;
+	background-color: var(--red-gray);
+	border-radius: 1em;
+	color: var(--white);
+	font-weight: var(--bold);
+	transition: transform 0.05s linear;
+}
+
+.sign-up-container form button:active {
+	transform: scale(0.98);
+}
+
+.overlay-container {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	transition: transform 0.6s ease-in-out;
+	z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+	transform: translateX(-100%);
+}
+
+.overlay {
+	background: #ff416c;
+	background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+	background: linear-gradient(to right, #ff4b2b, #ff416c);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: 0 0;
+	color: #ffffff;
+	position: relative;
+	left: -100%;
+	height: 100%;
+	width: 200%;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+	transform: translateX(50%);
+}
+
+.overlay-panel {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 40px;
+	text-align: center;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	transform: translateX(0);
+	transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+	transform: translateX(-20%);
+}
+
+.overlay-left img {
+	width: 80%;
+	margin: 0.7em;
+}
+
+.overlay-left h1,
+p {
+	color: var(--gray5);
+}
+
+.overlay-left p {
+	margin: 1em;
+}
+
+.container.right-panel-active .overlay-left {
+	transform: translateX(0);
+}
+
+.overlay-right {
+	right: 0;
+	transform: translateX(0);
+}
+
+.overlay-right img {
+	width: 100%;
+}
+
+.overlay-right p {
+	margin: 1em;
+}
+
+.overlay-right button,
+.overlay-left button {
+	font-size: 0.8rem;
+	color: var(--gray1);
+	border-bottom: 1px solid var(--gray1);
+	transition: color 0.1s, border 0.1s, transform 0.1s;
+}
+
+.overlay-right button:hover,
+.overlay-left button:hover {
+	color: var(--white);
+	border-bottom: 1px solid var(--white);
+}
+
+.overlay-right button:active,
+.overlay-left button:active {
+	transform: scale(0.97);
+}
+
+.container.right-panel-active .overlay-right {
+	transform: translateX(20%);
+}
+
+.social-container {
+	margin: 20px 0;
+	display: flex;
+	justify-content: center;
+}
+
+.social-container a {
+	border: 1px solid #dddddd;
+	border-radius: 50%;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 1rem;
+	height: 3em;
+	width: 3em;
+}
+
+.social-container a:active {
+	transform: scale(0.95);
+}
+
+.fa-kickstarter-k {
+	color: #f3db00;
+}
+
+.fa-gofore {
+	color: #db412d;
+}
+
+.fa-linkedin-in {
+	color: #0170ad;
+}
+
+.invalid-outline {
+	outline: 2px solid var(--red-gray);
+}
