@@ -27,6 +27,7 @@ function Login(props: any) {
 	const passwordValidMessage = useRef<HTMLSpanElement>(null);
 	const confirmPasswordValidMessage = useRef<HTMLSpanElement>(null);
 	const registerErrorMessage = useRef<HTMLSpanElement>(null);
+	const loginErrorMessage = useRef<HTMLSpanElement>(null);
 
 	const handleRegisterButton = useCallback(() => {
 		if (container.current !== null) {
@@ -197,6 +198,7 @@ function Login(props: any) {
 	// 로그인 버튼
 	const handleLoginSubmit = useCallback(
 		(e) => {
+			loginErrorMessage.current?.classList.remove('shake-animation');
 			e.preventDefault();
 			const user = {
 				email: loginEmail.current?.value,
@@ -205,11 +207,21 @@ function Login(props: any) {
 			axios
 				.post(`${env.REACT_APP_SERVER_URI}/user/login`, user)
 				.then((response) => {
-					console.log(response.data);
 					// 성공 했을때
-					// 실패했을때
-					// 아이디 없음
-					// 비밀번호 틀림
+					if (response.data.success) {
+						console.log(e.target);
+						if (loginErrorMessage.current) {
+							loginErrorMessage.current.textContent = '';
+						}
+						e.target.reset();
+					} else {
+						console.log(response.data);
+						if (loginErrorMessage.current) {
+							loginErrorMessage.current.textContent = response.data.message;
+							loginErrorMessage.current.classList.add('shake-animation');
+						}
+						return;
+					}
 				})
 				.catch((err) => {
 					console.log(err.data);
@@ -262,6 +274,7 @@ function Login(props: any) {
 						<span>또는 당신의 계정을 입력하세요</span>
 						<input type="email" ref={loginEmail} placeholder="이메일" />
 						<input type="password" ref={loginPassword} placeholder="비밀번호" />
+						<span ref={loginErrorMessage} className="login-check"></span>
 						<a className="forgot_password" href="#">
 							비밀번호 잊어버리셨나요?
 						</a>

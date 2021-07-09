@@ -8,6 +8,17 @@
 	padding: 3rem;
 	border-radius: 0.7rem;
 	z-index: 10;
+	animation: scale 0.15s ease-in-out;
+}
+
+@keyframes scale {
+	from {
+		transform: translate(-50%, -50%) scale(0);
+	}
+
+	to {
+		transform: translate(-50%, -50%) scale(1);
+	}
 }
 
 .container > svg {

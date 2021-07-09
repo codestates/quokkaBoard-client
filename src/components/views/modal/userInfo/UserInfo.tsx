@@ -1,7 +1,48 @@
-import React from 'react';
-import styles from './sections/styles.module.css';
+import React, { useState, useCallback } from 'react';
+import styles from './sections/userInfo.module.css';
+import ModifyNickname from './ModifyNickname';
+import ModifyPassword from './ModifyPassword';
 
 const UserInfo = (props: any) => {
+	const [isNicknameButton, setIsNicknameButton] = useState(false);
+	const [isPasswordButton, setIsPasswordButton] = useState(false);
+
+	const handleNicknameOpen = useCallback(
+		(e) => {
+			e.preventDefault();
+			console.log('닉네임 변경 버튼 활성');
+			setIsNicknameButton(true);
+		},
+		[isNicknameButton],
+	);
+
+	const handleNicknameClose = useCallback(
+		(e: any) => {
+			console.log('닉네임 변경 버튼 비활성');
+			setIsNicknameButton(false);
+		},
+		[isNicknameButton],
+	);
+
+	const handlePasswordOpen = useCallback(
+		(e) => {
+			e.preventDefault();
+			console.log('패스워드 변경 버튼 활성');
+			setIsPasswordButton(true);
+		},
+		[isPasswordButton],
+	);
+	const handlePasswordClose = useCallback(
+		(e) => {
+			e.preventDefault();
+			console.log('패스워드 변경 버튼 비활성');
+			setIsPasswordButton(false);
+		},
+		[isPasswordButton],
+	);
+
+	// 패스워드 변경 버튼
+
 	return (
 		<section className={styles.container}>
 			<i className="fas fa-times-circle"></i>
@@ -23,12 +64,12 @@ const UserInfo = (props: any) => {
 						<span>사진을 추가 또는 변경을 해보세요!</span>
 						<input type="file" name="" id="" />
 					</li>
-					<li className={styles.userInfoContainer__nickname}>
+					<li className={styles.userInfoContainer__nickname} onClick={handleNicknameOpen}>
 						<h3>닉네임</h3>
 						<span>{`Test`}</span>
 						<i className="fas fa-greater-than"></i>
 					</li>
-					<li className={styles.userInfoContainer__password}>
+					<li className={styles.userInfoContainer__password} onClick={handlePasswordOpen}>
 						<h3>비밀번호</h3>
 						<span>{`*******`}</span>
 						<i className="fas fa-greater-than"></i>
@@ -42,6 +83,8 @@ const UserInfo = (props: any) => {
 				<h3 className={styles.footer__label}>탈퇴</h3>
 				<button className={styles.deleteUserButton}>회원 탈퇴</button>
 			</footer>
+			{isNicknameButton ? <ModifyNickname handleNicknameClose={handleNicknameClose} /> : ''}
+			{isPasswordButton ? <ModifyPassword handlePasswordClose={handlePasswordClose} /> : ''}
 		</section>
 	);
 };

@@ -67,6 +67,38 @@
 	margin: 0.8em auto;
 }
 
+.sign-in-container span:last-of-type {
+	color: var(--red);
+	font-weight: var(--bold);
+	font-size: 0.8em;
+	margin-bottom: 0.3em;
+}
+
+.shake-animation {
+	animation: shake 0.5s linear;
+}
+
+@keyframes shake {
+	25% {
+		transform: rotate(5deg);
+	}
+
+	50% {
+		transform: rotate(-5deg);
+	}
+
+	75% {
+		transform: rotate(5deg);
+	}
+}
+
+.sign-in-container span:last-of-type {
+	color: var(--red);
+	font-weight: var(--bold);
+	font-size: 0.8em;
+	margin-bottom: 0.3em;
+}
+
 .sign-in-container .forgot_password {
 	color: var(--gray2);
 	display: block;
