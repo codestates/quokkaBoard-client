@@ -28,22 +28,23 @@
 	--green-d-light: #e1ffb1;
 	--green-d: #aed581;
 	--green-d-dark: #7da453;
+	--green-e: #4e7424;
+	--green-e-dark: #3b551d;
 	--yellow-light: #fffde7;
 	--yellow: #fff9c4;
 	--yellow-dark: #fff59d;
 	--amber-light: #fff8e1;
 	--amber: #ffecb3;
 	--amber-dark: #ffe082;
+	--orange: #ffa726;
 	--orange-light: #ffe0b2;
-	--orange-dark: #ffa726;
+	--orange-dark: #ff8400;
 	--deep-orange-light: #ffccbc;
 	--deep-orange: #ffab91;
 	--deep-orange-dark: #ff8a65;
 
 	/* etc */
-	--orange: #ff8400;
-	--orange-light: #ffa200;
-	--orange-dark: #f57f00;
+
 	--beige: #f3b976;
 	--beige-light: #fff7e9;
 	--red: #ef492d;
