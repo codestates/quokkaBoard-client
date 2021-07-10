@@ -5,7 +5,7 @@ import styles from './sections/styles.module.css';
 
 // image
 import mainLogo from '../../../common/images/main_logo2.png';
-import quokka from '../register/sections/images/signup_img.png';
+import quokka from '../modal/login/sections/images/signup_img.png';
 
 function LandingPage() {
 	return (
