@@ -1,8 +1,9 @@
 .container {
 	background-color: var(--green-b);
 	width: 4rem;
-	height: 100vh;
-	position: absolute;
+	height: 100%;
+	position: fixed;
+	top: 4rem;
 }
 
 .ul {
