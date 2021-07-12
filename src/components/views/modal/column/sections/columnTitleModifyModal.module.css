@@ -1,0 +1,52 @@
+.div {
+	border: 1px solid var(--yellow-dark);
+	border-radius: 0.3rem;
+	background-color: var(--yellow-dark);
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: absolute;
+	top: 3rem;
+	left: 1rem;
+	text-align: center;
+	padding: 1rem;
+}
+
+.title {
+	font-size: 0.9rem;
+	padding: 0.2rem;
+	font-weight: bold;
+	color: var(--green-e-dark);
+	margin-bottom: 1rem;
+}
+
+.input {
+	width: 100%;
+	padding: 0.4rem;
+	background-color: var(--yellow);
+	font-size: 0.9rem;
+}
+
+.confirm_btn {
+	margin-top: 1rem;
+}
+
+.cancel,
+.confirm {
+	background-color: var(--orange-light);
+	padding: 0.2rem 0.5rem;
+	border-radius: 0.4rem;
+	color: var(--orange-dark);
+	transition: all 0.3s ease-in;
+	font-size: 0.85rem;
+}
+
+.cancel:hover,
+.confirm:hover {
+	color: var(--white);
+	background-color: var(--orange-dark);
+}
+.cancel {
+	margin-right: 0.3rem;
+}

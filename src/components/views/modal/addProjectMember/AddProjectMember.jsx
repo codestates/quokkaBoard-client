@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import styles from './sections/addProjectMember.module.css';
 import searchResult from '../search/sections/searchResult';
 import SearchResultPerson from './SearchResultPerson';

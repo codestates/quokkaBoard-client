@@ -3,15 +3,30 @@ import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import initialData from './sections/initialData';
 import Column from './Column';
+import TaskEdit from '../modal/task/TaskEdit';
+
+const Page = styled.div`
+	width: 100%;
+	height: 100vh;
+	background-color: var(--yellow);
+`;
 
 const Container = styled.div`
-	position: absolute;
+	position: relative;
 	top: 8rem;
+	left: 8rem;
+	display: flex;
+	overflow: auto;
+`;
+
+const AddContainer = styled.div`
+	position: absolute;
+	right: 0rem;
 	left: 8rem;
 	display: flex;
 `;
 
-class InnerList extends React.PureComponent {
+/* class InnerList extends React.PureComponent {
 	// 어떤 소품도 바뀌지 않으면 조건부로 렌더링을 차단할 수 있다.
 	// 순수 구성 요소에서 확장되도록 구성 요소를 변경할 수 있다.
 	// 순수 구성 요소는 여기에 있는 구성 요소 업데이트 확인과 동일한 작업을 수행
@@ -22,10 +37,26 @@ class InnerList extends React.PureComponent {
 
 		return <Column column={column} tasks={tasks} index={index} />;
 	}
-}
+} */
 
 class KanbanBoard extends Component {
-	state = initialData;
+	state = {
+		...initialData,
+		isTaskClick: false,
+	};
+
+	handleTaskModalOpen = () => {
+		console.log('task click');
+		this.setState({
+			isTaskClick: true,
+		});
+	};
+
+	handleTaskModalClose = () => {
+		this.setState({
+			isTaskClick: false,
+		});
+	};
 
 	onDragEnd = (result) => {
 		const { destination, source, draggableId, type } = result;
@@ -133,18 +164,31 @@ class KanbanBoard extends Component {
 			<DragDropContext onDragStart={this.onDragStart} onDragEnd={this.onDragEnd}>
 				<Droppable droppableId="all-columns" direction="horizontal" type="column">
 					{(provided) => (
-						<Container {...provided.droppableProps} ref={provided.innerRef}>
-							{this.state.columnOrder.map((columnId, index) => {
-								// column을 state에서 뽑아옴
-								const column = this.state.columns[columnId];
-								// 해당 column에 관련된 task도 확인
-								// const tasks = column.taskIds.map((taskId) => this.state.tasks[taskId]);
+						<>
+							<Page>
+								<Container {...provided.droppableProps} ref={provided.innerRef}>
+									{this.state.columnOrder.map((columnId, index) => {
+										// column을 state에서 뽑아옴
+										const column = this.state.columns[columnId];
+										// 해당 column에 관련된 task도 확인
+										const tasks = column.taskIds.map((taskId) => this.state.tasks[taskId]);
 
-								// return <Column key={column.id} column={column} tasks={tasks} index={index} />;
-								return <InnerList key={column.id} column={column} taskMap={this.state.tasks} index={index} />;
-							})}
-							{provided.placeholder}
-						</Container>
+										return (
+											<Column
+												key={column.id}
+												column={column}
+												tasks={tasks}
+												index={index}
+												handleTaskModalOpen={this.handleTaskModalOpen}
+											/>
+										);
+										// return <InnerList key={column.id} column={column} taskMap={this.state.tasks} index={index} />;
+									})}
+									{provided.placeholder}
+								</Container>
+								{this.state.isTaskClick ? <TaskEdit /> : ''}
+							</Page>
+						</>
 					)}
 				</Droppable>
 			</DragDropContext>
