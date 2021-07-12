@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
 
 const Container = styled.div`
-	padding: 0.5rem;
+	padding: 0.8rem 0.5rem;
 	border: 1px solid var(--green-c);
 	border-radius: 0.3rem;
 	font-size: 0.85rem;
@@ -23,6 +23,7 @@ class Task extends Component {
 						{...provided.dragHandleProps}
 						ref={provided.innerRef}
 						isDragging={snapshot.isDragging}
+						onClick={this.props.handleTaskModalOpen}
 					>
 						{this.props.task.content}
 					</Container>

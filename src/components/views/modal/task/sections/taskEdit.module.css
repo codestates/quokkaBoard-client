@@ -1,0 +1,9 @@
+.container {
+	position: absolute;
+	top: 4rem;
+	right: 0;
+	background-color: burlywood;
+	width: 500px;
+	height: 500px;
+	z-index: 5;
+}
