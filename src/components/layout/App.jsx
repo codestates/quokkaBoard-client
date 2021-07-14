@@ -6,12 +6,12 @@ import LandingPage from '../views/landing/LandingPage';
 import Nav from '../views/nav/Nav';
 import Login from '../views/modal/login/Login';
 import KanbanBoard from '../views/kanbanBoard/KanbanBoard';
+import Loading from '../views/loading/Loading';
 
 function App() {
 	return (
 		<>
-			<Nav />
-			<DashBoard />
+			<LandingPage />
 		</>
 	);
 }
