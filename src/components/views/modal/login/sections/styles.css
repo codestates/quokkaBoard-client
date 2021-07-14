@@ -279,12 +279,9 @@
 }
 
 .overlay-left h1,
-p {
-	color: var(--gray5);
-}
-
 .overlay-left p {
 	margin: 1em;
+	color: var(--gray5);
 }
 
 .container.right-panel-active .overlay-left {
