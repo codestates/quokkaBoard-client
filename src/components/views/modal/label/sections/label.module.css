@@ -1,0 +1,99 @@
+.background {
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	z-index: 2;
+	background-color: rgba(0, 0, 0, 0.42);
+}
+
+.container {
+	width: 540px;
+	background-color: var(--deep-orange-light);
+	position: absolute;
+	top: 58%;
+	left: 50%;
+	z-index: 6;
+	border-radius: 0.7rem;
+	padding: 1.5rem;
+	transform: translate(-50%, -50%);
+	animation: add_task_label_modal 0.3s;
+	text-align: center;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.close_btn {
+	cursor: pointer;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	transition: all 0.3s ease-in;
+}
+
+.close_btn:hover {
+	color: var(--white);
+}
+
+.close_btn:active {
+	transform: scale(1.1);
+}
+
+.h2 {
+	padding: 2rem;
+}
+
+.label {
+	color: var(--deep-orange-dark);
+	font-weight: bold;
+}
+
+.ul {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.add_tag {
+	display: flex;
+}
+
+.label_tag {
+	color: var(--white);
+	font-weight: bold;
+	font-size: 0.9rem;
+	margin-bottom: 0.5rem;
+	margin-right: 0.5rem;
+	padding: 0.2rem 0.5rem 0.4rem 0.5rem;
+	border-radius: 0.6rem;
+	transition: all 0.3s ease-in;
+}
+
+.label_tag:hover {
+	color: var(--black);
+}
+
+.label_tag:active {
+	transform: scale(1.1);
+}
+
+.selected_label {
+	text-decoration: line-through;
+	color: var(--gray1);
+	font-weight: bold;
+	font-size: 0.9rem;
+	margin-bottom: 0.5rem;
+	margin-right: 0.5rem;
+	padding: 0.2rem 0.5rem 0.4rem 0.5rem;
+	border-radius: 0.6rem;
+}
+
+@keyframes add_task_label_modal {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 100;
+	}
+}
