@@ -1,206 +1,379 @@
 import React from 'react';
-
-import Login from '../modal/login/Login';
 import styles from './sections/styles.module.css';
 
-// image
+// Common image
 import mainLogo from '../../../common/images/main_logo2.png';
 import quokka from '../modal/login/sections/images/signup_img.png';
+import quokka_profile from './sections/images/profile_img.png';
+// About image
+import awards from './sections/images/about/awards.png';
+import projects from './sections/images/about/projects.png';
+import repeat from './sections/images/about/repeat.png';
+import total from './sections/images/about/total.png';
+// Logo image
+import naver from './sections/images/Logos/Naver.png';
+import kakao from './sections/images/Logos/Kakao.png';
+import toss from './sections/images/Logos/Toss.png';
+import coupang from './sections/images/Logos/Coupang.png';
+import baemin from './sections/images/Logos/Baemin.png';
+// feature image
+import ux from './sections/images/feature/ux.png';
+import web from './sections/images/feature/web-design.png';
+import tasks from './sections/images/feature/tasks.png';
+import ecom from './sections/images/feature/ecommerce.png';
+import social from './sections/images/feature/social-media.png';
+import graph from './sections/images/feature/graphic-design.png';
+// recent image
+import blog1 from './sections/images/recent/blog1.png';
+import blog2 from './sections/images/recent/blog2.png';
+import blog3 from './sections/images/recent/blog3.png';
+// team image
+import jiye from './sections/images/team/jiye.png';
+import jiun from './sections/images/team/jiun.png';
+import sangwoo from './sections/images/team/sangwoo.png';
+import seungyong from './sections/images/team/seungyong.png';
 
 function LandingPage() {
 	return (
 		<div className={styles.container}>
-			{/* 네비게이션 */}
-			<nav className={styles.navigation}>
-				<ul className={styles.navigation__left}>
-					<img src={mainLogo} alt="main logo" />
-					<li>
-						<a href="#">홈</a>
-					</li>
-					<li>
-						<a href=".part5">문의하기</a>
-					</li>
-				</ul>
-				<div className={styles.navigation__right}>
-					<a href="#">로그인</a>
-					<a href="#">무료 체험</a>
-				</div>
-			</nav>
-			{/* 소개 및 타이틀 */}
-			<section className={styles.part1}>
-				<div className={styles.part1__left}>
-					<div>
-						<h1>
-							최고의 팀을
-							<br />
-							위한 도구
-						</h1>
-						<p>
-							간단하게 프로젝트를 관리하고 팀원들의 업무를
-							<br />
-							추적하여 원활한 협업을 경함하세요.
-						</p>
-						<a href="#">지금 시작하기</a>
-					</div>
-				</div>
-				<div className={styles.part1__right}>
-					<img src={quokka} alt="main image" />
-				</div>
-			</section>
-			{/* 간략한 소개 */}
-			<section className={styles.part2}>
-				<h1>우수한 프로젝트 관리</h1>
-				<div className={styles.part2__card_container}>
-					<div className={styles.part2__card}>
-						<div>
-							<i className="fas fa-users"></i>
-						</div>
-						<h2>프로젝트 관리</h2>
-						<p>팀 또는 개인프로젝트를 빠르게 설정하고 관리할 수 있습니다.</p>
-					</div>
-					<div className={styles.part2__card}>
-						<div>
-							<i className="fas fa-tasks"></i>
-						</div>
-						<h2>내 업무 관리</h2>
-						<p>업무를 위한 칸반보드를 제공하여 더욱더 효율적으로 관리가 가능합니다.</p>
-					</div>
-					<div className={styles.part2__card}>
-						<div>
-							<i className="far fa-clock"></i>
-						</div>
-						<h2>시간 관리</h2>
-						<p>
-							마감일이 얼마남지않은 업무, 최근 완료한 업무등의 알림으로 전체적인 시간을 효율적으로 관리할 수 있습니다.
-						</p>
-					</div>
-				</div>
-			</section>
-			{/* 상세 소개 */}
-			<section className={styles.part3}>
-				<h1>당신의 효율을 위해 제공되는 강력한 기능</h1>
-				<div className={styles.part3__card_container}>
-					<div className={styles.part3__card}>
-						<img src="https://media.giphy.com/media/NLIPqilkyziF2/giphy.gif" alt="#" />
-						<div className={styles.part3__card__description}>
-							<h2>프로젝트 관리</h2>
-							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum odio facilis repellendus molestiae
-								molestias! Tempora facilis repudiandae corporis debitis cupiditate. Temporibus odit necessitatibus neque
-								distinctio?
-							</p>
-						</div>
-					</div>
-					<div className={styles.part3__card}>
-						<img src="https://media.giphy.com/media/NLIPqilkyziF2/giphy.gif" alt="#" />
-						<div className={styles.part3__card__description}>
-							<h2>대쉬보드 현황</h2>
-							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum odio facilis repellendus molestiae
-								molestias! Tempora facilis repudiandae corporis debitis cupiditate. Temporibus odit necessitatibus neque
-								distinctio?
-							</p>
-						</div>
-					</div>
-					<div className={styles.part3__card}>
-						<img src="https://media.giphy.com/media/NLIPqilkyziF2/giphy.gif" alt="#" />
-						<div className={styles.part3__card__description}>
-							<h2>칸반보드 관리</h2>
-							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum odio facilis repellendus molestiae
-								molestias! Tempora facilis repudiandae corporis debitis cupiditate. Temporibus odit necessitatibus neque
-								distinctio?
-							</p>
-						</div>
-					</div>
-					<div className={styles.part3__card}>
-						<img src="https://media.giphy.com/media/NLIPqilkyziF2/giphy.gif" alt="#" />
-						<div className={styles.part3__card__description}>
-							<h2></h2>
-							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum odio facilis repellendus molestiae
-								molestias! Tempora facilis repudiandae corporis debitis cupiditate. Temporibus odit necessitatibus neque
-								distinctio?
-							</p>
-						</div>
-					</div>
-					<div className={styles.part3__card}>
-						<img src="https://media.giphy.com/media/NLIPqilkyziF2/giphy.gif" alt="#" />
-						<div className={styles.part3__card__description}>
-							<h2>프로젝트 관리</h2>
-							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum odio facilis repellendus molestiae
-								molestias! Tempora facilis repudiandae corporis debitis cupiditate. Temporibus odit necessitatibus neque
-								distinctio?
-							</p>
-						</div>
-					</div>
-				</div>
-			</section>
-			{/* 문의 */}
-			<section className={styles.part4} id="contact">
-				<h1>Contact & Feedback</h1>
-				<p>
-					Quokka Baord는 개인과 팀을 위한 최고의 툴이 되기위해 항상 노력하고 발전하고자 합니다.
-					<br />
-					언제나 문의사항 및 피드백이 있다면 연락을 해주세요!
-				</p>
-				<a href="#">문의하기</a>
-			</section>
-			{/* 푸터 */}
-			<footer className={styles.footer}>
-				<div className={styles.footer__logo}>
-					<img
-						src="https://lh3.googleusercontent.com/proxy/5_kOrq2d9Zo2v7plcbWq4PiMmkPOaBtHwZfw1WptN4y0SSGAC2J4hQf4zXuzMLSvNrDi7FCo0XLFzMW3ot0s0nCpxxvx_htxH_UZKuHqS2E5smnXNGdefPOfUcb7IO3d1HcQI5QhP2RPu0w9x8JwozzUMQ"
-						alt="kakao"
-					/>
-					<img src="https://image.zdnet.co.kr/2020/11/23/3346470b81d65cea46b616a3f83b3287.png" alt="house" />
-					<img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/Logo_2013_Google.png" alt="google" />
-					<img
-						src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png"
-						alt="samsung"
-					/>
-					<img
-						src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2560px-Microsoft_logo_%282012%29.svg.png"
-						alt="toss"
-					/>
-				</div>
-				<div className={styles.footer__team}>
-					<div className={styles.footer_info}>
-						<img src={mainLogo} alt="" />
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi, porro. Dolores voluptates provident
-							commodi repellendus quisquam veritatis explicabo sapiente minus quidem ipsa hic aspernatur, earum possimus
-							voluptatem dolore maxime ut reprehenderit aperiam excepturi facere. Iste dolorum commodi tenetur deserunt
-							voluptatibus! Aliquid beatae mollitia ipsam consectetur soluta animi quo illum expedita.
-						</p>
-					</div>
+			<nav className={styles.nav}>
+				<div className={styles.nav__container}>
+					<h1>
+						<a href="#">
+							<img src={mainLogo} alt="" />
+						</a>
+					</h1>
 					<ul>
 						<li>
-							<h1>연락하기</h1>
+							<a href="#">로그인</a>
 						</li>
 						<li>
-							유지예
-							<i className="fab fa-github"></i>
-							<i className="fas fa-blog"></i>
-						</li>
-						<li>
-							정지운
-							<i className="fab fa-github"></i>
-							<i className="fas fa-blog"></i>
-						</li>
-						<li>
-							박상우
-							<i className="fab fa-github"></i>
-							<i className="fas fa-blog"></i>
-						</li>
-						<li>
-							하승용
-							<i className="fab fa-github"></i>
-							<i className="fas fa-blog"></i>
+							<a href="#">시작하기</a>
 						</li>
 					</ul>
 				</div>
+			</nav>
+			<div className={styles.wrapper}>
+				<section className={styles.about}>
+					<div>
+						<img src={quokka_profile} alt="" />
+						<h1>Welcome QuokkaBoard</h1>
+						<p>최고의 협업 툴</p>
+						<div>
+							<span className={styles.tri}></span>
+							개인, 팀, 회사, 학교 등 어디에서나 계획은 필요합니다.
+							<br />
+							<span>쿼카 보드</span>를 이용하여 처음부터 끝까지 협업과 관리를 시작해보세요!
+						</div>
+					</div>
+				</section>
+				<section className={styles.sub_about}>
+					<ul>
+						<li>
+							<img src={projects} alt="" />
+							<span>4,000+</span>
+							<span>완료된 프로젝트</span>
+						</li>
+						<li>
+							<img src={total} alt="" />
+							<span>2,072</span>
+							<span>사용중인 회원</span>
+						</li>
+						<li>
+							<img src={repeat} alt="" />
+							<span>1,854</span>
+							<span>다시 찾아주신 회원</span>
+						</li>
+						<li>
+							<img src={awards} alt="" />
+							<span>1522</span>
+							<span>압도적인 만족도</span>
+						</li>
+					</ul>
+				</section>
+				<section className={styles.feature}>
+					<div className={styles.feature__container}>
+						<h2>효율적인 기능</h2>
+						<ul>
+							<li>
+								<img src={ux} alt="ux" />
+								<h3>간편한 UI/UX</h3>
+								<p>깔끔하고 간편한 UI/UX를 제공</p>
+							</li>
+							<li>
+								<img src={web} alt="web" />
+								<h3>프로젝트</h3>
+								<p>손쉬운 프로젝트 관리</p>
+							</li>
+							<li>
+								<img src={tasks} alt="tasks" />
+								<h3>칸반보드</h3>
+								<p>칸반보드를 이용한 업무관리</p>
+							</li>
+						</ul>
+						<ul>
+							<li>
+								<img src={ecom} alt="ecom" />
+								<h3>무료 기능</h3>
+								<p>모든 기능을 제한없이 사용</p>
+							</li>
+							<li>
+								<img src={social} alt="social" />
+								<h3>커뮤니케이션</h3>
+								<p>채팅기능을 통한 효율적인 소통</p>
+							</li>
+							<li>
+								<img src={graph} alt="graph" />
+								<h3>대시보드</h3>
+								<p>프로젝트 현황을 한눈에</p>
+							</li>
+						</ul>
+						<span>쿼카보드를 사용해보시겠어요?</span>
+						<button>시작하기</button>
+					</div>
+				</section>
+				<section className={styles.testimonial}>
+					<div className={styles.testimonial__container}>
+						<h2 className={styles.testimonial}>리뷰를 확인해보세요 !</h2>
+						<div className={styles.testimonial__header}>
+							<div></div>
+							<div>
+								<i className="fas fa-quote-left"></i>
+							</div>
+							<div></div>
+						</div>
+						<div className={styles.testi__slider__continaer}>
+							<button>
+								<i className="fas fa-angle-left"></i>
+							</button>
+							<div className={styles.slider__area}>
+								<div className={styles.slider__content}>
+									<p>
+										Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis, sapiente, ipsum
+										cupiditate ratione debitis assumenda, vel quas architecto aut aliquam. Facere eligendi et ad
+										voluptates nobis sit impedit omnis.
+									</p>
+									<span>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+									</span>
+									<span>Test</span>
+								</div>
+								<div className={styles.slider__content}>
+									<p>
+										Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis, sapiente, ipsum
+										cupiditate ratione debitis assumenda, vel quas architecto aut aliquam. Facere eligendi et ad
+										voluptates nobis sit impedit omnis.
+									</p>
+									<span>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+									</span>
+									<span>Test</span>
+								</div>
+								<div className={styles.slider__content}>
+									<p>
+										Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis, sapiente, ipsum
+										cupiditate ratione debitis assumenda, vel quas architecto aut aliquam. Facere eligendi et ad
+										voluptates nobis sit impedit omnis.
+									</p>
+									<span>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+									</span>
+									<span>Test</span>
+								</div>
+							</div>
+							<button>
+								<i className="fas fa-angle-right"></i>
+							</button>
+						</div>
+						<div className={styles.testimonial__footer}></div>
+					</div>
+				</section>
+				<section className={styles.logos}>
+					<ul>
+						<li>
+							<img src={naver} alt="naver" />
+						</li>
+						<li>
+							<img src={kakao} alt="kakao" />
+						</li>
+						<li>
+							<img src={toss} alt="line" />
+						</li>
+						<li>
+							<img src={coupang} alt="coupang" />
+						</li>
+						<li>
+							<img src={baemin} alt="yanolja" />
+						</li>
+					</ul>
+				</section>
+				<section className={styles.recent}>
+					<div className={styles.recent__container}>
+						<h2>최신 뉴스</h2>
+						<ul>
+							<li>
+								<img src={blog1} alt="" />
+								<div>
+									<span>업데이트</span>
+								</div>
+								<ul className={styles.recent__list}>
+									<li>
+										<i className="far fa-dot-circle"></i> 칸반 기능 추가
+									</li>
+									<li>
+										<i className="far fa-dot-circle"></i> 대시보드 기능 추가
+									</li>
+								</ul>
+								<span> ** 3 July 2021</span>
+							</li>
+							<li>
+								<img src={blog2} alt="" />
+								<div>
+									<span>협력</span>
+								</div>
+								<ul className={styles.recent__list}>
+									<li>
+										<i className="far fa-dot-circle"></i> 코드스테이츠 수강생 협업툴 체결
+									</li>
+								</ul>
+								<span> ** 15 February 2021</span>
+							</li>
+							<li>
+								<img src={blog3} alt="" />
+								<div>
+									<span>업데이트 예정</span>
+								</div>
+								<ul className={styles.recent__list}>
+									<li>
+										<i className="far fa-dot-circle"></i> 채팅 기능
+									</li>
+									<li>
+										<i className="far fa-dot-circle"></i> 코멘트 기능
+									</li>
+								</ul>
+								<span> ** August 2021</span>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section className={styles.team}>
+					<div className={styles.team__container}>
+						<h2>개발팀 멤버</h2>
+						<ul>
+							<li>
+								<div>
+									<div>
+										<img src={jiye} alt="profile_jiye" />
+									</div>
+									<h3>유지예</h3>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<div>
+										<a href="a" target="_blank">
+											<i className="fab fa-github"></i> Github
+										</a>
+										<a href="a" target="_blank">
+											<i className="fas fa-blog"></i> Blog
+										</a>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div>
+									<div>
+										<img src={jiun} alt="profile_jiye" />
+									</div>
+									<h3>정지운</h3>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<div>
+										<a href="a" target="_blank">
+											<i className="fab fa-github"></i> Github
+										</a>
+										<a href="a" target="_blank">
+											<i className="fas fa-blog"></i> Blog
+										</a>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div>
+									<div>
+										<img src={sangwoo} alt="profile_jiye" />
+									</div>
+									<h3>박상우</h3>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<div>
+										<a href="a" target="_blank">
+											<i className="fab fa-github"></i> Github
+										</a>
+										<a href="a" target="_blank">
+											<i className="fas fa-blog"></i> Blog
+										</a>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div>
+									<div>
+										<img src={seungyong} alt="profile_jiye" />
+									</div>
+									<h3>하승용</h3>
+									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<div>
+										<a href="a" target="_blank">
+											<i className="fab fa-github"></i> Github
+										</a>
+										<a href="a" target="_blank">
+											<i className="fas fa-blog"></i> Blog
+										</a>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section className={styles.contact} id="contact">
+					<div className={styles.contact__container}>
+						<h2>문의하기</h2>
+						<form>
+							<div>
+								<div>
+									<label htmlFor="name">이름</label>
+									<input type="text" id="name" />
+								</div>
+								<div>
+									<label htmlFor="email">이메일</label>
+									<input type="text" id="email" />
+								</div>
+								<div>
+									<label htmlFor="phone">전화번호</label>
+									<input type="text" id="phone" />
+								</div>
+							</div>
+							<div>
+								<label htmlFor="message">내용</label>
+								<textarea name="" id="message" cols="100" rows="5"></textarea>
+							</div>
+							<button>
+								보내기 <i class="far fa-paper-plane"></i>
+							</button>
+						</form>
+					</div>
+				</section>
+			</div>
+			<footer className={styles.footer}>
+				<span>@ 2021 Team Coco Web Portfolio Site</span>
 			</footer>
 		</div>
 	);

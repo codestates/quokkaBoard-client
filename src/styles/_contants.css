@@ -3,7 +3,7 @@
 	/* Common */
 	--black: #000;
 	--gray1: #3f4150;
-	--gray2: #8c8d96;
+	--gray2: #7b7b82;
 	--gray3: #b2b3b9;
 	--gray4: #eaebed;
 	--gray5: #f7f8fa;
@@ -56,6 +56,7 @@
 	--font: 'Noto Sans KR', sans-serif;
 	--font-sub1: 'Do Hyeon', sans-serif;
 	--font-sub2: 'Nanum Pen Script', cursive;
+	--font-sub3: 'Fredoka One', cursive;
 
 	/* font-weight */
 	--light: 300;
