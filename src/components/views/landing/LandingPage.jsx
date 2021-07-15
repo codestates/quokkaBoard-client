@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import styles from './sections/styles.module.css';
+import aos from 'aos';
+import 'aos/dist/aos.css';
 
 // Common image
 import mainLogo from '../../../common/images/main_logo2.png';
@@ -36,9 +38,31 @@ import seungyong from './sections/images/team/seungyong.png';
 import contact from './sections/images/contact/contact.jpg';
 
 function LandingPage() {
+	const nav = useRef(null);
+	const arrowUp = useRef(null);
+	const slider = useRef(null);
+	const navMove = styles.nav__move;
+	const hide = styles.hide;
+
+	const handleArrowClick = useCallback(() => {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}, []);
+
+	useEffect(() => {
+		aos.init();
+		window.addEventListener('scroll', () => {
+			if (window.scrollY >= 50) {
+				nav.current.classList.add(navMove);
+				arrowUp.current.classList.add(hide);
+			} else {
+				nav.current.classList.remove(navMove);
+				arrowUp.current.classList.remove(hide);
+			}
+		});
+	});
 	return (
 		<div className={styles.container}>
-			<nav className={styles.nav}>
+			<nav className={styles.nav} ref={nav}>
 				<div className={styles.nav__container}>
 					<h1>
 						<a href="#">
@@ -135,8 +159,9 @@ function LandingPage() {
 					</div>
 				</section>
 				<section className={styles.testimonial}>
-					<div className={styles.testimonial__container}>
-						<h2 className={styles.testimonial}>리뷰를 확인해보세요 !</h2>
+					<h2 className={styles.testimonial}>리뷰를 확인해보세요 !</h2>
+
+					<div className={styles.testimonial__container} data-aos="zoom-in">
 						<div className={styles.testimonial__header}>
 							<div></div>
 							<div>
@@ -145,16 +170,9 @@ function LandingPage() {
 							<div></div>
 						</div>
 						<div className={styles.testi__slider__continaer}>
-							<button>
-								<i className="fas fa-angle-left"></i>
-							</button>
-							<div className={styles.slider__area}>
+							<div className={styles.slider__area} ref={slider}>
 								<div className={styles.slider__content}>
-									<p>
-										Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis, sapiente, ipsum
-										cupiditate ratione debitis assumenda, vel quas architecto aut aliquam. Facere eligendi et ad
-										voluptates nobis sit impedit omnis.
-									</p>
+									<p>취업을 위해 팀 프로젝트를 관리하는데 있어 정말 유용하게 사용했습니다 :)</p>
 									<span>
 										<i className="fas fa-star"></i>
 										<i className="fas fa-star"></i>
@@ -162,13 +180,12 @@ function LandingPage() {
 										<i className="fas fa-star"></i>
 										<i className="fas fa-star"></i>
 									</span>
-									<span>Test</span>
+									<span>Team Coco (CodeStates)</span>
 								</div>
 								<div className={styles.slider__content}>
 									<p>
-										Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis, sapiente, ipsum
-										cupiditate ratione debitis assumenda, vel quas architecto aut aliquam. Facere eligendi et ad
-										voluptates nobis sit impedit omnis.
+										개인 프로젝트를 준비하기위해 이곳저곳 알아보다가 무료이면서 사용하기 편한 쿼카보드를 사용했습니다.
+										간단하게 사용가능해서 좋았습니다!
 									</p>
 									<span>
 										<i className="fas fa-star"></i>
@@ -177,14 +194,10 @@ function LandingPage() {
 										<i className="fas fa-star"></i>
 										<i className="fas fa-star"></i>
 									</span>
-									<span>Test</span>
+									<span>김XX (프론트엔드 개발자)</span>
 								</div>
 								<div className={styles.slider__content}>
-									<p>
-										Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem blanditiis, sapiente, ipsum
-										cupiditate ratione debitis assumenda, vel quas architecto aut aliquam. Facere eligendi et ad
-										voluptates nobis sit impedit omnis.
-									</p>
+									<p>이번에 친구들과 여행에서 할 To-Do-List를 관리하기위해 사용했는데, 유용하고 쉽게 사용했습니다 !!</p>
 									<span>
 										<i className="fas fa-star"></i>
 										<i className="fas fa-star"></i>
@@ -192,12 +205,23 @@ function LandingPage() {
 										<i className="fas fa-star"></i>
 										<i className="fas fa-star"></i>
 									</span>
-									<span>Test</span>
+									<span>MoXXX (대학 동아리)</span>
+								</div>
+								<div className={styles.slider__content}>
+									<p>취업을 위해 팀 프로젝트를 관리하는데 있어 정말 유용하게 사용했습니다 :)</p>
+									<span>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+										<i className="fas fa-star"></i>
+									</span>
+									<span>Team Coco (CodeStates)</span>
 								</div>
 							</div>
-							<button>
+							{/* <button>
 								<i className="fas fa-angle-right"></i>
-							</button>
+							</button> */}
 						</div>
 						<div className={styles.testimonial__footer}></div>
 					</div>
@@ -225,7 +249,7 @@ function LandingPage() {
 					<div className={styles.recent__container}>
 						<h2>최신 뉴스</h2>
 						<ul>
-							<li>
+							<li data-aos="flip-left">
 								<img src={blog1} alt="" />
 								<div>
 									<span>업데이트</span>
@@ -240,7 +264,7 @@ function LandingPage() {
 								</ul>
 								<span> ** 3 July 2021</span>
 							</li>
-							<li>
+							<li data-aos="flip-left">
 								<img src={blog2} alt="" />
 								<div>
 									<span>협력</span>
@@ -252,7 +276,7 @@ function LandingPage() {
 								</ul>
 								<span> ** 15 February 2021</span>
 							</li>
-							<li>
+							<li data-aos="flip-left">
 								<img src={blog3} alt="" />
 								<div>
 									<span>업데이트 예정</span>
@@ -274,7 +298,7 @@ function LandingPage() {
 					<div className={styles.team__container}>
 						<h2>개발팀 멤버</h2>
 						<ul>
-							<li>
+							<li data-aos="flip-left">
 								<div>
 									<div>
 										<img src={jiye} alt="profile_jiye" />
@@ -291,7 +315,7 @@ function LandingPage() {
 									</div>
 								</div>
 							</li>
-							<li>
+							<li data-aos="flip-left">
 								<div>
 									<div>
 										<img src={jiun} alt="profile_jiye" />
@@ -308,7 +332,7 @@ function LandingPage() {
 									</div>
 								</div>
 							</li>
-							<li>
+							<li data-aos="flip-right">
 								<div>
 									<div>
 										<img src={sangwoo} alt="profile_jiye" />
@@ -325,7 +349,7 @@ function LandingPage() {
 									</div>
 								</div>
 							</li>
-							<li>
+							<li data-aos="flip-right">
 								<div>
 									<div>
 										<img src={seungyong} alt="profile_jiye" />
@@ -352,13 +376,13 @@ function LandingPage() {
 							<form>
 								<div>
 									<label htmlFor="">
-										<i class="far fa-envelope-open"></i>
+										<i className="far fa-envelope-open"></i>
 									</label>
 									<input type="text" placeholder="email" />
 								</div>
 								<div>
 									<label htmlFor="">
-										<i class="far fa-user"></i>
+										<i className="far fa-user"></i>
 									</label>
 									<input type="text" placeholder="name" />
 								</div>
@@ -366,7 +390,7 @@ function LandingPage() {
 									<textarea rows="3" cols="38" placeholder="Message..."></textarea>
 								</div>
 								<button>
-									보내기<i class="far fa-paper-plane"></i>
+									보내기<i className="far fa-paper-plane"></i>
 								</button>
 							</form>
 						</div>
@@ -379,6 +403,9 @@ function LandingPage() {
 			<footer className={styles.footer}>
 				<span>@ 2021 Team Coco Web Portfolio Site</span>
 			</footer>
+			<div ref={arrowUp} className={styles.arrowUp} onClick={handleArrowClick}>
+				<i className="fas fa-arrow-circle-up"></i>
+			</div>
 		</div>
 	);
 }
