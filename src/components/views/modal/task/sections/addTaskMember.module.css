@@ -1,13 +1,14 @@
 .container {
 	width: 540px;
-	background-color: var(--amber-medium);
+	background-color: var(--deep-orange-light);
 	position: absolute;
-	top: 52%;
+	top: 58%;
 	left: 50%;
-	z-index: 3;
+	z-index: 6;
 	border-radius: 0.7rem;
 	padding: 1.5rem;
 	transform: translate(-50%, -50%);
+	animation: add_task_member_modal 0.3s;
 	text-align: center;
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
@@ -44,15 +45,15 @@
 	padding: 0.45rem 1rem;
 	border-radius: 0.3rem;
 	color: var(--orange-dark);
-	background-color: var(--amber);
+	background-color: var(--beige);
 	transition: all 0.3s ease-in;
 	font-weight: bold;
 }
 
 .btn:hover {
 	font-weight: bold;
-	color: var(--amber);
-	background-color: var(--orange-dark);
+	color: var(--white);
+	background-color: var(--orange-light);
 }
 
 .btn:active {
@@ -110,4 +111,13 @@
 .plus {
 	font-weight: bold;
 	font-size: 0.8rem;
+}
+
+@keyframes add_task_member_modal {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 100;
+	}
 }

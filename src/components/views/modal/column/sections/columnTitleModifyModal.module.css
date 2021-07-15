@@ -1,8 +1,8 @@
 .div {
-	border: 1px solid var(--yellow-dark);
+	border: 1px solid var(--amber-dark);
 	border-radius: 0.3rem;
-	background-color: var(--yellow-dark);
-	width: 200px;
+	background-color: var(--amber-dark);
+	width: 90%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -11,6 +11,8 @@
 	left: 1rem;
 	text-align: center;
 	padding: 1rem;
+	margin: auto;
+	animation: column_modal_show 0.4s;
 }
 
 .title {
@@ -47,6 +49,18 @@
 	color: var(--white);
 	background-color: var(--orange-dark);
 }
+
 .cancel {
 	margin-right: 0.3rem;
+}
+
+@keyframes column_modal_show {
+	0% {
+		transform: translateY(-15px);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0px);
+		opacity: 100;
+	}
 }

@@ -10,7 +10,7 @@
 	position: absolute;
 	z-index: 2;
 	width: 500px;
-	background-color: var(--green-a);
+	background-color: var(--amber-dark);
 	top: 50%;
 	left: 50%;
 	border-radius: 0.7rem;
@@ -61,8 +61,13 @@
 	height: 2rem;
 	margin-left: 1rem;
 	padding: 0 0.5rem;
-	background-color: var(--green-b);
+	background-color: var(--amber);
 	font-size: 0.9rem;
+}
+
+.date_select {
+	font-size: 0.9rem;
+	margin-left: 0.7rem;
 }
 
 .date_div1 {
@@ -80,7 +85,7 @@
 
 .project_member_add_btn {
 	font-size: 2rem;
-	color: var(--amber-dark);
+	color: var(--orange);
 	transition: all 0.3s ease-in;
 }
 
@@ -93,7 +98,7 @@
 }
 
 .span {
-	color: var(--gray2);
+	color: var(--orange);
 	margin-right: 1rem;
 }
 
@@ -103,11 +108,10 @@
 
 .cancel_btn,
 .make_btn {
-	width: 5rem;
-	height: 2rem;
+	padding: 0.4rem 1rem 0.5rem;
 	margin-right: 0.5rem;
-	border-radius: 0.3rem;
-	background-color: var(--green-d);
+	border-radius: 0.4rem;
+	background-color: var(--beige);
 	color: var(--white);
 	font-weight: bold;
 	transition: all 0.3s ease-in;
@@ -115,8 +119,8 @@
 
 .cancel_btn:hover,
 .make_btn:hover {
-	color: var(--green-d-dark);
-	background-color: var(--amber-dark);
+	color: var(--white);
+	background-color: var(--deep-orange);
 }
 
 .cancel_btn:active,
@@ -132,4 +136,14 @@
 	margin: auto;
 	margin-top: 2rem;
 	margin-bottom: 2rem;
+}
+
+.subject,
+.project_description,
+.span_start_date,
+.span_end_date,
+.project__member {
+	font-size: 1rem;
+	font-weight: bold;
+	color: var(--black);
 }
