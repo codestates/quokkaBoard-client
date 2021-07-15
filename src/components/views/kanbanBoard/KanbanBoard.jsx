@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import initialData from './sections/initialData';
 import Column from './Column';
 import TaskEdit from '../modal/task/TaskEdit';
+import AddTask from '../modal/task/AddTask';
+import AddColumn from '../modal/newColumn/AddColumn';
+import styled from 'styled-components';
+import style from './sections/boardAdd.module.css';
 
 const Page = styled.div`
 	width: 100%;
 	height: 100vh;
-	background-color: var(--yellow);
+	background-color: var(--yellow-light);
+	overflow-x: auto;
 `;
 
 const Container = styled.div`
@@ -19,34 +23,52 @@ const Container = styled.div`
 	overflow: auto;
 `;
 
-const AddContainer = styled.div`
-	position: absolute;
-	right: 0rem;
-	left: 8rem;
-	display: flex;
-`;
-
-/* class InnerList extends React.PureComponent {
-	// 어떤 소품도 바뀌지 않으면 조건부로 렌더링을 차단할 수 있다.
-	// 순수 구성 요소에서 확장되도록 구성 요소를 변경할 수 있다.
-	// 순수 구성 요소는 여기에 있는 구성 요소 업데이트 확인과 동일한 작업을 수행
-
-	render() {
-		const { column, taskMap, index } = this.props;
-		const tasks = column.taskIds.map((taskId) => taskMap[taskId]);
-
-		return <Column column={column} tasks={tasks} index={index} />;
-	}
-} */
-
 class KanbanBoard extends Component {
 	state = {
 		...initialData,
 		isTaskClick: false,
+		isNewTaskClick: false,
+		isNewColumnClick: false,
+		currentTask: {},
+		newTask: {},
+	};
+
+	// 새로운 task 1개 추가 시
+	handleTaskUpdate = (newTask) => {
+		this.setState({
+			tasks: {
+				...this.state.tasks,
+				newTask,
+			},
+		});
+	};
+
+	// task --> task 1개 클릭할 때 뜨는 모달창 (task 상세 창 + 편집 창)
+	handleCurrentTaskUpdate = (task) => {
+		this.setState({
+			currentTask: task,
+		});
+	};
+
+	handleAddTaskModalOpen = () => {
+		this.setState({
+			isNewTaskClick: true,
+		});
+	};
+
+	handleAddTaskModalClose = () => {
+		this.setState({
+			isNewTaskClick: false,
+		});
+	};
+
+	handleAddNewTask = (newTask) => {
+		this.setState({
+			newTask: newTask,
+		});
 	};
 
 	handleTaskModalOpen = () => {
-		console.log('task click');
 		this.setState({
 			isTaskClick: true,
 		});
@@ -55,6 +77,18 @@ class KanbanBoard extends Component {
 	handleTaskModalClose = () => {
 		this.setState({
 			isTaskClick: false,
+		});
+	};
+
+	handleColumnModalOpen = () => {
+		this.setState({
+			isNewColumnClick: true,
+		});
+	};
+
+	handleColumnModalClose = () => {
+		this.setState({
+			isNewColumnClick: false,
 		});
 	};
 
@@ -170,6 +204,7 @@ class KanbanBoard extends Component {
 									{this.state.columnOrder.map((columnId, index) => {
 										// column을 state에서 뽑아옴
 										const column = this.state.columns[columnId];
+
 										// 해당 column에 관련된 task도 확인
 										const tasks = column.taskIds.map((taskId) => this.state.tasks[taskId]);
 
@@ -180,13 +215,25 @@ class KanbanBoard extends Component {
 												tasks={tasks}
 												index={index}
 												handleTaskModalOpen={this.handleTaskModalOpen}
+												handleCurrentTaskUpdate={this.handleCurrentTaskUpdate}
+												handleAddTaskModalOpen={this.handleAddTaskModalOpen}
 											/>
 										);
-										// return <InnerList key={column.id} column={column} taskMap={this.state.tasks} index={index} />;
 									})}
 									{provided.placeholder}
+									<div className={style.div}>
+										<span className={style.span} onClick={this.handleColumnModalOpen}>
+											+
+										</span>
+									</div>
 								</Container>
-								{this.state.isTaskClick ? <TaskEdit /> : ''}
+								{this.state.isTaskClick ? (
+									<TaskEdit task={this.state.currentTask} handleTaskModalClose={this.handleTaskModalClose} />
+								) : (
+									''
+								)}
+								{this.state.isNewTaskClick ? <AddTask handleAddTaskModalClose={this.handleAddTaskModalClose} /> : ''}
+								{this.state.isNewColumnClick ? <AddColumn handleColumnModalClose={this.handleColumnModalClose} /> : ''}
 							</Page>
 						</>
 					)}
