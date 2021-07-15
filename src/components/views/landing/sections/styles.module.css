@@ -490,71 +490,65 @@
 /* Contact */
 .contact {
 	margin: 10rem 0;
-	color: var(--gray1);
-}
-.contact label {
-	font-family: var(--font);
-	margin-bottom: 0.8rem;
-}
-.contact input,
-.contact textarea {
-	border-radius: 0.5rem;
 }
 .contact__container {
 	max-width: 69.375rem;
 	margin: 0 auto;
+	padding: 2rem;
+	border-radius: 2rem;
+	box-shadow: 4px 1px 26px rgb(0 0 0 / 15%);
+	display: flex;
 }
-.contact__container h2 {
+.contact__left {
+	width: 40%;
+	padding: 3rem;
+}
+.contact__left h2 {
+	color: #a1ddee;
 	text-align: center;
+	margin: 1rem 0;
 	font-size: 2rem;
-	margin: 4rem;
-	font-family: var(--font);
 }
-.contact__container form {
-	width: 100%;
+.contact__left form {
 	display: flex;
 	flex-direction: column;
 }
-.contact__container form input,
-.contact__container form textarea {
-	background-color: var(--gray4);
-}
-.contact__container form > div:first-of-type {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 2rem;
-}
-.contact__container form > div:first-of-type div {
-	display: flex;
-	flex-direction: column;
-}
-.contact__container form > div:first-of-type div label {
-	font-size: 1.5rem;
-}
-.contact__container form > div:first-of-type div input {
-	font-size: 1.3rem;
-	padding: 0.3rem 0.5rem;
-}
-.contact__container form > div:last-of-type {
-	display: flex;
-	flex-direction: column;
-}
-.contact__container form > div:last-of-type label {
-	font-size: 1.5rem;
-}
-.contact__container form > div:last-of-type textarea {
+.contact__left form div {
+	background-color: #eef9fd;
+	margin: 0.5rem 0;
 	padding: 1rem;
+	border-radius: 1rem;
+}
+.contact__left form label {
+	color: #a1ddee;
+	font-size: 1.5rem;
+	margin-right: 0.4rem;
+	line-height: 1;
+}
+.contact__left form input {
 	font-size: 1.2rem;
 }
-.contact__container button {
-	margin: 0 auto;
-	margin-top: 4rem;
+.contact__left form textarea {
+	padding: 0.5rem;
+}
+.contact__left form button {
+	margin: 1.5rem auto 0 auto;
 	width: 10rem;
-	padding: 0.5rem 1rem;
-	background-color: var(--red);
-	border-radius: 2rem;
+	padding: 0.5rem 0.6rem;
+	border-radius: 1rem;
+	background-color: #a1ddee;
 	color: var(--white);
-	font-size: 1.3rem;
+	font-weight: var(--bold);
+}
+.contact__left form button svg {
+	font-size: 1.2rem;
+	margin-left: 0.3rem;
+}
+.contact__right {
+	width: 60%;
+}
+.contact__right img {
+	width: 35rem;
 }
 
 /* footer */

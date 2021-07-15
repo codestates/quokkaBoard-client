@@ -32,6 +32,8 @@ import jiye from './sections/images/team/jiye.png';
 import jiun from './sections/images/team/jiun.png';
 import sangwoo from './sections/images/team/sangwoo.png';
 import seungyong from './sections/images/team/seungyong.png';
+// contact image
+import contact from './sections/images/contact/contact.jpg';
 
 function LandingPage() {
 	return (
@@ -86,7 +88,7 @@ function LandingPage() {
 						</li>
 						<li>
 							<img src={awards} alt="" />
-							<span>1522</span>
+							<span>1,522</span>
 							<span>압도적인 만족도</span>
 						</li>
 					</ul>
@@ -343,32 +345,34 @@ function LandingPage() {
 						</ul>
 					</div>
 				</section>
-				<section className={styles.contact} id="contact">
+				<section className={styles.contact}>
 					<div className={styles.contact__container}>
-						<h2>문의하기</h2>
-						<form>
-							<div>
+						<div className={styles.contact__left}>
+							<h2>Contact Us</h2>
+							<form>
 								<div>
-									<label htmlFor="name">이름</label>
-									<input type="text" id="name" />
+									<label htmlFor="">
+										<i class="far fa-envelope-open"></i>
+									</label>
+									<input type="text" placeholder="email" />
 								</div>
 								<div>
-									<label htmlFor="email">이메일</label>
-									<input type="text" id="email" />
+									<label htmlFor="">
+										<i class="far fa-user"></i>
+									</label>
+									<input type="text" placeholder="name" />
 								</div>
 								<div>
-									<label htmlFor="phone">전화번호</label>
-									<input type="text" id="phone" />
+									<textarea rows="3" cols="38" placeholder="Message..."></textarea>
 								</div>
-							</div>
-							<div>
-								<label htmlFor="message">내용</label>
-								<textarea name="" id="message" cols="100" rows="5"></textarea>
-							</div>
-							<button>
-								보내기 <i class="far fa-paper-plane"></i>
-							</button>
-						</form>
+								<button>
+									보내기<i class="far fa-paper-plane"></i>
+								</button>
+							</form>
+						</div>
+						<div className={styles.contact__right}>
+							<img src={contact} alt="" />
+						</div>
 					</div>
 				</section>
 			</div>
