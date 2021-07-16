@@ -26,10 +26,13 @@
 
 .container > svg {
 	color: var(--gray1);
+	font-size: 1.3rem;
+}
+
+.container > div:first-of-type {
 	position: absolute;
 	right: -0.4rem;
 	top: -0.4rem;
-	font-size: 1.3rem;
 	z-index: 101;
 	cursor: pointer;
 }
