@@ -1,0 +1,56 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+.due_date,
+.task_content {
+	font-weight: bold;
+}
+
+.due_date {
+	position: absolute;
+	right: 1rem;
+	margin-right: 1rem;
+	color: var(--blue-dark);
+}
+
+.task_content {
+	margin-top: 2rem;
+	margin-bottom: 0.5rem;
+	font-size: 1rem;
+	width: 80%;
+}
+
+.members,
+.labels {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.members {
+	margin: 0.5rem 0;
+}
+
+.member {
+	margin-right: 0.5rem;
+	margin-bottom: 0.2rem;
+	font-size: 0.8rem;
+	background-color: var(--white);
+	padding: 0.2rem 0.5rem;
+	border-radius: 0.4rem;
+	font-weight: bold;
+	color: var(--green-d-dark);
+}
+
+.label {
+	padding: 0.2rem 0.5rem;
+	padding-bottom: 0.4rem;
+	border-radius: 0.4rem;
+	margin-right: 0.5rem;
+	margin-bottom: 0.2rem;
+	font-size: 0.7rem;
+	font-weight: bold;
+	color: var(--white);
+}

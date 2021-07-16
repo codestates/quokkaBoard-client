@@ -1,0 +1,34 @@
+.div {
+	display: flex;
+	/* background-color: red; */
+}
+
+.task__div {
+	border-radius: 0.3rem;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.task__btn {
+	width: 2rem;
+	height: 2rem;
+	background-color: var(--green-a);
+	text-align: center;
+	line-height: 1.9rem;
+	border-radius: 50%;
+	font-size: 1.4rem;
+	transition: all 0.2s ease-in;
+	margin-top: 0.8rem;
+}
+
+.task__btn:hover {
+	color: var(--green-c-light);
+	background-color: var(--green-c-dark);
+}
+
+.task__btn:active {
+	transform: scale(1.1);
+}

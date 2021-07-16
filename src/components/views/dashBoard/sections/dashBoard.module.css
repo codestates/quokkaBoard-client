@@ -1,0 +1,249 @@
+/* container */
+.container {
+	width: 100%;
+	background-color: var(--gray5);
+	/* overflow: auto; */
+	padding-top: 5rem;
+	background: rgb(220, 237, 200);
+	background: linear-gradient(180deg, rgba(220, 237, 200, 1) 0%, rgba(255, 255, 255, 1) 100%);
+	position: relative;
+	z-index: -10;
+}
+.container * {
+	font-family: var(--font-sub1);
+}
+.container > h1 {
+	text-align: center;
+	color: var(--white);
+	font-size: 3rem;
+}
+
+.container .bg_nemo {
+	display: inline-block;
+	position: absolute;
+	z-index: -1;
+	width: 4rem;
+	height: 4rem;
+	background-color: var(--white);
+	opacity: 0.6;
+	border-radius: 0.4rem;
+}
+
+.bg_nemo:nth-of-type(1) {
+	left: 10%;
+	top: 20%;
+	transform: rotate(35deg);
+}
+.bg_nemo:nth-of-type(2) {
+	right: 16%;
+	top: 22%;
+	transform: rotate(-10deg);
+}
+.bg_nemo:nth-of-type(3) {
+	right: 10%;
+	top: 5%;
+	opacity: 0.8;
+	transform: rotate(-70deg);
+}
+.bg_nemo:nth-of-type(4) {
+	right: 62%;
+	top: 6%;
+	opacity: 0.8;
+	transform: rotate(-6deg);
+}
+.bg_nemo:nth-of-type(5) {
+	right: 50%;
+	top: 30%;
+	opacity: 0.6;
+	transform: rotate(-6deg);
+}
+.bg_nemo:nth-of-type(6) {
+	left: 4%;
+	top: 34%;
+	opacity: 0.7;
+	transform: rotate(-6deg);
+}
+
+.container > img {
+	position: absolute;
+	z-index: -1;
+}
+.container > img:first-of-type {
+	width: 10rem;
+	left: 13%;
+	top: 4rem;
+	z-index: -2;
+}
+.container > img:last-of-type {
+	width: 12rem;
+	left: 8%;
+	top: 9.6rem;
+}
+
+/* TotalBoard */
+.totalBoard {
+	width: 50rem;
+	margin: 4rem auto 1rem auto;
+}
+.totalBoard ul {
+	background-color: var(--white);
+	-webkit-box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	border-radius: 1rem;
+	margin: 0 auto;
+	padding: 2rem;
+	display: flex;
+	justify-content: space-evenly;
+}
+.totalBoard ul li {
+	text-align: center;
+}
+.totalBoard ul > span {
+	width: 1px;
+	height: 3rem;
+	background-color: var(--gray4);
+}
+.totalBoard ul li h2 {
+	color: var(--red-gray);
+	font-size: 2rem;
+	margin-bottom: 0.4em;
+}
+.totalBoard ul li:first-child h2 {
+	color: var(--deep-orange-dark);
+}
+.totalBoard ul li:nth-child(3) h2 {
+	color: var(--green-d-dark);
+}
+.totalBoard ul li:last-child h2 {
+	color: var(--blue);
+}
+.totalBoard ul li span {
+	color: var(--green-e);
+}
+
+/* TaskBoard */
+.taskBoard {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.taskBoard ul {
+	background-color: var(--white);
+	width: 50rem;
+	margin: 1rem;
+	-webkit-box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	border-radius: 1rem;
+	padding: 2rem;
+	padding-bottom: 1rem;
+}
+.taskBoard ul:first-of-type h3 {
+	color: var(--red-gray);
+}
+.taskBoard ul:last-of-type h3 {
+	color: var(--blue);
+}
+.taskBoard ul h3 {
+	margin: 0.5rem 0;
+}
+.taskBoard ul h3 svg {
+	margin-right: 0.5rem;
+}
+.taskBoard ul li {
+	color: var(--gray1);
+	margin: 0.8rem 0;
+	position: relative;
+}
+.taskBoard ul li span:first-of-type {
+	padding: 0.2rem 0.5rem;
+	margin-right: 0.4rem;
+	background-color: var(--green-c);
+	border-radius: 0.15rem;
+	color: var(--deep-orange-dark);
+}
+.taskBoard ul li span:last-of-type {
+	position: absolute;
+	right: 0;
+}
+
+/* 그래프1 영역 */
+.graph1 {
+	display: flex;
+	justify-content: center;
+	padding-top: 5rem;
+	margin-bottom: 7rem;
+}
+
+.myStatus h2,
+.teamStatus h2 {
+	text-align: center;
+	font-family: var(--font-sub2);
+	color: var(--red);
+	/* margin: 1rem; */
+}
+
+.myStatus {
+	background-color: var(--white);
+	width: 24rem;
+	height: 18rem;
+	-webkit-box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	border-radius: 1rem;
+	margin-right: 1rem;
+}
+
+.teamStatus {
+	background-color: var(--white);
+	width: 24rem;
+	height: 18rem;
+	-webkit-box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	border-radius: 1rem;
+	margin-left: 1rem;
+}
+
+/* 그래프2 영역 */
+.graph2 h2,
+.graph3 h2 {
+	text-align: center;
+	font-size: 2rem;
+	font-family: var(--font-sub2);
+	color: var(--blue-dark);
+}
+.graph2 p,
+.graph3 p {
+	text-align: center;
+	font-family: var(--font-sub1);
+	color: var(--blue);
+}
+
+.projectStatus {
+	background-color: var(--white);
+	text-align: center;
+	width: 50rem;
+	height: 40rem;
+	margin: 2rem auto;
+	-webkit-box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	border-radius: 1rem;
+}
+.myCompleteTask {
+	background-color: var(--white);
+	text-align: center;
+	width: 50rem;
+	height: 20rem;
+	margin: 2rem auto;
+	-webkit-box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	box-shadow: 0px 9px 5px -3px rgba(81, 81, 81, 0.3);
+	border-radius: 1rem;
+}
+
+/* 반응형 */
+@media screen and (max-width: 1023px) {
+	/* 타블렛 */
+}
+
+@media screen and (max-width: 767px) {
+	/* 모바일 */
+}

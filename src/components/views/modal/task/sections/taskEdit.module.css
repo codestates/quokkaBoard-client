@@ -1,0 +1,45 @@
+.container {
+	position: absolute;
+	top: 4rem;
+	right: 0;
+	background-color: burlywood;
+	width: 600px;
+	height: 100vh;
+	z-index: 5;
+	padding: 1rem;
+	padding-top: 4rem;
+}
+
+.title {
+	text-align: center;
+}
+
+.close_btn {
+	cursor: pointer;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	transition: all 0.3s ease-in;
+}
+
+.close_btn:hover {
+	color: var(--white);
+}
+
+.close_btn:active {
+	transform: scale(1.1);
+}
+
+.member__title {
+	font-size: 1rem;
+	margin: 1rem;
+}
+
+.members {
+	display: flex;
+	margin: 1rem;
+}
+
+.members > * {
+	margin-right: 0.5rem;
+}

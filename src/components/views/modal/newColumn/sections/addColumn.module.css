@@ -1,0 +1,103 @@
+.background {
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	z-index: 2;
+	background-color: rgba(0, 0, 0, 0.42);
+}
+
+.container {
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	background-color: var(--amber-dark);
+	padding: 2rem 3rem;
+	border-radius: 0.3rem;
+	width: 400px;
+	cursor: pointer;
+	transform: translate(-50%, -25%);
+	animation: add_column_modal 0.3s;
+	z-index: 5;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.column_title {
+	margin: 2rem 0rem;
+	font-size: 1.2rem;
+	text-align: center;
+	font-weight: bold;
+}
+
+.close_btn {
+	cursor: pointer;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	transition: all 0.3s ease-in;
+}
+
+.close_btn:hover {
+	color: var(--white);
+}
+
+.close_btn:active {
+	transform: scale(1.1);
+}
+
+.column__name {
+	font-size: 1rem;
+	font-weight: bold;
+	margin: 0.5rem 0;
+	margin-right: 0.5rem;
+}
+
+.input {
+	background-color: var(--amber);
+	padding: 0.4rem 0.7rem;
+	border-radius: 0.3rem;
+	font-size: 0.9rem;
+	width: 80%;
+	margin-bottom: 1rem;
+}
+
+.buttons {
+	/* transform: translateX(50%); */
+	margin: 1rem 0.5rem;
+	margin-top: 3rem;
+}
+
+.cancel_btn,
+.make_btn {
+	width: 48%;
+	height: 2rem;
+	border-radius: 0.4rem;
+	background-color: var(--beige);
+	color: var(--white);
+	font-weight: bold;
+	transition: all 0.3s ease-in;
+}
+
+.cancel_btn {
+	margin-right: 0.5rem;
+}
+
+.cancel_btn:hover,
+.make_btn:hover {
+	color: var(--white);
+	background-color: var(--orange);
+}
+
+.cancel_btn:active,
+.make_btn:active {
+	transform: scale(1.1);
+}
+
+@keyframes add_column_modal {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 100;
+	}
+}

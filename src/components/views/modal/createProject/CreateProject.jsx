@@ -91,7 +91,9 @@ const CreateProject = (props) => {
 						<input ref={subjectInputRef} className={styles.subject__input} type="text" name="" id="subject" />
 					</div>
 					<div className={styles.div}>
-						<label htmlFor="description">설명</label>
+						<label htmlFor="description" className={styles.project_description}>
+							설명
+						</label>
 						<input
 							ref={descriptionInputRef}
 							className={styles.description__input}
@@ -102,15 +104,16 @@ const CreateProject = (props) => {
 					</div>
 					<div className={styles.date_div1}>
 						<span className={styles.span_start_date}>프로젝트 시작일</span>
-						<input ref={projectStartDateRef} type="date" name="" id="start_date" />
+						<input ref={projectStartDateRef} type="date" name="" id="start_date" className={styles.date_select} />
 					</div>
 					<div className={styles.date_div2}>
 						<span className={styles.span_end_date}>프로젝트 마감일</span>
-						<input ref={projectEndDateRef} type="date" />
+						<input ref={projectEndDateRef} type="date" className={styles.date_select} />
 					</div>
 					<div className={styles.div}>
 						<p className={styles.p}>
-							프로젝트 멤버 <span className={styles.span}>(선택사항)</span>
+							<span className={styles.project__member}>프로젝트 멤버</span>
+							<span className={styles.span}>(선택사항)</span>
 						</p>
 						<button className={styles.project_member_add_btn} onClick={isNewProjectMemberModalOpen}>
 							<i className="fas fa-plus"></i>

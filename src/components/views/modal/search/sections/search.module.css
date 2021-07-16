@@ -7,7 +7,8 @@
 	border-radius: 0.7rem;
 	animation: project_modal_show 0.4s;
 	text-align: center;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	z-index: 4;
 }
 
 .close_btn {

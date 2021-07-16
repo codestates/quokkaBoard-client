@@ -1,0 +1,30 @@
+.div {
+	background-color: var(--green-c);
+	border-radius: 0.3rem;
+	width: 330px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.span {
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+	background-color: var(--green-a);
+	text-align: center;
+	line-height: 1.9rem;
+	border-radius: 50%;
+	font-size: 1.4rem;
+	transition: all 0.2s ease-in;
+}
+
+.span:hover {
+	color: var(--green-c-light);
+	background-color: var(--green-c-dark);
+}
+
+.span:active {
+	transform: scale(1.1);
+}
