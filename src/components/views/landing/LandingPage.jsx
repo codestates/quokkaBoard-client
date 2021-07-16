@@ -1,7 +1,14 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './sections/styles.module.css';
 import aos from 'aos';
 import 'aos/dist/aos.css';
+
+// Componenet
+import LoginModal from '../modal/login/Login';
+import LoadingPage from '../loading/Loading';
+// actions
+import { actionLogout } from '../../../_actions/index';
 
 // Common image
 import mainLogo from '../../../common/images/main_logo2.png';
@@ -38,11 +45,27 @@ import seungyong from './sections/images/team/seungyong.png';
 import contact from './sections/images/contact/contact.jpg';
 
 function LandingPage() {
+	const dispatch = useDispatch();
 	const nav = useRef(null);
 	const arrowUp = useRef(null);
 	const slider = useRef(null);
 	const navMove = styles.nav__move;
 	const hide = styles.hide;
+
+	const { userInfo } = useSelector((state) => state.users);
+	const [isLoginModal, setIsLoginModal] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
+
+	const handleOpenLoginModal = () => {
+		setIsLoginModal(true);
+	};
+	const handleCloseLoginModal = () => {
+		setIsLoginModal(false);
+	};
+	const handleClickLogout = (e) => {
+		e.preventDefault();
+		dispatch(actionLogout());
+	};
 
 	const handleArrowClick = useCallback(() => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -59,9 +82,13 @@ function LandingPage() {
 				arrowUp.current.classList.remove(hide);
 			}
 		});
+		setIsLoading(false);
 	});
-	return (
+	return isLoading ? (
+		<LoadingPage />
+	) : (
 		<div className={styles.container}>
+			{isLoginModal ? <LoginModal handleCloseLoginModal={handleCloseLoginModal} /> : ''}
 			<nav className={styles.nav} ref={nav}>
 				<div className={styles.nav__container}>
 					<h1>
@@ -71,7 +98,15 @@ function LandingPage() {
 					</h1>
 					<ul>
 						<li>
-							<a href="#">로그인</a>
+							{userInfo ? (
+								<a href="#" onClick={handleClickLogout}>
+									로그아웃
+								</a>
+							) : (
+								<a href="#" onClick={handleOpenLoginModal}>
+									로그인
+								</a>
+							)}
 						</li>
 						<li>
 							<a href="#">시작하기</a>
@@ -220,8 +255,8 @@ function LandingPage() {
 								</div>
 							</div>
 							{/* <button>
-								<i className="fas fa-angle-right"></i>
-							</button> */}
+						<i className="fas fa-angle-right"></i>
+					</button> */}
 						</div>
 						<div className={styles.testimonial__footer}></div>
 					</div>
