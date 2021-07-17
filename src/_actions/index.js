@@ -2,7 +2,7 @@ import env from 'react-dotenv';
 import { EXAMPLE_CODE, USER_LOGIN, USER_LOGOUT } from './type';
 import axios from 'axios';
 
-axios.defaults.withCredentials = true; // cookie 사용(접근권한을 주기위한) 설정
+// axios.defaults.withCredentials = true; // cookie 사용(접근권한을 주기위한) 설정
 
 // actions creator functions
 export const example = () => {
@@ -40,15 +40,20 @@ export const actionProjectList = (dispatch, userId) => {
 		.post(`${env.REACT_APP_SERVER_URI}/project/project-list`, {
 			userId,
 		})
-		.then((re) => console.log(re))
-		.then((response) => response.data.data)
+		.then((response) => {
+			console.log(response);
+			console.log(response.data.data);
+			return response?.data?.data;
+		})
 		.then((data) => {
-			dispatch({
-				type: 'PROJECT_LIST',
-				payload: [...data],
-			});
+			if (data) {
+				dispatch({
+					type: 'PROJECT_LIST',
+					payload: [...data],
+				});
+			}
 		});
-  
+};
 // User
 export const actionLogin = (userInfo) => {
 	return {

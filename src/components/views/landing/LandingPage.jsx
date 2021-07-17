@@ -43,6 +43,7 @@ import sangwoo from './sections/images/team/sangwoo.png';
 import seungyong from './sections/images/team/seungyong.png';
 // contact image
 import contact from './sections/images/contact/contact.jpg';
+import LandingProjectList from '../modal/projectList/LandingProjectList';
 
 function LandingPage() {
 	const dispatch = useDispatch();
@@ -56,6 +57,12 @@ function LandingPage() {
 	const [isLoginModal, setIsLoginModal] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 
+	const handleIsLoadingOn = () => {
+		setIsLoading(true);
+	};
+	const handleIsLoadingOff = () => {
+		setIsLoading(true);
+	};
 	const handleOpenLoginModal = () => {
 		setIsLoginModal(true);
 	};
@@ -88,7 +95,16 @@ function LandingPage() {
 		<LoadingPage />
 	) : (
 		<div className={styles.container}>
-			{isLoginModal ? <LoginModal handleCloseLoginModal={handleCloseLoginModal} /> : ''}
+			<LandingProjectList />
+			{isLoginModal ? (
+				<LoginModal
+					handleCloseLoginModal={handleCloseLoginModal}
+					handleIsLoadingOn={handleIsLoadingOn}
+					handleIsLoadingOff={handleIsLoadingOff}
+				/>
+			) : (
+				''
+			)}
 			<nav className={styles.nav} ref={nav}>
 				<div className={styles.nav__container}>
 					<h1>

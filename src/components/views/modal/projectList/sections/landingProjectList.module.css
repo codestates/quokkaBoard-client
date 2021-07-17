@@ -1,0 +1,17 @@
+.container {
+	width: 40rem;
+	background-color: var(--blue);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 10;
+	border-radius: 2rem;
+	transform: translate(-50%, -50%);
+}
+
+.container__img img {
+	/* position: absolute; */
+	/* top: 0; */
+	/* left: 0; */
+	width: 15rem;
+}
