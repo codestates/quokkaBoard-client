@@ -39,12 +39,18 @@ export const actionProjectList = (dispatch, userId) => {
 		.post(`${env.REACT_APP_SERVER_URI}/project/project-list`, {
 			userId,
 		})
-		.then((response) => response.data.data)
+		.then((response) => {
+			console.log(response);
+			console.log(response.data.data);
+			return response?.data?.data;
+		})
 		.then((data) => {
-			dispatch({
-				type: 'PROJECT_LIST',
-				payload: [...data],
-			});
+			if (data) {
+				dispatch({
+					type: 'PROJECT_LIST',
+					payload: [...data],
+				});
+			}
 		});
 };
 // User
