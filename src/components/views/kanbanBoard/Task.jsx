@@ -9,9 +9,10 @@ const Container = styled.div`
 	border-radius: 0.3rem;
 	font-size: 0.85rem;
 	margin-bottom: 0.3rem;
+	position: relative;
 	color: ${(props) => (props.isDragging ? 'var(--green-e)' : 'var(--black)')};
 	background-color: ${(props) => (props.isDragging ? 'var(--green-d)' : 'var(--green-c)')};
-	transition: all 0.3s ease;
+	// transition: all 0.3s ease;
 `;
 
 class Task extends Component {
@@ -35,9 +36,9 @@ class Task extends Component {
 							<span className={style.due_date}>{this.props.task.dueDate}</span>
 							<div className={style.task_content}>{this.props.task.content}</div>
 							<ul className={style.members}>
-								{this.props.task.members.map((member) => {
+								{this.props.task.members.map((member, idx) => {
 									return (
-										<li key={member} className={style.member}>
+										<li key={idx} className={style.member}>
 											{member}
 										</li>
 									);

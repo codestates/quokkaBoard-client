@@ -19,7 +19,7 @@ const CreateProject = (props) => {
 	// 프로젝트 만들기 화면에서 제목/설명/프로젝트 멤버(id, 닉네임) 목록을 요청보내기
 	const handleNewProjectMember = (e) => {
 		const title = subjectInputRef.current?.value;
-		const userId = '3485c4e3-03aa-4674-80e1-fe289672c14c';
+		const userId = 'bb10d244-1ac9-4322-8295-1af4e0655b7c';
 		const description = descriptionInputRef.current?.value;
 		const startDate = projectStartDateRef.current?.value;
 		const endDate = projectEndDateRef.current?.value;

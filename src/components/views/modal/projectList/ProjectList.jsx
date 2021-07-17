@@ -1,7 +1,21 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './sections/projectList.module.css';
+import ProjectListLi from './ProjectListLi';
+
+import { actionProjectList } from '../../../../_actions';
 
 const ProjectListModal = (props) => {
+	const dispatch = useDispatch();
+	const state = useSelector((state) => {
+		return state.projectList;
+	});
+
+	useEffect(() => {
+		const userId = '73f416fc-e7d6-42c1-8150-ed1906337460';
+		actionProjectList(dispatch, userId);
+	}, []);
+
 	const modalClose = useCallback(() => {
 		props.isProjectModalClose();
 		props.isNewProjectModalOpen();
@@ -13,8 +27,11 @@ const ProjectListModal = (props) => {
 				<i className="fas fa-times"></i>
 			</div>
 			<ul className={styles.ul}>
-				<li>내 프로젝트</li>
-				<li>팀 프로젝트</li>
+				{state
+					? state.map((project, idx) => {
+							return <ProjectListLi key={idx} project={project} />;
+					  })
+					: ''}
 			</ul>
 			<div className={styles.div} onClick={modalClose}>
 				<button className={styles.project_add_btn}>
