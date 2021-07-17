@@ -5,12 +5,14 @@ import mainLogo2 from './sections/main_logo2.png';
 import ProjectList from '../../modal/projectList/ProjectList';
 import CreateProject from '../../modal/createProject/CreateProject';
 import Search from '../../modal/search/Search';
+import UserProfile from '../../modal/userProfile/UserProfile';
 
 const SubNavbar = () => {
 	const [projects, setProjects] = useState([]);
 	const [isProjectClicked, setProjectClick] = useState(false);
 	const [isNewProjectClicked, setNewProjectClick] = useState(false);
 	const [isSearchClicked, setSearchClick] = useState(false);
+	const [isProfileClicked, setProfileClick] = useState(false);
 
 	const isProjectModalOpen = useCallback(() => {
 		setProjectClick(true);
@@ -35,6 +37,14 @@ const SubNavbar = () => {
 	const isSearchModalClose = useCallback(() => {
 		setSearchClick(false);
 	}, [isSearchClicked]);
+
+	const isProfileModalOpen = useCallback(() => {
+		setProfileClick(true);
+	}, [isProfileClicked]);
+
+	const isProfileModalClose = useCallback(() => {
+		setProfileClick(false);
+	}, [isProfileClicked]);
 
 	return (
 		<nav className={styles.container}>
@@ -61,7 +71,7 @@ const SubNavbar = () => {
 							<i className="fas fa-sign-out-alt"></i>
 						</button>
 					</div>
-					<div>
+					<div onClick={isProfileModalOpen}>
 						<img className={styles.profile_img} src={profileImg} alt="profile_img" />
 					</div>
 				</div>
@@ -81,6 +91,11 @@ const SubNavbar = () => {
 				''
 			)}
 			{isSearchClicked ? <Search isSearchModalClose={isSearchModalClose} /> : ''}
+			{isProfileClicked ? (
+				<UserProfile isProfileClicked={isProfileClicked} isProfileModalClose={isProfileModalClose} />
+			) : (
+				''
+			)}
 		</nav>
 	);
 };

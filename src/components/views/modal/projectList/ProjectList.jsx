@@ -7,12 +7,16 @@ import { actionProjectList } from '../../../../_actions';
 
 const ProjectListModal = (props) => {
 	const dispatch = useDispatch();
-	const state = useSelector((state) => {
-		return state.projectList;
+	const { projectList } = useSelector((state) => {
+		return state.project;
 	});
+	const { userInfo } = useSelector((state) => {
+		return state.users;
+	});
+	console.log(userInfo.id);
 
 	useEffect(() => {
-		const userId = '73f416fc-e7d6-42c1-8150-ed1906337460';
+		const userId = 'c8f8c19b-fb4e-4ff2-8dc5-7d91d31f4675'; // userInfo.userId;
 		actionProjectList(dispatch, userId);
 	}, []);
 
@@ -27,8 +31,8 @@ const ProjectListModal = (props) => {
 				<i className="fas fa-times"></i>
 			</div>
 			<ul className={styles.ul}>
-				{state
-					? state.map((project, idx) => {
+				{projectList
+					? projectList.map((project, idx) => {
 							return <ProjectListLi key={idx} project={project} />;
 					  })
 					: ''}

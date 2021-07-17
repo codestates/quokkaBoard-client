@@ -16,6 +16,7 @@ function App() {
 			<Switch>
 				<Route exact path="/" render={() => <LandingPage />}></Route>
 				<Route exact path="/dash-board" render={() => <DashBoard />}></Route>
+				<Route exact path="/kanban-board" render={() => <KanbanBoard />}></Route>
 				<Route exact path="/project-setting" render={() => <ProjectSetting />}></Route>
 			</Switch>
 		</Suspense>
