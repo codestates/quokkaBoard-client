@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import kanbanReducer from './kanbanReducer';
+import kanban from './kanban';
+import member from './member';
+import project from './project';
 
-const rootReducer = combineReducers({ kanbanReducer });
+const rootReducer = combineReducers({ kanban, member, project });
 
 export default rootReducer;
