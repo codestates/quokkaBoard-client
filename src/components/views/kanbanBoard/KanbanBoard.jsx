@@ -94,6 +94,56 @@ class KanbanBoard extends Component {
 
 	onDragEnd = (result) => {
 		const { destination, source, draggableId, type } = result;
+		console.log(source);
+		console.log(destination);
+		console.log(`draggableId: ${draggableId}`);
+		console.log(`type: ${type}`);
+
+		if (!destination) {
+			// 목적지(destination이 없을 때는 그냥 아무것도 하지 않음)
+			return;
+		}
+
+		// draggable이 바뀌었는지 확인
+		// 대상 삭제 가능한 id가 소스와 동일한지, 인덱스가 소스와 동일한 지 확인(두 가지가 다 일치할 경우 사용자가 항목을 다시 시작한 위치로 끌어다 놓은것이기 때문에 아무것도 할 필요 없음)
+		if (destination.droppableId === source.droppableId && destination.index === source.index) {
+			return;
+		}
+		// 태스크 시프트: cIdx, targetIdx, boardId, targetId
+		// 태스크 시프트, 보드 시프트 둘다 각각 id는 필요 없습니다
+		// 태스크 시프트 일때는 보드 아이디랑 타겟 보드 아이디가 필요합니다
+		if (type === 'column') {
+			// bInx: 이동전 보드 인덱스
+			// targetIdx: 이동후 보드 인덱스
+			const data = {
+				bIdx: source.index,
+				targetIdx: destination.index,
+			};
+			return;
+		}
+
+		if (type === 'task') {
+			// cIdx: 이동전 task인덱스
+			// targetIdx: 이동후 task 인덱스
+			// boardId: 이동전 테스크가 담긴 보드아이디
+			// targetId: 이동후 테스크가 담긴 보드아이디
+			const data = {
+				cIdx: source.index,
+				targetIdx: destination.index,
+				boardId: source.droppableId,
+				targetId: destination.droppableId,
+			};
+			return;
+		}
+	};
+
+	/* onDragEnd = (result) => {
+		const { destination, source, draggableId, type } = result;
+
+		console.log(source);
+		console.log(destination);
+		console.log(`draggableId: ${draggableId}`);
+		console.log(`type: ${type}`);
 
 		if (!destination) {
 			// 목적지(destination이 없을 때는 그냥 아무것도 하지 않음)
@@ -191,7 +241,7 @@ class KanbanBoard extends Component {
 			},
 		};
 		this.setState(newState);
-	};
+	}; */
 
 	render() {
 		return (

@@ -64,14 +64,12 @@ class Column extends Component {
 
 	// 제목 수정 axios
 	handleColumnTitleUpdate = (e) => {
-		console.log('제목 수정 클릭');
 		this.handleTitleModalClose();
 	};
 
 	// 컬럼 지우기 axios
 	handleColumnDelete = (e) => {
 		this.handleColumnDeleteModalClose();
-		console.log('컬럼 지우기');
 	};
 
 	render() {
