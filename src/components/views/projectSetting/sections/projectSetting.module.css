@@ -36,3 +36,9 @@
 .li > .select {
 	margin-right: 2rem;
 }
+
+.remove_btn {
+	background-color: var(--green-d);
+	border-radius: 0.5rem;
+	padding: 0.2rem 0.5rem;
+}
