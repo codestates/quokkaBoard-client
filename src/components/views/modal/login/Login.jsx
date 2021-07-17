@@ -11,7 +11,7 @@ import loginQuokka from './sections/images/signup_img.png';
 // actions
 import { actionLogin } from '../../../../_actions/index';
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 function Login({ handleCloseLoginModal }) {
 	const dispatch = useDispatch();

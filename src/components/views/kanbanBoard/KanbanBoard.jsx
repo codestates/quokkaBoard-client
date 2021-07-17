@@ -5,6 +5,7 @@ import Column from './Column';
 import TaskEdit from '../modal/task/TaskEdit';
 import AddTask from '../modal/task/AddTask';
 import AddColumn from '../modal/newColumn/AddColumn';
+import Nav from '../nav/Nav';
 import styled from 'styled-components';
 import style from './sections/boardAdd.module.css';
 
@@ -245,50 +246,57 @@ class KanbanBoard extends Component {
 
 	render() {
 		return (
-			<DragDropContext onDragStart={this.onDragStart} onDragEnd={this.onDragEnd}>
-				<Droppable droppableId="all-columns" direction="horizontal" type="column">
-					{(provided) => (
-						<>
-							<Page>
-								<Container {...provided.droppableProps} ref={provided.innerRef}>
-									{this.state.columnOrder.map((columnId, index) => {
-										// column을 state에서 뽑아옴
-										const column = this.state.columns[columnId];
+			<>
+				<Nav />
+				<DragDropContext onDragStart={this.onDragStart} onDragEnd={this.onDragEnd}>
+					<Droppable droppableId="all-columns" direction="horizontal" type="column">
+						{(provided) => (
+							<>
+								<Page>
+									<Container {...provided.droppableProps} ref={provided.innerRef}>
+										{this.state.columnOrder.map((columnId, index) => {
+											// column을 state에서 뽑아옴
+											const column = this.state.columns[columnId];
 
-										// 해당 column에 관련된 task도 확인
-										const tasks = column.taskIds.map((taskId) => this.state.tasks[taskId]);
+											// 해당 column에 관련된 task도 확인
+											const tasks = column.taskIds.map((taskId) => this.state.tasks[taskId]);
 
-										return (
-											<Column
-												key={column.id}
-												column={column}
-												tasks={tasks}
-												index={index}
-												handleTaskModalOpen={this.handleTaskModalOpen}
-												handleCurrentTaskUpdate={this.handleCurrentTaskUpdate}
-												handleAddTaskModalOpen={this.handleAddTaskModalOpen}
-											/>
-										);
-									})}
-									{provided.placeholder}
-									<div className={style.div}>
-										<span className={style.span} onClick={this.handleColumnModalOpen}>
-											+
-										</span>
-									</div>
-								</Container>
-								{this.state.isTaskClick ? (
-									<TaskEdit task={this.state.currentTask} handleTaskModalClose={this.handleTaskModalClose} />
-								) : (
-									''
-								)}
-								{this.state.isNewTaskClick ? <AddTask handleAddTaskModalClose={this.handleAddTaskModalClose} /> : ''}
-								{this.state.isNewColumnClick ? <AddColumn handleColumnModalClose={this.handleColumnModalClose} /> : ''}
-							</Page>
-						</>
-					)}
-				</Droppable>
-			</DragDropContext>
+											return (
+												<Column
+													key={column.id}
+													column={column}
+													tasks={tasks}
+													index={index}
+													handleTaskModalOpen={this.handleTaskModalOpen}
+													handleCurrentTaskUpdate={this.handleCurrentTaskUpdate}
+													handleAddTaskModalOpen={this.handleAddTaskModalOpen}
+												/>
+											);
+										})}
+										{provided.placeholder}
+										<div className={style.div}>
+											<span className={style.span} onClick={this.handleColumnModalOpen}>
+												+
+											</span>
+										</div>
+									</Container>
+									{this.state.isTaskClick ? (
+										<TaskEdit task={this.state.currentTask} handleTaskModalClose={this.handleTaskModalClose} />
+									) : (
+										''
+									)}
+									{this.state.isNewTaskClick ? <AddTask handleAddTaskModalClose={this.handleAddTaskModalClose} /> : ''}
+									{this.state.isNewColumnClick ? (
+										<AddColumn handleColumnModalClose={this.handleColumnModalClose} />
+									) : (
+										''
+									)}
+								</Page>
+							</>
+						)}
+					</Droppable>
+				</DragDropContext>
+			</>
 		);
 	}
 }

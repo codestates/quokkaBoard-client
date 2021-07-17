@@ -1,71 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-
-.popup-container {
-	background-color: var(--middle-pink-color);
-	width: 290px;
+.container {
 	position: absolute;
-	top: 70px;
-	right: 30px;
-	border-radius: 10px;
-	display: flex;
-	z-index: 2;
-	flex-direction: column;
-	justify-content: center;
-	animation: popup-modal 0.4s;
+	top: 5rem;
+	right: 2rem;
+	width: 380px;
+	background-color: var(--amber-medium);
+	border-radius: 0.7rem;
+	animation: userInfo_modal_show 0.4s;
+	text-align: center;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	z-index: 4;
 }
 
-.popup-profile {
+.profile {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	margin: 3rem 0rem 2rem 0rem;
+	margin-top: 4rem;
 }
 
-.popup-profile > * {
-	margin-bottom: 0.8rem;
+.profile > * {
+	margin-bottom: 1rem;
 }
 
-.popup-close-btn {
-	border: none;
-	background-color: transparent;
+.close_btn {
 	width: 100%;
-	position: relative;
-	top: -25px;
-	right: -115px;
+	position: absolute;
+	top: 0.8rem;
+	left: 10.5rem;
 	cursor: pointer;
 }
 
-.popup-close-btn:hover {
-	color: var(--smoke-pink-color);
+.close_btn:hover {
+	color: var(--orange-dark);
 	transition: all 0.3s linear;
 }
 
-.popup-close-btn:active {
+.close_btn:active {
 	transform: scale(1.1);
 }
 
-.popup-user-img {
-	width: 120px;
-	height: 120px;
+.div_img {
+	background-color: var(--amber-dark);
 	border-radius: 50%;
+	padding: 2rem 2rem;
+	border: 2px solid var(--white);
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	margin-bottom: 3rem;
 }
 
-.popup-profile-h3 {
+.user_img {
+	width: 120px;
+	height: 120px;
+}
+
+.nickname {
+	font-family: var(--font-sub3);
+	font-size: 1.5rem;
+}
+
+.email {
+	font-family: var(--font-sub3);
 	padding-bottom: 2rem;
-	margin-bottom: 0;
 	border-bottom: 2px solid var(--dark-pink-color);
+	font-size: 1rem;
 	font-weight: 400;
 }
 
-.popup-user-handling {
+.user {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 	margin-bottom: 3rem;
 }
 
-.popup-user-handling button {
+.user button {
 	border: none;
 	outline: none;
 	background: none;
@@ -74,52 +83,43 @@
 	transition: all 0.3s linear;
 }
 
-.popup-user-handling button:active {
+.user button:active {
 	transform: scale(1.05);
 }
 
-.popup-user-update,
-.popup-user-logout,
-.popup-user-handling span {
+.update,
+.logout,
+.user span {
 	cursor: pointer;
 }
 
-.popup-user-handling span {
-	font-family: var(--font-family);
-	font-size: var(--font-size-small);
+.update,
+.logout {
+	color: var(--beige);
+}
+
+.user span {
+	font-family: var(--font-sub3);
 	margin-left: 0.3rem;
 }
-.popup-user-handling span:hover {
-	color: var(--light-tomato-color);
+
+.user > *:hover {
+	color: var(--beige-dark);
 }
 
 .fa-user-cog,
 .fa-sign-out-alt {
-	color: var(--light-tomato-color);
-	font-size: var(--font-size--middle);
+	font-size: 1rem;
 	transition: all 0.3s linear;
 }
 
-.fa-user-cog:hover,
-.fa-sign-out-alt:hover {
-	color: var(--smoke-pink-color);
-}
-
-.popup-hidden {
-	display: none;
-}
-
-.popup-hidden:active {
-	transition: all 0.3s linear;
-}
-
-@keyframes popup-modal {
-	from {
+@keyframes userInfo_modal_show {
+	0% {
+		transform: translateY(-15px);
 		opacity: 0;
-		margin-top: -50px;
 	}
-	to {
-		opacity: 1;
-		margin-top: 0;
+	100% {
+		transform: translateY(0px);
+		opacity: 100;
 	}
 }
