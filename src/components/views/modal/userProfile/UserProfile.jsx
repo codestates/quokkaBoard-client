@@ -1,51 +1,38 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import style from './sections/userProfile.module.css';
+import quokkaImg from '../../nav/subNavbar/sections/profile_img.png';
 
-const UserProfile = (props) => {
+const UserProfile = ({ isProfileClicked, isProfileModalClose }) => {
+	const { userInfo } = useSelector((state) => {
+		return state.users;
+	});
+
 	return (
-		<section
-			className={`popup-container ${this.props.profileClick ? '' : 'popup-hidden'}`}
-			onClick={(e) => {
-				if (e.target.classList[0] === 'userinfo-update-btn') {
-					this.props.onClosePopup(e);
-					this.props.history.push('/edituserinfo');
-				} else if (e.target.classList[0] === 'user-logout-btn') {
-					console.log(e.target.classList);
-					this.props.onClosePopup(e);
-				}
-			}}
-		>
-			<div className="popup-profile">
-				<button
-					className="popup-close-btn"
-					onClick={(e) => {
-						this.props.onClosePopup(e);
-					}}
-				>
+		<section className={style.container}>
+			<div className={style.profile}>
+				<button className={style.close_btn} onClick={isProfileModalClose}>
 					<i className="fas fa-times"></i>
 				</button>
-				<img
-					className="popup-user-img"
-					src={
-						!this.props.userData.image
-							? quokkaImg
-							: this.props.userData.image.data
-							? this.arrayBufferToBase643(this.props.userData.image.data)
-							: this.props.userData.image
-					}
-					alt="userProfile"
-				></img>
-				<h2 className="popup-profile-h2">{this.props.userData.nickname}</h2>
-				<h3 className="popup-profile-h3">{this.props.userData.email}</h3>
+				<div className={style.div_img}>
+					<img
+						className={style.user_img}
+						src={`${!userInfo.image ? quokkaImg : userInfo.image}`}
+						alt="userProfile"
+					></img>
+				</div>
+				<h2 className={style.nickname}>{userInfo.nickname}</h2>
+				<h2 className={style.email}>{userInfo.email}</h2>
 			</div>
 
-			<div className="popup-user-handling">
-				<button className="popup-user-update">
+			<div className={style.user}>
+				<button className={style.update}>
 					<i className="fas fa-user-cog" />
-					<span className="userinfo-update-btn">My Info Update</span>
+					<span className={style.info_btn}>My Info Update</span>
 				</button>
-				<button className="popup-user-logout" onClick={this.handleLogout}>
+				<button className={style.logout}>
 					<i className="fas fa-sign-out-alt" />
-					<span className="user-logout-btn">Logout</span>
+					<span className={style.logout_btn}>Logout</span>
 				</button>
 			</div>
 		</section>

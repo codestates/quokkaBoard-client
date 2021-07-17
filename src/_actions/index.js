@@ -35,7 +35,6 @@ export const actionSearchUser = (dispatch, searchWord) => {
 
 // project search
 export const actionProjectList = (dispatch, userId) => {
-	console.log('durl');
 	return axios
 		.post(`${env.REACT_APP_SERVER_URI}/project/project-list`, {
 			userId,

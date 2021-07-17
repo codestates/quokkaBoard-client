@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styles from './sections/styles.module.css';
 import aos from 'aos';
 import 'aos/dist/aos.css';
@@ -125,7 +126,7 @@ function LandingPage() {
 							)}
 						</li>
 						<li>
-							<a href="#">시작하기</a>
+							<Link to="/kanban-board">시작하기</Link>
 						</li>
 					</ul>
 				</div>
