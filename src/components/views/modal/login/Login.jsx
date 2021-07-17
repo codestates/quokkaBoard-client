@@ -1,5 +1,6 @@
 // module
 import React, { useState, useCallback, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import env from 'react-dotenv';
@@ -7,8 +8,13 @@ import env from 'react-dotenv';
 import './sections/styles.css';
 // component
 import loginQuokka from './sections/images/signup_img.png';
+// actions
+import { actionLogin } from '../../../../_actions/index';
 
-function Login(props) {
+axios.defaults.withCredentials = true;
+
+function Login({ handleCloseLoginModal }) {
+	const dispatch = useDispatch();
 	const [emailCheck, setEmailCheck] = useState(false);
 	const [nickNameCheck, setNickNameCheck] = useState(false);
 	const [passwordCheck, setPasswordCheck] = useState(false);
@@ -47,10 +53,10 @@ function Login(props) {
 			const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 			if (e.target.value.match(validRegex)) {
 				try {
+					console.log(env.REACT_APP_SERVER_URI);
 					const { data } = await axios.post(`${env.REACT_APP_SERVER_URI}/user/exist-email`, {
 						email: e.target.value,
 					});
-					console.log(`::::::::::이메일`);
 					console.log(data);
 					if (!data.success) {
 						if (emailValidMessage.current) {
@@ -69,7 +75,6 @@ function Login(props) {
 					if (emailValidMessage.current) {
 						emailValidMessage.current.textContent = '서버와 연결이 불안정합니다';
 					}
-					console.log(err.data);
 				}
 			} else {
 				if (emailValidMessage.current) {
@@ -198,8 +203,8 @@ function Login(props) {
 	// 로그인 버튼
 	const handleLoginSubmit = useCallback(
 		(e) => {
-			loginErrorMessage.current?.classList.remove('shake-animation');
 			e.preventDefault();
+			loginErrorMessage.current?.classList.remove('shake-animation');
 			const user = {
 				email: loginEmail.current?.value,
 				password: loginPassword.current?.value,
@@ -209,13 +214,13 @@ function Login(props) {
 				.then((response) => {
 					// 성공 했을때
 					if (response.data.success) {
-						console.log(e.target);
+						dispatch(actionLogin(response.data.data));
 						if (loginErrorMessage.current) {
 							loginErrorMessage.current.textContent = '';
 						}
 						e.target.reset();
+						handleCloseLoginModal();
 					} else {
-						console.log(response.data);
 						if (loginErrorMessage.current) {
 							loginErrorMessage.current.textContent = response.data.message;
 							loginErrorMessage.current.classList.add('shake-animation');
@@ -234,7 +239,9 @@ function Login(props) {
 	return (
 		<div className="body_container">
 			<div className="container" ref={container}>
-				<i className="fas fa-times-circle" onClick={props.handleCloseLoginForm}></i>
+				<div onClick={handleCloseLoginModal}>
+					<i className="fas fa-times-circle"></i>
+				</div>
 				<div className="form-container sign-up-container">
 					<h1>회원 가입</h1>
 					<p>간단한 정보로 회원등록을 해보세요!</p>

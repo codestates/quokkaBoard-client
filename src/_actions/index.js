@@ -1,6 +1,7 @@
-import { EXAMPLE_CODE } from './type';
 import env from 'react-dotenv';
+import { EXAMPLE_CODE, USER_LOGIN, USER_LOGOUT } from './type';
 import axios from 'axios';
+
 axios.defaults.withCredentials = true; // cookie 사용(접근권한을 주기위한) 설정
 
 // actions creator functions
@@ -47,4 +48,19 @@ export const actionProjectList = (dispatch, userId) => {
 				payload: [...data],
 			});
 		});
+  
+// User
+export const actionLogin = (userInfo) => {
+	return {
+		type: USER_LOGIN,
+		payload: {
+			...userInfo,
+		},
+	};
+};
+export const actionLogout = () => {
+	return {
+		type: USER_LOGOUT,
+		payload: {},
+	};
 };
