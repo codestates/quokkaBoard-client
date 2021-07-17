@@ -1,14 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './sections/search.module.css';
-import searchResult from './sections/searchResult';
 import followerResult from './sections/followerResult';
 import FollowerUserResult from './FollowerUserResult';
 import SearchUserResult from './SearchUserResult';
 
+// action
+import { actionSearchUser } from '../../../../_actions';
+
 const Search = (props) => {
-	const [searchUser, setSearchPerson] = useState(searchResult);
+	const dispatch = useDispatch();
+	const state = useSelector((state) => {
+		return state.member;
+	});
+
+	const { searchUser } = state;
 	const [followerUser, setFollowerUser] = useState(followerResult);
 	const [isSearchListClicked, setSearchList] = useState(true);
+	const searchInputRef = useRef();
 
 	const handleSearchListUpdate = () => {
 		setSearchList(true);
@@ -16,6 +25,14 @@ const Search = (props) => {
 
 	const handleSearchListReset = () => {
 		setSearchList(false);
+	};
+
+	const handleSearchUser = () => {
+		const searchUser = searchInputRef.current.value;
+
+		// dispatch(actionSearchUser(searchUser));
+		// action 객체를 만드는 함수를 호출 (reducer로 넘김)
+		actionSearchUser(dispatch, searchUser);
 	};
 
 	return (
@@ -29,8 +46,10 @@ const Search = (props) => {
 					검색할 닉네임 또는 이메일을 적어주세요 :)
 				</label>
 				<div className={styles.search_div}>
-					<input className={styles.search_name_input} id="search_name" />
-					<button className={styles.search_btn}>검색</button>
+					<input ref={searchInputRef} className={styles.search_name_input} id="search_name" />
+					<button className={styles.search_btn} onClick={handleSearchUser}>
+						검색
+					</button>
 				</div>
 			</div>
 			<div className={styles.div_btn}>
@@ -43,6 +62,13 @@ const Search = (props) => {
 			</div>
 
 			<ul className={styles.ul}>
+				{searchUser
+					? searchUser.map((result) => {
+							return <SearchUserResult key={result.id} result={result} />;
+					  })
+					: ''}
+			</ul>
+			{/* <ul className={styles.ul}>
 				{isSearchListClicked
 					? searchUser.map((result) => {
 							return <SearchUserResult key={result.id} result={result} />;
@@ -50,7 +76,7 @@ const Search = (props) => {
 					: followerUser.map((result) => {
 							return <FollowerUserResult key={result.id} result={result} />;
 					  })}
-			</ul>
+			</ul> */}
 		</section>
 	);
 };

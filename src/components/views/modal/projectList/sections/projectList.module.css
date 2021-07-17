@@ -7,6 +7,7 @@
 	left: 12rem;
 	border-radius: 0.5rem;
 	padding: 1rem 1rem;
+
 	cursor: pointer;
 	font-family: var(--font-sub1);
 	animation: project_modal_show 0.4s;
@@ -39,12 +40,13 @@
 .div {
 	display: flex;
 	align-items: center;
+	margin-top: 2rem;
 	border-top: 1px solid var(--orange);
-	margin-top: 1rem;
 }
 
 .div > * {
 	margin-top: 0.5rem;
+
 	font-family: var(--font-sub1);
 }
 
