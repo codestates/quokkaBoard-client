@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import axios from 'axios';
+import env from 'react-dotenv';
 import initialData from './sections/initialData';
 import Column from './Column';
 import TaskEdit from '../modal/task/TaskEdit';
@@ -25,14 +28,38 @@ const Container = styled.div`
 `;
 
 class KanbanBoard extends Component {
-	state = {
-		...initialData,
-		isTaskClick: false,
-		isNewTaskClick: false,
-		isNewColumnClick: false,
-		currentTask: {},
-		newTask: {},
-	};
+	constructor(props) {
+		super(props);
+		this.userInfo = props.userInfo;
+		// this.kanbanInfo = props.kanbanInfo;
+		console.log(this.userInfo);
+		// console.log(this.kanbanInfo);
+
+		this.state = {
+			// tasks: {},
+			// columns: {},
+			// columnOrder: [],
+			...initialData,
+			isTaskClick: false,
+			isNewTaskClick: false,
+			isNewColumnClick: false,
+			currentTask: {},
+			newTask: {},
+		};
+	}
+
+	componentDidMount() {
+		// kanban/all-board-info (post)
+		const projectId = this.userInfo?.projectId;
+		// kanbanInfo를 들고오기위해 RequestBody 뭐가 필요한가?
+		// 1. projectId
+		// axios
+		// 	.post(`${env.REACT_APP_SERVER_URI}/kanban/all-board-info`, {
+		// 		projectId: '30b1cc56-3e6a-4732-8dba-c6178fbd27b5',
+		// 	})
+		// 	.then((response) => response.data?.data)
+		// 	.then((data) => console.log(data));
+	}
 
 	// 새로운 task 1개 추가 시
 	handleTaskUpdate = (newTask) => {
@@ -93,7 +120,7 @@ class KanbanBoard extends Component {
 		});
 	};
 
-	onDragEnd = (result) => {
+	/* onDragEnd = (result) => {
 		const { destination, source, draggableId, type } = result;
 		console.log(source);
 		console.log(destination);
@@ -120,6 +147,7 @@ class KanbanBoard extends Component {
 				bIdx: source.index,
 				targetIdx: destination.index,
 			};
+
 			return;
 		}
 
@@ -136,9 +164,9 @@ class KanbanBoard extends Component {
 			};
 			return;
 		}
-	};
+	}; */
 
-	/* onDragEnd = (result) => {
+	onDragEnd = (result) => {
 		const { destination, source, draggableId, type } = result;
 
 		console.log(source);
@@ -242,7 +270,7 @@ class KanbanBoard extends Component {
 			},
 		};
 		this.setState(newState);
-	}; */
+	};
 
 	render() {
 		return (
@@ -301,4 +329,9 @@ class KanbanBoard extends Component {
 	}
 }
 
-export default KanbanBoard;
+const stateToProps = (state) => ({
+	userInfo: state.users.userInfo,
+	kanbanInfo: state.kanban?.kanbanInfo,
+});
+
+export default connect(stateToProps)(KanbanBoard);
