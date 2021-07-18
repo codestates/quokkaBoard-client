@@ -2,12 +2,26 @@ import React, { useState, useCallback, useEffect } from 'react';
 import styles from './sections/userInfo.module.css';
 import ModifyNickname from './ModifyNickname';
 import ModifyPassword from './ModifyPassword';
+import DeleteUserAlert from './DeleteUserAlert';
 import { useSelector } from 'react-redux';
 
 const UserInfo = (props) => {
 	const { userInfo } = useSelector((state) => state.users);
 	const [isNicknameButton, setIsNicknameButton] = useState(false);
 	const [isPasswordButton, setIsPasswordButton] = useState(false);
+	const [isDeleteUser, setIsDeleteUser] = useState(true);
+
+	const handleDeleteUserOn = useCallback(
+		(e) => {
+			e.preventDefault();
+			setIsDeleteUser(true);
+		},
+		[isDeleteUser],
+	);
+
+	const handleDeleteUserOff = () => {
+		setIsDeleteUser(false);
+	};
 
 	const handleNicknameOpen = useCallback(
 		(e) => {
@@ -31,19 +45,18 @@ const UserInfo = (props) => {
 		},
 		[isPasswordButton],
 	);
-	const handlePasswordClose = useCallback(
-		(e) => {
-			e.preventDefault();
-			setIsPasswordButton(false);
-		},
-		[isPasswordButton],
-	);
+	const handlePasswordClose = (e) => {
+		setIsPasswordButton(false);
+	};
 
 	// 패스워드 변경 버튼
 
 	return (
 		<section className={styles.container}>
-			<i className="fas fa-times-circle"></i>
+			<div className={styles.close} onClick={props.handleEditUserInfoClose}>
+				<i className="fas fa-times-circle"></i>
+			</div>
+
 			<header className={styles.header}>
 				<h1 className={styles.header__title}>개인 정보</h1>
 				<p className={styles.header__description}>프로필 사진, 닉네임과 같이 정보를 변경해보세요!</p>
@@ -79,10 +92,13 @@ const UserInfo = (props) => {
 			</main>
 			<footer className={styles.footer}>
 				<h3 className={styles.footer__label}>탈퇴</h3>
-				<button className={styles.deleteUserButton}>회원 탈퇴</button>
+				<button className={styles.deleteUserButton} onClick={handleDeleteUserOn}>
+					회원 탈퇴
+				</button>
 			</footer>
 			{isNicknameButton ? <ModifyNickname handleNicknameClose={handleNicknameClose} userId={userInfo?.id} /> : ''}
 			{isPasswordButton ? <ModifyPassword handlePasswordClose={handlePasswordClose} userId={userInfo?.id} /> : ''}
+			{isDeleteUser ? <DeleteUserAlert handleDeleteUserOff={handleDeleteUserOff} userId={userInfo?.id} /> : ''}
 		</section>
 	);
 };

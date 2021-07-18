@@ -1,7 +1,7 @@
 .container {
 	position: absolute;
-	left: 50%;
-	top: 50%;
+	left: -27%;
+	top: 75%;
 	transform: translate(-50%, -50%);
 	background-color: var(--green-a);
 	width: 60rem;
@@ -21,13 +21,16 @@
 	}
 }
 
-.container > svg {
+.container .close {
 	cursor: pointer;
 	position: absolute;
 	right: -1rem;
 	top: -1rem;
-	font-size: 2em;
 	z-index: 11;
+}
+
+.container .close > svg {
+	font-size: 2em;
 }
 
 .container * {
