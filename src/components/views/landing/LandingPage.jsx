@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 // Componenet
 import LoginModal from '../modal/login/Login';
 import LoadingPage from '../loading/Loading';
+
 // actions
 import { actionLogout } from '../../../_actions/index';
 
@@ -44,6 +45,7 @@ import sangwoo from './sections/images/team/sangwoo.png';
 import seungyong from './sections/images/team/seungyong.png';
 // contact image
 import contact from './sections/images/contact/contact.jpg';
+import LandingProjectList from '../modal/projectList/LandingProjectList';
 
 function LandingPage() {
 	const dispatch = useDispatch();
@@ -54,19 +56,54 @@ function LandingPage() {
 	const hide = styles.hide;
 
 	const { userInfo } = useSelector((state) => state.users);
+	console.log(userInfo);
 	const [isLoginModal, setIsLoginModal] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
+	const [isStart, setIsStart] = useState(false);
 
-	const handleOpenLoginModal = () => {
-		setIsLoginModal(true);
+	const handleIsStartClick = useCallback(
+		(e) => {
+			e.preventDefault();
+			console.log(userInfo);
+			userInfo?.id && setIsStart(true);
+		},
+		[isStart],
+	);
+	const handleIsStartClose = (e) => {
+		e.preventDefault();
+		setIsStart(false);
 	};
+
+	const handleIsLoadingOn = useCallback(
+		(e) => {
+			e.preventDefault();
+			setIsLoading(true);
+		},
+		[isLoading],
+	);
+	const handleIsLoadingOff = () => {
+		setIsLoading(false);
+	};
+	const handleOpenLoginModal = useCallback(
+		(e) => {
+			e.preventDefault();
+			setIsLoginModal(true);
+		},
+		[isLoginModal],
+	);
 	const handleCloseLoginModal = () => {
 		setIsLoginModal(false);
 	};
-	const handleClickLogout = (e) => {
-		e.preventDefault();
-		dispatch(actionLogout());
-	};
+	const handleClickLogout = useCallback(
+		(e) => {
+			e.preventDefault();
+			setIsLoading(true);
+			if (userInfo?.id) {
+				actionLogout(dispatch, userInfo?.id, handleIsLoadingOff);
+			}
+		},
+		[userInfo],
+	);
 
 	const handleArrowClick = useCallback(() => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -74,7 +111,7 @@ function LandingPage() {
 
 	useEffect(() => {
 		aos.init();
-		window.addEventListener('scroll', () => {
+		window.addEventListener('scroll', (e) => {
 			if (window.scrollY >= 50) {
 				nav.current.classList.add(navMove);
 				arrowUp.current.classList.add(hide);
@@ -84,12 +121,20 @@ function LandingPage() {
 			}
 		});
 		setIsLoading(false);
-	});
+	}, []);
 	return isLoading ? (
 		<LoadingPage />
 	) : (
 		<div className={styles.container}>
-			{isLoginModal ? <LoginModal handleCloseLoginModal={handleCloseLoginModal} /> : ''}
+			{isLoginModal ? (
+				<LoginModal
+					handleCloseLoginModal={handleCloseLoginModal}
+					handleIsLoadingOn={handleIsLoadingOn}
+					handleIsLoadingOff={handleIsLoadingOff}
+				/>
+			) : (
+				''
+			)}
 			<nav className={styles.nav} ref={nav}>
 				<div className={styles.nav__container}>
 					<h1>
@@ -104,13 +149,20 @@ function LandingPage() {
 									로그아웃
 								</a>
 							) : (
-								<a href="#" onClick={handleOpenLoginModal}>
+								<a
+									href="#"
+									onClick={handleOpenLoginModal}
+									handleIsLoadingOn={handleIsLoadingOn}
+									handleIsLoadingOff={handleIsLoadingOff}
+								>
 									로그인
 								</a>
 							)}
 						</li>
 						<li>
-							<Link to="/kanban-board">시작하기</Link>
+							<a href="#" onClick={handleIsStartClick}>
+								시작하기
+							</a>
 						</li>
 					</ul>
 				</div>
@@ -442,6 +494,7 @@ function LandingPage() {
 			<div ref={arrowUp} className={styles.arrowUp} onClick={handleArrowClick}>
 				<i className="fas fa-arrow-circle-up"></i>
 			</div>
+			{isStart ? <LandingProjectList handleIsStartClose={handleIsStartClose} /> : ''}
 		</div>
 	);
 }

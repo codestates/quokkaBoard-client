@@ -1,16 +1,17 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import styles from './sections/userInfo.module.css';
 import ModifyNickname from './ModifyNickname';
 import ModifyPassword from './ModifyPassword';
+import { useSelector } from 'react-redux';
 
 const UserInfo = (props) => {
+	const { userInfo } = useSelector((state) => state.users);
 	const [isNicknameButton, setIsNicknameButton] = useState(false);
 	const [isPasswordButton, setIsPasswordButton] = useState(false);
 
 	const handleNicknameOpen = useCallback(
 		(e) => {
 			e.preventDefault();
-			console.log('닉네임 변경 버튼 활성');
 			setIsNicknameButton(true);
 		},
 		[isNicknameButton],
@@ -18,7 +19,6 @@ const UserInfo = (props) => {
 
 	const handleNicknameClose = useCallback(
 		(e) => {
-			console.log('닉네임 변경 버튼 비활성');
 			setIsNicknameButton(false);
 		},
 		[isNicknameButton],
@@ -27,7 +27,6 @@ const UserInfo = (props) => {
 	const handlePasswordOpen = useCallback(
 		(e) => {
 			e.preventDefault();
-			console.log('패스워드 변경 버튼 활성');
 			setIsPasswordButton(true);
 		},
 		[isPasswordButton],
@@ -35,7 +34,6 @@ const UserInfo = (props) => {
 	const handlePasswordClose = useCallback(
 		(e) => {
 			e.preventDefault();
-			console.log('패스워드 변경 버튼 비활성');
 			setIsPasswordButton(false);
 		},
 		[isPasswordButton],
@@ -52,7 +50,7 @@ const UserInfo = (props) => {
 			</header>
 			<main className={styles.main}>
 				<header className={styles.main__header}>
-					<h2 className={styles.main__title}>{`${'TEST'}님의 기본 정보`}</h2>
+					<h2 className={styles.main__title}>{`${userInfo?.name ? userInfo?.name : 'Guest'}님의 기본 정보`}</h2>
 					<p className={styles.main__description}>
 						일부 정보가 QuokkaBoard 서비스를 사용하는 다른 사람에게 표시될 수 있습니다.
 					</p>
@@ -66,12 +64,12 @@ const UserInfo = (props) => {
 					</li>
 					<li className={styles.userInfoContainer__nickname} onClick={handleNicknameOpen}>
 						<h3>닉네임</h3>
-						<span>{`Test`}</span>
+						<span>{`${userInfo?.nickname ? userInfo?.nickname : 'Guest'}`}</span>
 						<i className="fas fa-greater-than"></i>
 					</li>
 					<li className={styles.userInfoContainer__password} onClick={handlePasswordOpen}>
 						<h3>비밀번호</h3>
-						<span>{`*******`}</span>
+						<span>{`***...`}</span>
 						<i className="fas fa-greater-than"></i>
 					</li>
 					<li>
@@ -83,8 +81,8 @@ const UserInfo = (props) => {
 				<h3 className={styles.footer__label}>탈퇴</h3>
 				<button className={styles.deleteUserButton}>회원 탈퇴</button>
 			</footer>
-			{isNicknameButton ? <ModifyNickname handleNicknameClose={handleNicknameClose} /> : ''}
-			{isPasswordButton ? <ModifyPassword handlePasswordClose={handlePasswordClose} /> : ''}
+			{isNicknameButton ? <ModifyNickname handleNicknameClose={handleNicknameClose} userId={userInfo?.id} /> : ''}
+			{isPasswordButton ? <ModifyPassword handlePasswordClose={handlePasswordClose} userId={userInfo?.id} /> : ''}
 		</section>
 	);
 };

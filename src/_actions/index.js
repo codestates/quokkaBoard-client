@@ -89,9 +89,19 @@ export const actionLogin = (userInfo) => {
 		},
 	};
 };
-export const actionLogout = () => {
-	return {
-		type: USER_LOGOUT,
-		payload: {},
-	};
+export const actionLogout = async (dispatch, userId, handleIsLoadingOff) => {
+	try {
+		const response = await axios.post(`${env.REACT_APP_SERVER_URI}/user/logout`, { userId });
+		console.log();
+		if (response.data?.success) {
+			handleIsLoadingOff();
+			dispatch({
+				type: USER_LOGOUT,
+				payload: {},
+			});
+		}
+	} catch (e) {
+		console.error(e);
+		console.log(e.data);
+	}
 };
