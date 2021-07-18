@@ -112,11 +112,11 @@ function LandingPage() {
 		aos.init();
 		window.addEventListener('scroll', (e) => {
 			if (window.scrollY >= 50) {
-				nav.current.classList.add(navMove);
-				arrowUp.current.classList.add(hide);
+				nav.current?.classList.add(navMove);
+				arrowUp.current?.classList.add(hide);
 			} else {
-				nav.current.classList.remove(navMove);
-				arrowUp.current.classList.remove(hide);
+				nav.current?.classList.remove(navMove);
+				arrowUp.current?.classList.remove(hide);
 			}
 		});
 		setIsLoading(false);

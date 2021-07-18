@@ -7,5 +7,7 @@ export const SEARCH_USER = 'SEARCH_USER';
 export const PROJECT_LIST = 'PROJECT_LIST';
 export const PROJECT_MEMBER = 'PROJECT_MEMBER';
 export const CURRENT_PROJECT = 'CURRENT_PROJECT';
+export const MODIFY_PROJECT = 'MODIFY_PROJECT';
 // kanban
 export const CREATE_COLUMN = 'CREATE_COLUMN';
+export const KANBAN_INFO = 'KANBAN_INFO';

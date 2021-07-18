@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import style from './sections/addTask.module.css';
 import AddTaskMember from './AddTaskMember';
 import Label from '../label/Label';
+import axios from 'axios';
 
 const AddTask = (props) => {
 	const taskNameinputRef = useRef();
@@ -27,6 +28,26 @@ const AddTask = (props) => {
 		[taskMembers],
 	);
 
+	const handleRemoveTaskLabel = useCallback(
+		(removeLabel) => {
+			const index = taskLabels.findIndex((label) => {
+				return label.id === removeLabel.id;
+			});
+			console.log(removeLabel.id);
+
+			console.log(index);
+			const copyLabels = [...taskLabels];
+			copyLabels.splice(index, 1);
+			setTaskLabels(copyLabels);
+		},
+		[taskLabels],
+	);
+
+	// addTask
+	const handleCreateTask = () => {
+		console.log();
+	};
+
 	const handleAddTaskMemberModalOpen = () => {
 		setTaskAddMemberBtn(true);
 	};
@@ -50,21 +71,6 @@ const AddTask = (props) => {
 	const handleAddTaskLabel = (label) => {
 		setTaskLabels([...taskLabels, label]);
 	};
-
-	const handleRemoveTaskLabel = useCallback(
-		(removeLabel) => {
-			const index = taskLabels.findIndex((label) => {
-				return label.id === removeLabel.id;
-			});
-			console.log(removeLabel.id);
-
-			console.log(index);
-			const copyLabels = [...taskLabels];
-			copyLabels.splice(index, 1);
-			setTaskLabels(copyLabels);
-		},
-		[taskLabels],
-	);
 
 	return (
 		<div className={style.background}>
@@ -120,7 +126,9 @@ const AddTask = (props) => {
 					<button className={style.cancel_btn} onClick={props.handleAddTaskModalClose}>
 						취소
 					</button>
-					<button className={style.make_btn}>만들기</button>
+					<button className={style.make_btn} onClick={handleCreateTask}>
+						만들기
+					</button>
 				</div>
 			</section>
 			{taskAddMemberBtn ? (

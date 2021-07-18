@@ -13,10 +13,9 @@ const ProjectListModal = (props) => {
 	const { userInfo } = useSelector((state) => {
 		return state.users;
 	});
-	console.log(projectList);
 
 	useEffect(() => {
-		const userId = 'c8f8c19b-fb4e-4ff2-8dc5-7d91d31f4675'; // userInfo.userId;
+		const userId = userInfo?.id;
 		actionProjectList(dispatch, userId);
 	}, []);
 

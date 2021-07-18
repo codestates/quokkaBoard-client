@@ -75,11 +75,11 @@ class Column extends Component {
 	render() {
 		return (
 			<>
-				<Draggable draggableId={this.props.column.id} index={this.props.index}>
+				<Draggable draggableId={this.props.column?.id} index={this.props.index}>
 					{(provided) => (
 						<Container {...provided.draggableProps} ref={provided.innerRef}>
 							<div className={style.div}>
-								<Title {...provided.dragHandleProps}>{this.props.column.title}</Title>
+								<Title {...provided.dragHandleProps}>{this.props.column?.title}</Title>
 								<ColumnTitle
 									handleTitleModalOpen={this.handleTitleModalOpen}
 									handleColumnDeleteModalOpen={this.handleColumnDeleteModalOpen}
@@ -96,14 +96,14 @@ class Column extends Component {
 									<ColumnDeleteModal
 										handleColumnDeleteModalClose={this.handleColumnDeleteModalClose}
 										handleColumnDelete={this.handleColumnDelete}
-										title={this.props.column.title}
+										title={this.props.column?.title}
 									/>
 								) : (
 									''
 								)}
 							</div>
 
-							<Droppable droppableId={this.props.column.id} type="task">
+							<Droppable droppableId={this.props.column?.id} type="task">
 								{(provided, snapshot) => (
 									<>
 										<TaskList
@@ -111,7 +111,7 @@ class Column extends Component {
 											{...provided.droppableProps}
 											isDraggingOver={snapshot.isDraggingOver}
 										>
-											{this.props.tasks.map((task, index) => (
+											{this.props.tasks?.map((task, index) => (
 												<Task
 													key={task.id}
 													task={task}
