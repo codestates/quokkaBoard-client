@@ -44,6 +44,18 @@ const ModifyNickname = (props) => {
 	);
 
 	// 닉네임 변경 요청
+	const handleNickNameClick = (e) => {
+		e.preventDefault();
+		const nickname = e.target[0].value;
+		if (nicknameCheck) {
+			axios
+				.patch(`${env.REACT_APP_SERVER_URI}/user/modify-nickname`, {
+					userId: props.userId,
+					nickname: nickname,
+				})
+				.then((response) => console.log(response));
+		}
+	};
 
 	return (
 		<section className={styles.container}>
@@ -51,7 +63,7 @@ const ModifyNickname = (props) => {
 				<i className="far fa-times-circle"></i>
 			</span>
 			<h1>변경할 닉네임을 입력해 주세요</h1>
-			<form>
+			<form onSubmit={handleNickNameClick}>
 				<input type="text" onChange={handleCheckNickName} />
 				<button type="submit">변경하기</button>
 			</form>
