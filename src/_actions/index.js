@@ -25,10 +25,12 @@ export const actionSearchUser = (dispatch, searchWord) => {
 			// action 객체를 리턴
 			// action: 함수를 통해 state를 update하기 위한 데이터를 만드는 곳
 			// payload에 들어가는 데이터가 그대로 state에 들어간다.
-			dispatch({
-				type: SEARCH_USER,
-				payload: [...data],
-			});
+			if (data) {
+				dispatch({
+					type: SEARCH_USER,
+					payload: [...data],
+				});
+			}
 		});
 };
 

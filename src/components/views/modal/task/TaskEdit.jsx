@@ -63,7 +63,7 @@ const TaskEdit = (props) => {
 				<div className={style.close_btn} onClick={props.handleTaskModalClose}>
 					<i className="fas fa-times"></i>
 				</div>
-				<h2 className={style.title}>{props.task.content}</h2>
+				<h2 className={style.title}>{props.task?.title}</h2>
 				<div className={style.content}>
 					<div className={style.member_div}>
 						<h3 className={style.member_title}>담당자</h3>

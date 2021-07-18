@@ -66,7 +66,7 @@ class Task extends Component {
 
 	render() {
 		return (
-			<Draggable draggableId={this.props.task.id} index={this.props.index}>
+			<Draggable draggableId={this.props.task?.id} index={this.props.index}>
 				{(provided, snapshot) => (
 					<Container
 						{...provided.draggableProps}
@@ -75,7 +75,7 @@ class Task extends Component {
 						isDragging={snapshot.isDragging}
 					>
 						<div className={style.title}>
-							<span className={style.due_date}>{this.props.task.dueDate}</span>
+							<span className={style.due_date}>{this.props.task?.dueDate}</span>
 							<button onClick={this.handleTaskTitleModalOpen} className={style.update_btn}>
 								<i className="fas fa-pencil-alt"></i>
 							</button>
@@ -86,7 +86,7 @@ class Task extends Component {
 						{this.state.isTitleModifyBtnClick ? (
 							<TaskTitleModify
 								handleTaskTitleModalClose={this.handleTaskTitleModalClose}
-								taskTitle={this.props.task.content}
+								taskTitle={this.props.task?.title}
 							/>
 						) : (
 							''
@@ -94,15 +94,15 @@ class Task extends Component {
 						{this.state.isTitleDeleteBtnClick ? (
 							<TaskDelete
 								handleTaskDeleteModalClose={this.handleTaskDeleteModalClose}
-								taskTitle={this.props.task.content}
+								taskTitle={this.props.task?.title}
 							/>
 						) : (
 							''
 						)}
 						<section className={style.container} onClick={this.handleTask}>
-							<div className={style.task_content}>{this.props.task.content}</div>
+							<div className={style.task_content}>{this.props.task?.title}</div>
 							<ul className={style.members}>
-								{this.props.task.members.map((member, idx) => {
+								{this.props.task?.members.map((member, idx) => {
 									return (
 										<li key={idx} className={style.member}>
 											{member}
@@ -111,7 +111,7 @@ class Task extends Component {
 								})}
 							</ul>
 							<ul className={style.labels}>
-								{this.props.task.labels.map((label) => {
+								{this.props.task?.labels.map((label) => {
 									return (
 										<li key={label.id} style={{ backgroundColor: `${label.hex}` }} className={style.label}>
 											{label.content}

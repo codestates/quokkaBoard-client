@@ -64,22 +64,24 @@ class Column extends Component {
 
 	// 제목 수정 axios
 	handleColumnTitleUpdate = (e) => {
+		console.log('제목 수정 클릭');
 		this.handleTitleModalClose();
 	};
 
 	// 컬럼 지우기 axios
 	handleColumnDelete = (e) => {
 		this.handleColumnDeleteModalClose();
+		console.log('컬럼 지우기');
 	};
 
 	render() {
 		return (
 			<>
-				<Draggable draggableId={this.props.column?.id} index={this.props.index}>
+				<Draggable draggableId={this.props.column.id} index={this.props.index}>
 					{(provided) => (
 						<Container {...provided.draggableProps} ref={provided.innerRef}>
 							<div className={style.div}>
-								<Title {...provided.dragHandleProps}>{this.props.column?.title}</Title>
+								<Title {...provided.dragHandleProps}>{this.props.column.title}</Title>
 								<ColumnTitle
 									handleTitleModalOpen={this.handleTitleModalOpen}
 									handleColumnDeleteModalOpen={this.handleColumnDeleteModalOpen}
@@ -96,14 +98,14 @@ class Column extends Component {
 									<ColumnDeleteModal
 										handleColumnDeleteModalClose={this.handleColumnDeleteModalClose}
 										handleColumnDelete={this.handleColumnDelete}
-										title={this.props.column?.title}
+										title={this.props.column.title}
 									/>
 								) : (
 									''
 								)}
 							</div>
 
-							<Droppable droppableId={this.props.column?.id} type="task">
+							<Droppable droppableId={this.props.column.id} type="task">
 								{(provided, snapshot) => (
 									<>
 										<TaskList
@@ -111,7 +113,7 @@ class Column extends Component {
 											{...provided.droppableProps}
 											isDraggingOver={snapshot.isDraggingOver}
 										>
-											{this.props.tasks?.map((task, index) => (
+											{this.props.tasks.map((task, index) => (
 												<Task
 													key={task.id}
 													task={task}
