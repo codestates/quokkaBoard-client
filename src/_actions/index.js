@@ -61,7 +61,8 @@ export const actionProjectMember = (dispatch, projectId, handleLoadingClose) => 
 };
 
 // current project
-export const actionCurrentProject = (dispatch, projectInfo) => {
+export const actionCurrentProject = (projectInfo, props) => {
+	props.history.push('/dash-board');
 	return {
 		type: CURRENT_PROJECT,
 		payload: {
