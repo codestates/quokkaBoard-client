@@ -1,4 +1,4 @@
-import { PROJECT_LIST, PROJECT_MEMBER } from '../_actions/type';
+import { PROJECT_LIST, PROJECT_MEMBER, CURRENT_PROJECT } from '../_actions/type';
 
 const project = (state = {}, action) => {
 	switch (action.type) {
@@ -6,6 +6,8 @@ const project = (state = {}, action) => {
 			return { ...state, projectList: action.payload };
 		case PROJECT_MEMBER:
 			return { ...state, projectMember: action.payload };
+		case CURRENT_PROJECT:
+			return { ...state, currentProject: action.payload };
 		default:
 			return state;
 	}

@@ -12,15 +12,17 @@ const ProjectSetting = (props) => {
 
 	const [isLoading, setIsLoading] = useState(true);
 
-	const handleLoadingClose = () => {
-		setIsLoading(false);
-	};
-
 	const { projectMember } = useSelector((state) => {
 		return state.project;
 	});
 
-	console.log(projectMember);
+	const { currentProject } = useSelector((state) => {
+		return state.project;
+	});
+
+	const handleLoadingClose = () => {
+		setIsLoading(false);
+	};
 
 	useEffect(() => {
 		const projectId = '30b1cc56-3e6a-4732-8dba-c6178fbd27b5';
@@ -41,7 +43,7 @@ const ProjectSetting = (props) => {
 			<div className={styles.container}>
 				<h2 className={styles.h2}>프로젝트 설정 창</h2>
 				<div className={styles.name}>
-					<h3 className={styles.h3}>프로젝트 이름{/* {projectMember.title} */}</h3>
+					<h3 className={styles.h3}>{currentProject?.title}</h3>
 					<span className={styles.name_btn}>프로젝트 이름 수정하기</span>
 				</div>
 				<ul className={styles.ul}>
