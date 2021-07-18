@@ -5,11 +5,13 @@ import TaskEditLabel from './TaskEditLabel';
 import TaskMemberModify from './TaskMemberModify';
 import TaskDueDateModify from './TaskDueDateModify';
 import TaskLabelModify from './TaskLabelModify';
+import TaskComplete from './TaskComplete';
 
 const TaskEdit = (props) => {
 	const [isMemberDelBtnClick, setMemberDelete] = useState(false);
 	const [isDueDateDelBtnClick, setDueDate] = useState(false);
 	const [isLabelDelBtnClick, setLabel] = useState(false);
+	const [isTaskCompleteBtnClick, setComplete] = useState(false);
 	const [selectDelMember, setSelectDelMember] = useState({});
 	const [selectDelLabel, setSelectDelLabel] = useState({});
 
@@ -35,6 +37,14 @@ const TaskEdit = (props) => {
 
 	const handleLabelDeleteModalClose = () => {
 		setLabel(false);
+	};
+
+	const handleTaskCompleteModalOpen = () => {
+		setComplete(true);
+	};
+
+	const handleTaskCompleteModalModal = () => {
+		setComplete(false);
 	};
 
 	const handleSelectDelMember = (delMember) => {
@@ -96,6 +106,11 @@ const TaskEdit = (props) => {
 								);
 							})}
 						</ul>
+						<div className={style.complete}>
+							<button className={style.complete_btn} onClick={handleTaskCompleteModalOpen}>
+								<span>업무 완료</span>
+							</button>
+						</div>
 					</div>
 				</div>
 				{isMemberDelBtnClick ? (
@@ -112,6 +127,7 @@ const TaskEdit = (props) => {
 				) : (
 					''
 				)}
+				{isTaskCompleteBtnClick ? <TaskComplete handleTaskCompleteModalModal={handleTaskCompleteModalModal} /> : ''}
 			</section>
 		</div>
 	);
