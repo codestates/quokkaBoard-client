@@ -1,5 +1,5 @@
 import env from 'react-dotenv';
-import { EXAMPLE_CODE, USER_LOGIN, USER_LOGOUT } from './type';
+import { USER_LOGIN, USER_LOGOUT, USER_NICKNAME, DELETE_USER } from './type';
 import { SEARCH_USER, PROJECT_LIST, PROJECT_MEMBER, CREATE_COLUMN, CURRENT_PROJECT } from './type';
 import axios from 'axios';
 
@@ -103,16 +103,51 @@ export const actionLogin = (userInfo) => {
 export const actionLogout = async (dispatch, userId, handleIsLoadingOff) => {
 	try {
 		const response = await axios.post(`${env.REACT_APP_SERVER_URI}/user/logout`, { userId });
-		console.log();
 		if (response.data?.success) {
 			handleIsLoadingOff();
 			dispatch({
 				type: USER_LOGOUT,
-				payload: {},
 			});
 		}
 	} catch (e) {
 		console.error(e);
 		console.log(e.data);
 	}
+};
+export const actionUpdateNickname = async (dispatch, userInfo, handleNicknameClose) => {
+	try {
+		const response = await axios.patch(`${env.REACT_APP_SERVER_URI}/user/modify-nickname`, userInfo);
+		if (response.data?.success) {
+			console.log('성공');
+			dispatch({ type: USER_NICKNAME, payload: userInfo.nickname });
+			handleNicknameClose();
+		}
+	} catch (e) {
+		console.log(e);
+		console.log(e.data);
+	}
+};
+export const actionUpdatePassword = async (userInfo, handlePasswordClose) => {
+	try {
+		const response = await axios.patch(`${env.REACT_APP_SERVER_URI}/user/modify-password`, userInfo);
+		console.log(response.data);
+		if (response.data.success) {
+			handlePasswordClose();
+		} else {
+			return response.data.message;
+		}
+	} catch (error) {
+		return `네트워크와 연결이 불안정합니다.`;
+	}
+};
+export const actionDeleteUser = async (dispatch, userId, modalClose) => {
+	try {
+		const response = await axios.delete(`${env.REACT_APP_SERVER_URI}/user/delete-user`, { userId });
+		console.log(response);
+		if (response.data.success) {
+			dispatch({
+				type: USER_LOGOUT,
+			});
+		}
+	} catch (error) {}
 };

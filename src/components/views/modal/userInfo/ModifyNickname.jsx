@@ -2,10 +2,12 @@ import React, { useState, useCallback, useRef } from 'react';
 import styles from './sections/modifyNickname.module.css';
 import axios from 'axios';
 import env from 'react-dotenv';
+import { actionUpdateNickname } from '../../../../_actions';
+import { useDispatch } from 'react-redux';
 
 const ModifyNickname = (props) => {
+	const dispatch = useDispatch();
 	const [nicknameCheck, setNicknameCheck] = useState(false);
-
 	const nicknameValidMessage = useRef(null);
 
 	const handleCheckNickName = useCallback(
@@ -47,14 +49,11 @@ const ModifyNickname = (props) => {
 	const handleNickNameClick = (e) => {
 		e.preventDefault();
 		const nickname = e.target[0].value;
-		if (nicknameCheck) {
-			axios
-				.patch(`${env.REACT_APP_SERVER_URI}/user/modify-nickname`, {
-					userId: props.userId,
-					nickname: nickname,
-				})
-				.then((response) => console.log(response));
-		}
+		const info = {
+			userId: props.userId,
+			nickname,
+		};
+		actionUpdateNickname(dispatch, info, props.handleNicknameClose);
 	};
 
 	return (

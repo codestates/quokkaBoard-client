@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import styles from './sections/styles.module.css';
 import aos from 'aos';
 import 'aos/dist/aos.css';
+import axios from 'axios';
+import env from 'react-dotenv';
 
 // Componenet
 import LoginModal from '../modal/login/Login';
@@ -60,6 +62,7 @@ function LandingPage() {
 	const [isLoginModal, setIsLoginModal] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isStart, setIsStart] = useState(false);
+	const [accessToken, setAccessToken] = useState('');
 
 	const handleIsStartClick = useCallback(
 		(e) => {
@@ -108,7 +111,22 @@ function LandingPage() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}, []);
 
+	const getAccessToken = async (authorizationCode) => {
+		console.log(authorizationCode);
+		let resp = await axios.post(`${env.REACT_APP_SERVER_URI}/user/social-login`, {
+			authorizationCode: authorizationCode,
+		});
+		setAccessToken(resp.data.accessToken);
+	};
+
 	useEffect(() => {
+		const url = new URL(window.location.href);
+		const authorizationCode = url.searchParams.get('code');
+		console.log(authorizationCode);
+		if (authorizationCode) {
+			console.log(authorizationCode);
+			getAccessToken(authorizationCode);
+		}
 		aos.init();
 		window.addEventListener('scroll', (e) => {
 			if (window.scrollY >= 50) {

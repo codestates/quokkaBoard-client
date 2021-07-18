@@ -15,6 +15,7 @@ import { actionLogin } from '../../../../_actions/index';
 
 function Login({ handleCloseLoginModal, handleIsLoadingOn, handleIsLoadingOff }) {
 	const dispatch = useDispatch();
+	const GITHUB_LOGIN_URL = 'https://github.com/login/oauth/authorize?client_id=5a0ba47d6cec26f64fda';
 	const [emailCheck, setEmailCheck] = useState(false);
 	const [nickNameCheck, setNickNameCheck] = useState(false);
 	const [passwordCheck, setPasswordCheck] = useState(false);
@@ -236,6 +237,11 @@ function Login({ handleCloseLoginModal, handleIsLoadingOn, handleIsLoadingOff })
 		[loginEmail, loginPassword],
 	);
 
+	const socialLoginHandler = (e) => {
+		e.preventDefault();
+		window.location.assign(GITHUB_LOGIN_URL);
+	};
+
 	return (
 		<div className="body_container">
 			<div className="container" ref={container}>
@@ -268,8 +274,8 @@ function Login({ handleCloseLoginModal, handleIsLoadingOn, handleIsLoadingOff })
 					<form action="#" onSubmit={handleLoginSubmit}>
 						<h1>로그인</h1>
 						<div className="social-container">
-							<a href="#" className="social">
-								<i className="fab fa-kickstarter-k"></i>
+							<a href="#" className="social" onClick={socialLoginHandler}>
+								<i class="fab fa-github"></i>
 							</a>
 							<a href="#" className="social">
 								<i className="fab fa-gofore"></i>
