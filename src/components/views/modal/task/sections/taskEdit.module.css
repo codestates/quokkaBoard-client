@@ -14,15 +14,10 @@
 	background-color: var(--green-a);
 	width: 680px;
 	z-index: 5;
-	padding: 1rem;
-	padding-top: 3rem;
+	padding: 3rem 1rem 3rem;
 	animation: task_detail_modal 0.4s;
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 	border-radius: 0.4rem;
-}
-
-.container > * {
-	margin: 1rem;
 }
 
 .close_btn {
@@ -137,6 +132,28 @@
 	color: var(--white);
 	font-weight: bold;
 	font-size: 0.8rem;
+}
+
+.complete {
+	position: absolute;
+	top: 92%;
+	right: 10%;
+}
+
+.complete_btn > * {
+	background-color: var(--green-b);
+	padding: 0.3rem 0.7rem 0.5rem;
+	border-radius: 0.5rem;
+	font-weight: bold;
+	transition: all 0.3s ease-in;
+}
+
+.complete_btn:hover {
+	color: var(--green-e-dark);
+}
+
+.complete_btn:active {
+	transform: scale(1.03);
 }
 
 @keyframes task_detail_modal {

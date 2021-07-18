@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './sections/search.module.css';
-import followerResult from './sections/followerResult';
 import FollowerUserResult from './FollowerUserResult';
 import SearchUserResult from './SearchUserResult';
 
@@ -15,9 +14,20 @@ const Search = (props) => {
 	});
 
 	const { searchUser } = state;
-	const [followerUser, setFollowerUser] = useState(followerResult);
-	const [isSearchListClicked, setSearchList] = useState(true);
+	const { searchFollower } = state;
+
+	const [followerUser, setFollowerUser] = useState([]);
+	const [isSearchListClicked, setSearchList] = useState(false);
 	const searchInputRef = useRef();
+
+	const handleSearchUser = () => {
+		const searchWord = searchInputRef.current.value;
+
+		// dispatch(actionSearchUser(searchUser));
+		// action 객체를 만드는 함수를 호출 (reducer로 넘김)
+		actionSearchUser(dispatch, searchWord);
+		handleSearchListUpdate();
+	};
 
 	const handleSearchListUpdate = () => {
 		setSearchList(true);
@@ -27,13 +37,9 @@ const Search = (props) => {
 		setSearchList(false);
 	};
 
-	const handleSearchUser = () => {
-		const searchUser = searchInputRef.current.value;
+	// const handleSearchBtnClick = () => {};
 
-		// dispatch(actionSearchUser(searchUser));
-		// action 객체를 만드는 함수를 호출 (reducer로 넘김)
-		actionSearchUser(dispatch, searchUser);
-	};
+	// const handleFollowerBtnClick = () => {};
 
 	return (
 		<section className={styles.container}>
@@ -62,21 +68,12 @@ const Search = (props) => {
 			</div>
 
 			<ul className={styles.ul}>
-				{searchUser
+				{isSearchListClicked && searchUser?.length
 					? searchUser.map((result) => {
 							return <SearchUserResult key={result.id} result={result} />;
 					  })
 					: ''}
 			</ul>
-			{/* <ul className={styles.ul}>
-				{isSearchListClicked
-					? searchUser.map((result) => {
-							return <SearchUserResult key={result.id} result={result} />;
-					  })
-					: followerUser.map((result) => {
-							return <FollowerUserResult key={result.id} result={result} />;
-					  })}
-			</ul> */}
 		</section>
 	);
 };
