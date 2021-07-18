@@ -4,8 +4,12 @@ import env from 'react-dotenv';
 import styles from './sections/createProject.module.css';
 import AddProjectMember from '../addProjectMember/AddProjectMember';
 import SelectUserList from '../addProjectMember/SelectUserList';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreateProject } from '../../../../_actions';
 
 const CreateProject = (props) => {
+	const dispatch = useDispatch();
+	const { userInfo } = useSelector((state) => state.users);
 	const [isNewProjectMember, setNewProjectMember] = useState(false);
 	const [selectUsers, setSelectUsers] = useState([]);
 
@@ -14,29 +18,15 @@ const CreateProject = (props) => {
 	const projectStartDateRef = useRef(null);
 	const projectEndDateRef = useRef(null);
 
-	// 검색했을 때 응답으로 오는 사람 목록 추가할 state (id, 닉네임, 이메일)
-
 	// 프로젝트 만들기 화면에서 제목/설명/프로젝트 멤버(id, 닉네임) 목록을 요청보내기
 	const handleNewProjectMember = (e) => {
-		const title = subjectInputRef.current?.value;
-		const userId = 'bb10d244-1ac9-4322-8295-1af4e0655b7c';
-		const description = descriptionInputRef.current?.value;
-		const startDate = projectStartDateRef.current?.value;
-		const endDate = projectEndDateRef.current?.value;
+		const title = `${subjectInputRef.current?.value}`;
+		const userId = `${userInfo?.id}`;
+		const description = `${descriptionInputRef.current?.value}`;
+		const startDate = `${projectStartDateRef.current?.value}`;
+		const endDate = `${projectEndDateRef.current?.value}`;
 
-		axios
-			.post(`${env.REACT_APP_SERVER_URI}/project/create-project`, {
-				title,
-				userId,
-				description,
-				startDate,
-				endDate,
-			})
-			.then((response) => console.log(response.data))
-			.catch((err) => {
-				console.log(err.data);
-				console.log(err);
-			});
+		actionCreateProject(dispatch, { title, userId, description, startDate, endDate }, props.isNewProjectModalClose);
 	};
 
 	// selectUser state update

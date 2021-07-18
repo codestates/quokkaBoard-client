@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import style from './sections/task.module.css';
+import TaskTitleModify from '../modal/task/TaskTitleModify';
+import TaskDelete from '../modal/task/TaskDelete';
 
 const Container = styled.div`
 	padding: 0.8rem 0.8rem;
@@ -16,27 +18,91 @@ const Container = styled.div`
 `;
 
 class Task extends Component {
+	state = {
+		isTitleModifyBtnClick: false,
+		isTitleDeleteBtnClick: false,
+	};
+
 	handleTask = () => {
 		this.props.handleTaskModalOpen();
 		this.props.handleCurrentTaskUpdate(this.props.task);
 	};
 
+	handleTaskTitleModify = () => {
+		// task title modify 요청
+	};
+
+	handleTaskDelete = () => {
+		// task 삭제 요청
+	};
+
+	handleTaskTitleModalOpen = () => {
+		console.log('태스크 제목 변경');
+		this.setState({
+			isTitleModifyBtnClick: true,
+		});
+	};
+
+	handleTaskTitleModalClose = () => {
+		console.log('태스크 제목 모달 닫음');
+		this.setState({
+			isTitleModifyBtnClick: false,
+		});
+	};
+
+	handleTaskDeleteModalOpen = () => {
+		console.log('태스크 삭제');
+		this.setState({
+			isTitleDeleteBtnClick: true,
+		});
+	};
+
+	handleTaskDeleteModalClose = () => {
+		console.log('태스크 삭제 모달 닫음');
+		this.setState({
+			isTitleDeleteBtnClick: false,
+		});
+	};
+
 	render() {
 		return (
-			<Draggable draggableId={this.props.task.id} index={this.props.index}>
+			<Draggable draggableId={this.props.task?.id} index={this.props.index}>
 				{(provided, snapshot) => (
 					<Container
 						{...provided.draggableProps}
 						{...provided.dragHandleProps}
 						ref={provided.innerRef}
 						isDragging={snapshot.isDragging}
-						onClick={this.handleTask}
 					>
-						<section className={style.container}>
-							<span className={style.due_date}>{this.props.task.dueDate}</span>
-							<div className={style.task_content}>{this.props.task.content}</div>
+						<div className={style.title}>
+							<span className={style.due_date}>{this.props.task?.dueDate}</span>
+							<button onClick={this.handleTaskTitleModalOpen} className={style.update_btn}>
+								<i className="fas fa-pencil-alt"></i>
+							</button>
+							<button onClick={this.handleTaskDeleteModalOpen} className={style.remove_btn}>
+								<i className="fas fa-trash-alt"></i>
+							</button>
+						</div>
+						{this.state.isTitleModifyBtnClick ? (
+							<TaskTitleModify
+								handleTaskTitleModalClose={this.handleTaskTitleModalClose}
+								taskTitle={this.props.task?.title}
+							/>
+						) : (
+							''
+						)}
+						{this.state.isTitleDeleteBtnClick ? (
+							<TaskDelete
+								handleTaskDeleteModalClose={this.handleTaskDeleteModalClose}
+								taskTitle={this.props.task?.title}
+							/>
+						) : (
+							''
+						)}
+						<section className={style.container} onClick={this.handleTask}>
+							<div className={style.task_content}>{this.props.task?.title}</div>
 							<ul className={style.members}>
-								{this.props.task.members.map((member, idx) => {
+								{this.props.task?.members.map((member, idx) => {
 									return (
 										<li key={idx} className={style.member}>
 											{member}
@@ -45,7 +111,7 @@ class Task extends Component {
 								})}
 							</ul>
 							<ul className={style.labels}>
-								{this.props.task.labels.map((label) => {
+								{this.props.task?.labels.map((label) => {
 									return (
 										<li key={label.id} style={{ backgroundColor: `${label.hex}` }} className={style.label}>
 											{label.content}

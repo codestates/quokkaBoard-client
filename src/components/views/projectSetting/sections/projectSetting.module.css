@@ -51,7 +51,8 @@
 	padding-right: 2rem;
 }
 
-.name_btn {
+.name_modify,
+.name_save {
 	background-color: var(--amber-medium);
 	padding: 0.5rem 1rem;
 	border-radius: 0.5rem;
@@ -68,6 +69,19 @@
 	margin-right: 2rem;
 }
 
+.modify {
+	display: flex;
+}
+
+.input {
+	background-color: var(--white);
+	width: 200px;
+	padding: 0.5rem 0.75rem;
+	border-radius: 0.3rem;
+	font-size: 0.9rem;
+	margin-right: 0.3rem;
+}
+
 .update_btn {
 	margin-right: 0.5rem;
 }
@@ -78,7 +92,8 @@
 }
 
 .update_btn,
-.remove_btn {
+.remove_btn,
+.save {
 	background-color: var(--amber-medium);
 	color: var(--gray1);
 	border-radius: 0.5rem;
@@ -91,14 +106,16 @@
 
 .name_btn:hover,
 .update_btn:hover,
-.remove_btn:hover {
+.remove_btn:hover,
+.save:hover {
 	color: var(--white);
 	background-color: var(--deep-orange);
 }
 
 .name_btn:active,
 .update_btn:active,
-.remove_btn:active {
+.remove_btn:active,
+.save:active {
 	transform: scale(1.1);
 }
 

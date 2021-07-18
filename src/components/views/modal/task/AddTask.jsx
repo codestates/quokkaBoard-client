@@ -2,9 +2,14 @@ import React, { useState, useRef, useCallback } from 'react';
 import style from './sections/addTask.module.css';
 import AddTaskMember from './AddTaskMember';
 import Label from '../label/Label';
+import axios from 'axios';
+import env from 'react-dotenv';
+import { useSelector } from 'react-redux';
 
 const AddTask = (props) => {
+	const { userInfo } = useSelector((state) => state.users);
 	const taskNameinputRef = useRef();
+	const dueDateRef = useRef();
 
 	// 담당자 추가하기 버튼 클릭 상태
 	// 라벨 만들기 버튼 클릭 상태
@@ -26,6 +31,41 @@ const AddTask = (props) => {
 		},
 		[taskMembers],
 	);
+
+	const handleRemoveTaskLabel = useCallback(
+		(removeLabel) => {
+			const index = taskLabels.findIndex((label) => {
+				return label.id === removeLabel.id;
+			});
+			console.log(removeLabel.id);
+
+			console.log(index);
+			const copyLabels = [...taskLabels];
+			copyLabels.splice(index, 1);
+			setTaskLabels(copyLabels);
+		},
+		[taskLabels],
+	);
+
+	const handleCreateTask = () => {
+		const title = taskNameinputRef.current?.value;
+		const dueDate = dueDateRef.current?.value;
+		// const userId = taskMembers.map((user) => user.id);
+		const userId = [userInfo?.id];
+		const tagId = taskLabels.map((label) => label.id);
+		const boardId = props.boardId;
+		console.log(title, dueDate, userId, tagId, boardId);
+
+		axios
+			.post(`${env.REACT_APP_SERVER_URI}/task/create-task`, {
+				title,
+				dueDate,
+				userId,
+				tagId,
+				boardId,
+			})
+			.then((res) => console.log(res.data));
+	};
 
 	const handleAddTaskMemberModalOpen = () => {
 		setTaskAddMemberBtn(true);
@@ -50,21 +90,6 @@ const AddTask = (props) => {
 	const handleAddTaskLabel = (label) => {
 		setTaskLabels([...taskLabels, label]);
 	};
-
-	const handleRemoveTaskLabel = useCallback(
-		(removeLabel) => {
-			const index = taskLabels.findIndex((label) => {
-				return label.id === removeLabel.id;
-			});
-			console.log(removeLabel.id);
-
-			console.log(index);
-			const copyLabels = [...taskLabels];
-			copyLabels.splice(index, 1);
-			setTaskLabels(copyLabels);
-		},
-		[taskLabels],
-	);
 
 	return (
 		<div className={style.background}>
@@ -94,7 +119,7 @@ const AddTask = (props) => {
 				</div>
 				<div className={style.task__date}>
 					<span className={style.date}>마감일 지정하기</span>
-					<input type="date" className={style.date__input} />
+					<input ref={dueDateRef} type="date" className={style.date__input} />
 				</div>
 				<div className={style.label} onClick={handleAddLabelModalOpen}>
 					<span className={style.label_make}>라벨 만들기</span>
@@ -120,7 +145,9 @@ const AddTask = (props) => {
 					<button className={style.cancel_btn} onClick={props.handleAddTaskModalClose}>
 						취소
 					</button>
-					<button className={style.make_btn}>만들기</button>
+					<button className={style.make_btn} onClick={handleCreateTask}>
+						만들기
+					</button>
 				</div>
 			</section>
 			{taskAddMemberBtn ? (

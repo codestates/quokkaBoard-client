@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import style from './sections/addColumn.module.css';
 
 import { actionCreateColumn } from '../../../../_actions';
+import project from '../../../../_reducers/project';
 
 const AddColumn = (props) => {
 	const dispatch = useDispatch();
@@ -10,12 +11,18 @@ const AddColumn = (props) => {
 		return state.users;
 	});
 
+	const { currentProject } = useSelector((state) => {
+		return state.project;
+	});
+
 	const boardTitleRef = useRef();
 
-	const handleNewColumn = () => {
-		const projectId = '30b1cc56-3e6a-4732-8dba-c6178fbd27b5';
+	const handleNewColumn = async () => {
+		const projectId = currentProject?.projectId;
 		const boardTitle = boardTitleRef.current.value;
-		actionCreateColumn(dispatch, projectId, boardTitle);
+		const newColumns = await actionCreateColumn(projectId, boardTitle, props.handleColumnModalClose); // {[data.id]: {...data, tasks: []}},
+		props.handleColumnUpdate(newColumns);
+		props.handleColumnModalClose();
 	};
 
 	return (
