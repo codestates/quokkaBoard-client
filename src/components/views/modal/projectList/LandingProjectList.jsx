@@ -13,6 +13,7 @@ import CreateProject from '../createProject/CreateProject';
 const LandingProjectList = (props) => {
 	const { userInfo } = useSelector((state) => state.users);
 	const { projectList } = useSelector((state) => state.project);
+	console.log(projectList);
 	const dispatch = useDispatch();
 
 	const [isNewProject, setIsNewProject] = useState(false);
@@ -22,10 +23,8 @@ const LandingProjectList = (props) => {
 
 	useEffect(() => {
 		const userId = userInfo?.id;
-		console.log(userId);
 		if (userId) {
 			// actionProjectList(dispatch, userInfo?.id);
-			console.log('userInfo 있음');
 			actionProjectList(dispatch, userId);
 		} else {
 			console.log('userInfo 없음');
