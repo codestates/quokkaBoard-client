@@ -1,6 +1,6 @@
 import env from 'react-dotenv';
 import { EXAMPLE_CODE, USER_LOGIN, USER_LOGOUT } from './type';
-import { SEARCH_USER, PROJECT_LIST, PROJECT_MEMBER, CREATE_COLUMN } from './type';
+import { SEARCH_USER, PROJECT_LIST, PROJECT_MEMBER, CREATE_COLUMN, CURRENT_PROJECT } from './type';
 import axios from 'axios';
 
 // axios.defaults.withCredentials = true; // cookie 사용(접근권한을 주기위한) 설정
@@ -58,6 +58,16 @@ export const actionProjectMember = (dispatch, projectId, handleLoadingClose) => 
 			console.error(error);
 			console.log(error.data);
 		});
+};
+
+// current project
+export const actionCurrentProject = (dispatch, projectInfo) => {
+	return {
+		type: CURRENT_PROJECT,
+		payload: {
+			...projectInfo,
+		},
+	};
 };
 
 // create board
