@@ -64,10 +64,9 @@ function LandingPage() {
 	const handleIsStartClick = useCallback(
 		(e) => {
 			e.preventDefault();
-			console.log(userInfo);
 			userInfo?.id && setIsStart(true);
 		},
-		[isStart],
+		[isStart, userInfo],
 	);
 	const handleIsStartClose = (e) => {
 		e.preventDefault();

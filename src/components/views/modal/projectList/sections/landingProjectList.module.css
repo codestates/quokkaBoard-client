@@ -1,12 +1,25 @@
 .container {
 	background-color: var(--blue-light);
-	padding: 3rem;
+	padding: 3rem 7rem;
 	position: absolute;
 	left: 50%;
 	top: 50%;
 	z-index: 10;
 	border-radius: 2rem;
 	transform: translate(-50%, -50%);
+	animation: open 0.3s;
+}
+
+@keyframes open {
+	from {
+		opacity: 0;
+		top: 55%;
+	}
+
+	to {
+		opacity: 1;
+		top: 50%;
+	}
 }
 
 .close {
@@ -45,6 +58,11 @@
 .container ul li {
 	margin: 0.6rem 0;
 	color: var(--blue-dark);
+	cursor: pointer;
+}
+
+.container ul li:hover {
+	color: var(--blue);
 }
 
 .container div:last-of-type button {
