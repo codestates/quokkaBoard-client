@@ -58,6 +58,17 @@
 	color: var(--blue);
 }
 
+.nav__container ul li:last-of-type a {
+	padding: 0.5rem 0.8rem;
+	border-radius: 0.5rem;
+	background-color: var(--red-gray);
+	color: var(--white);
+}
+.nav__container ul li:last-of-type:hover a {
+	color: var(--gray1);
+	box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
 /* MainAbout */
 .about {
 	padding-top: 11rem;

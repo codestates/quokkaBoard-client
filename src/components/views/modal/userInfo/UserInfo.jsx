@@ -3,13 +3,19 @@ import styles from './sections/userInfo.module.css';
 import ModifyNickname from './ModifyNickname';
 import ModifyPassword from './ModifyPassword';
 import DeleteUserAlert from './DeleteUserAlert';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionEditUserImg } from '../../../../_actions';
+
+// img
+import quokkaImage from './sections/profile_img.png';
+import { useRef } from 'react';
 
 const UserInfo = (props) => {
+	const dispatch = useDispatch();
 	const { userInfo } = useSelector((state) => state.users);
 	const [isNicknameButton, setIsNicknameButton] = useState(false);
 	const [isPasswordButton, setIsPasswordButton] = useState(false);
-	const [isDeleteUser, setIsDeleteUser] = useState(true);
+	const [isDeleteUser, setIsDeleteUser] = useState(false);
 
 	const handleDeleteUserOn = useCallback(
 		(e) => {
@@ -49,6 +55,10 @@ const UserInfo = (props) => {
 		setIsPasswordButton(false);
 	};
 
+	const imgRef = useRef(null);
+	const fileRef = useRef(null);
+	const uploadBtn = useRef(null);
+
 	// 패스워드 변경 버튼
 
 	return (
@@ -73,7 +83,29 @@ const UserInfo = (props) => {
 					<li className={styles.userInfoContainer__image}>
 						<h3>사진</h3>
 						<span>사진을 추가 또는 변경을 해보세요!</span>
-						<input type="file" name="" id="" />
+						<input
+							type="file"
+							name=""
+							className="file"
+							id="file"
+							ref={fileRef}
+							onChange={() => {
+								const chooseFile = fileRef.current.files[0];
+								if (chooseFile) {
+									const reader = new FileReader();
+									reader.addEventListener('load', () => {
+										imgRef.current.src = reader.result;
+										actionEditUserImg(dispatch, reader.result);
+										props.setImageChange(reader.result);
+									});
+									reader.readAsDataURL(chooseFile);
+								}
+							}}
+						/>
+						<img src={userInfo?.image ? userInfo.image : quokkaImage} alt="" ref={imgRef} />
+						<label htmlFor="file" id="uploadBtn" ref={uploadBtn}>
+							Choose Photo
+						</label>
 					</li>
 					<li className={styles.userInfoContainer__nickname} onClick={handleNicknameOpen}>
 						<h3>닉네임</h3>

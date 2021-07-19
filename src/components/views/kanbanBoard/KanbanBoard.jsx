@@ -10,6 +10,7 @@ import Nav from '../nav/Nav';
 
 import styled from 'styled-components';
 import style from './sections/boardAdd.module.css';
+import Loading from '../loading/Loading';
 
 const Page = styled.div`
 	width: 100%;
@@ -31,14 +32,18 @@ const Container = styled.div`
 }; */
 
 class KanbanBoard extends Component {
-	state = {
-		...initialData,
-		isTaskClick: false,
-		isNewTaskClick: false,
-		isNewColumnClick: false,
-		currentTask: {},
-		newTask: {},
-	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			...initialData,
+			isTaskClick: false,
+			isNewTaskClick: false,
+			isNewColumnClick: false,
+			currentTask: {},
+			newTask: {},
+			isLoading: true,
+		};
+	}
 
 	// 새로운 task 1개 추가 시
 	handleTaskUpdate = (newTask) => {
@@ -98,6 +103,11 @@ class KanbanBoard extends Component {
 			isNewColumnClick: false,
 		});
 	};
+	componentDidMount() {
+		setTimeout(() => {
+			this.setState({ isLoading: false });
+		}, 1500);
+	}
 
 	onDragEnd = (result) => {
 		const { destination, source, draggableId, type } = result;
@@ -201,7 +211,9 @@ class KanbanBoard extends Component {
 	};
 
 	render() {
-		return (
+		return this.state.isLoading ? (
+			<Loading />
+		) : (
 			<>
 				<Nav />
 				<DragDropContext onDragStart={this.onDragStart} onDragEnd={this.onDragEnd}>
