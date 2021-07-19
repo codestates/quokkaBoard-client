@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+// import { useSelector } from 'react-redux';
 import styles from './sections/subNavbar.module.css';
 import profileImg from './sections/profile_img.png';
 import mainLogo2 from './sections/main_logo2.png';
@@ -24,6 +25,9 @@ const SubNavbar = () => {
 	useEffect(() => {
 		imgRef.current.src = imageChange;
 	}, [imageChange]);
+
+	// const { projectMember } = useSelector((state) => state.project);
+	// console.log(projectMember);
 
 	const isProjectModalOpen = useCallback(() => {
 		setProjectClick(true);

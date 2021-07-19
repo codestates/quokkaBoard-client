@@ -4,39 +4,36 @@ import styles from './sections/projectSetting.module.css';
 import ProjectMember from './ProjectMember';
 import Nav from '../nav/Nav';
 import LoadingPage from '../loading/Loading';
+import ProjectMemberDelete from './ProjectMemberDelete';
 
 import { actionProjectMember, actionModifyProject } from '../../../_actions';
 
 const ProjectSetting = (props) => {
 	const dispatch = useDispatch();
 
+	const { projectMember } = useSelector((state) => state.project);
+	const { currentProject } = useSelector((state) => state.project);
+	const { userInfo } = useSelector((state) => state.users);
+
 	const [isLoading, setIsLoading] = useState(true);
 	const [nameModifyBtn, setNameModifyBtn] = useState(false);
 	const [nameSaveBtn, setNameSaveBtn] = useState(false);
+	const [memberDelBtn, setMemberDelete] = useState(false);
+	const [memberAuth, setMemberAuth] = useState(false);
+	const [deleteMember, setDeleteMember] = useState('');
+
 	const nameInputRef = useRef();
-
-	const { projectMember } = useSelector((state) => {
-		return state.project;
-	});
-
-	const { currentProject } = useSelector((state) => {
-		return state.project;
-	});
-
-	const { userInfo } = useSelector((state) => {
-		return state.users;
-	});
 
 	useEffect(() => {
 		const projectId = currentProject?.projectId;
 		actionProjectMember(dispatch, projectId, handleLoadingClose);
-	}, []);
+	}, [memberDelBtn, memberAuth]);
 
 	const handleProjectModify = () => {
 		// userId, projectId, title
 		const userId = userInfo?.id;
 		const projectId = currentProject?.projectId;
-		const title = nameInputRef.current.value; // currentProject?.title;
+		const title = nameInputRef.current.value;
 
 		console.log(userId);
 		console.log(projectId);
@@ -63,6 +60,22 @@ const ProjectSetting = (props) => {
 
 	const handleLoadingClose = () => {
 		setIsLoading(false);
+	};
+
+	const handleProjectMemberDelModalOpen = () => {
+		setMemberDelete(true);
+	};
+
+	const handleProjectMemberDelModalClose = () => {
+		setMemberDelete(false);
+	};
+
+	const handleMemberAuthUpdate = () => {
+		setMemberAuth(!memberAuth);
+	};
+
+	const handleProjectMemberDelete = (deleteMember) => {
+		setDeleteMember(deleteMember);
 	};
 
 	return isLoading ? (
@@ -100,9 +113,27 @@ const ProjectSetting = (props) => {
 				</div>
 				<ul className={styles.ul}>
 					{projectMember?.map((user) => {
-						return <ProjectMember key={user.id} user={user} />;
+						return (
+							<ProjectMember
+								key={user.id}
+								user={user}
+								handleProjectMemberDelModalOpen={handleProjectMemberDelModalOpen}
+								handleProjectMemberDelete={handleProjectMemberDelete}
+								projectId={currentProject?.projectId}
+								handleMemberAuthUpdate={handleMemberAuthUpdate}
+							/>
+						);
 					})}
 				</ul>
+				{memberDelBtn ? (
+					<ProjectMemberDelete
+						handleProjectMemberDelModalClose={handleProjectMemberDelModalClose}
+						deleteMember={deleteMember}
+						projectId={currentProject?.projectId}
+					/>
+				) : (
+					''
+				)}
 			</div>
 		</>
 	);
