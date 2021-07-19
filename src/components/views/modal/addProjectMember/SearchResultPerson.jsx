@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './sections/addProjectMember.module.css';
 
 const SearchResultPerson = ({ result, handleSelectUsers, selectUsers }) => {
+	const dispatch = useDispatch();
+
+	// const { searchUser } = useSelector((state) => state.member);
+	// const { projectMember } = useSelector((state) => state.project);
+
+	// useEffect(() => {
+	// 	console.log(searchUser);
+	// 	console.log(projectMember);
+	// });
+
 	const handleSelectUser = () => {
 		// 검색 목록에서 유저 한명을 클릭했을때 일어남
 		// 유저의 아이디와 닉네임과 이메일 주소를 가져옴

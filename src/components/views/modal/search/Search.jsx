@@ -4,29 +4,21 @@ import styles from './sections/search.module.css';
 import FollowerUserResult from './FollowerUserResult';
 import SearchUserResult from './SearchUserResult';
 
-// action
 import { actionSearchUser } from '../../../../_actions';
 
 const Search = (props) => {
 	const dispatch = useDispatch();
-	const state = useSelector((state) => {
-		return state.member;
-	});
-
-	const { searchUser } = state;
-	const { searchFollower } = state;
-
-	const [followerUser, setFollowerUser] = useState([]);
+	const { searchUser } = useSelector((state) => state.member);
+	const { projectMember } = useSelector((state) => state.project);
+	const [searchResult, setSearchResult] = useState('');
 	const [isSearchListClicked, setSearchList] = useState(false);
 	const searchInputRef = useRef();
 
 	const handleSearchUser = () => {
 		const searchWord = searchInputRef.current.value;
-
-		// dispatch(actionSearchUser(searchUser));
-		// action 객체를 만드는 함수를 호출 (reducer로 넘김)
 		actionSearchUser(dispatch, searchWord);
 		handleSearchListUpdate();
+		// setSearchResult(!searchResult);
 	};
 
 	const handleSearchListUpdate = () => {
@@ -37,9 +29,9 @@ const Search = (props) => {
 		setSearchList(false);
 	};
 
-	// const handleSearchBtnClick = () => {};
-
-	// const handleFollowerBtnClick = () => {};
+	// const SearchResultUpdate = (user) => {
+	// 	setSearchResult({ ...user });
+	// };
 
 	return (
 		<section className={styles.container}>
@@ -70,10 +62,12 @@ const Search = (props) => {
 			<ul className={styles.ul}>
 				{isSearchListClicked && searchUser?.length
 					? searchUser.map((result) => {
-							return <SearchUserResult key={result.id} result={result} />;
+							console.log(result);
+							return <SearchUserResult key={result.id} result={result} /* SearchResultUpdate={SearchResultUpdate} */ />;
 					  })
 					: ''}
 			</ul>
+			{searchResult ? '' : ' '}
 		</section>
 	);
 };

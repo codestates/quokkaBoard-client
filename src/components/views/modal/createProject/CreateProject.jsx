@@ -1,10 +1,8 @@
-import React, { useCallback, useRef, useState } from 'react';
-import axios from 'axios';
-import env from 'react-dotenv';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './sections/createProject.module.css';
 import AddProjectMember from '../addProjectMember/AddProjectMember';
 import SelectUserList from '../addProjectMember/SelectUserList';
-import { useDispatch, useSelector } from 'react-redux';
 import { actionCreateProject } from '../../../../_actions';
 
 const CreateProject = (props) => {
@@ -20,13 +18,24 @@ const CreateProject = (props) => {
 
 	// 프로젝트 만들기 화면에서 제목/설명/프로젝트 멤버(id, 닉네임) 목록을 요청보내기
 	const handleNewProjectMember = (e) => {
+		// projectMember
+		let users = selectUsers.map((user) => {
+			return user.nickname;
+		});
+		console.log(users);
+
 		const title = `${subjectInputRef.current?.value}`;
 		const userId = `${userInfo?.id}`;
 		const description = `${descriptionInputRef.current?.value}`;
 		const startDate = `${projectStartDateRef.current?.value}`;
 		const endDate = `${projectEndDateRef.current?.value}`;
+		const nickname = users;
 
-		actionCreateProject(dispatch, { title, userId, description, startDate, endDate }, props.isNewProjectModalClose);
+		actionCreateProject(
+			dispatch,
+			{ title, userId, description, startDate, endDate, nickname },
+			props.isNewProjectModalClose,
+		);
 	};
 
 	// selectUser state update

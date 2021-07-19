@@ -7,7 +7,7 @@ import {
 	CREATE_COLUMN,
 	CURRENT_PROJECT,
 	MODIFY_PROJECT,
-	KANBAN_INFO,
+	INVITE_MEMBER,
 } from './type';
 import axios from 'axios';
 
@@ -38,13 +38,13 @@ export const actionSearchUser = (dispatch, searchWord) => {
 export const actionCreateProject = (dispatch, projectInfo, isNewProjectModalClose) => {
 	axios
 		.post(`${env.REACT_APP_SERVER_URI}/project/create-project`, projectInfo)
-		.then((response) => {
-			console.log(response.data);
-			return response.data;
-		})
+		.then((response) => response.data)
 		.then((data) => {
 			isNewProjectModalClose();
-			console.log(data);
+			dispatch({
+				type: PROJECT_LIST,
+				payload: { projectId: data.projectId },
+			});
 		})
 		.catch((err) => {
 			console.log(err.data);
@@ -122,6 +122,28 @@ export const actionModifyProject = (
 				handleProjectNameUpdated();
 				handleProjectNameSaved();
 			}
+		});
+};
+
+// invite member
+export const actionInviteMember = (dispatch, email, projectId) => {
+	return axios
+		.post(`${env.REACT_APP_SERVER_URI}/project/invite-member`, {
+			email,
+			projectId,
+		})
+		.then((response) => response.data.data)
+		.then((data) => {
+			if (data.success) {
+				dispatch({
+					type: INVITE_MEMBER,
+					payload: { ...data[0] },
+				});
+			}
+		})
+		.catch((error) => {
+			console.error(error);
+			console.log(error.data);
 		});
 };
 
