@@ -167,7 +167,9 @@ export const actionLogout = async (dispatch, userId, handleIsLoadingOff) => {
 	try {
 		const response = await axios.post(`${env.REACT_APP_SERVER_URI}/user/logout`, { userId });
 		if (response.data?.success) {
-			handleIsLoadingOff();
+			if (handleIsLoadingOff) {
+				handleIsLoadingOff();
+			}
 			dispatch({
 				type: USER_LOGOUT,
 			});
@@ -213,4 +215,14 @@ export const actionDeleteUser = async (dispatch, userId, modalClose) => {
 			});
 		}
 	} catch (error) {}
+};
+export const actionEditUserImg = async (dispatch, imageFile) => {
+	try {
+		dispatch({
+			type: 'USER_UPLOAD_IMAGE',
+			payload: { image: imageFile },
+		});
+	} catch (e) {
+		console.log(e);
+	}
 };

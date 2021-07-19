@@ -112,7 +112,6 @@ function LandingPage() {
 	}, []);
 
 	const getAccessToken = async (authorizationCode) => {
-		console.log(authorizationCode);
 		let resp = await axios.post(`${env.REACT_APP_SERVER_URI}/user/social-login`, {
 			authorizationCode: authorizationCode,
 		});
@@ -122,9 +121,7 @@ function LandingPage() {
 	useEffect(() => {
 		const url = new URL(window.location.href);
 		const authorizationCode = url.searchParams.get('code');
-		console.log(authorizationCode);
 		if (authorizationCode) {
-			console.log(authorizationCode);
 			getAccessToken(authorizationCode);
 		}
 		aos.init();
@@ -177,9 +174,13 @@ function LandingPage() {
 							)}
 						</li>
 						<li>
-							<a href="#" onClick={handleIsStartClick}>
-								시작하기
-							</a>
+							{userInfo ? (
+								<a href="#" onClick={handleIsStartClick}>
+									시작하기
+								</a>
+							) : (
+								''
+							)}
 						</li>
 					</ul>
 				</div>
@@ -260,7 +261,7 @@ function LandingPage() {
 							</li>
 						</ul>
 						<span>쿼카보드를 사용해보시겠어요?</span>
-						<button>시작하기</button>
+						<button onClick={handleIsStartClick}>시작하기</button>
 					</div>
 				</section>
 				<section className={styles.testimonial}>

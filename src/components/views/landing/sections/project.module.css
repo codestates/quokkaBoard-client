@@ -1,0 +1,55 @@
+.container {
+	position: absolute;
+	top: -10rem;
+	left: 0;
+	z-index: 13;
+	animation: open 0.3s;
+}
+@keyframes open {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+.container h1 {
+	text-align: center;
+	color: var(--white);
+	margin: 1rem 0;
+}
+.container form {
+	background-color: var(--orange);
+	border-radius: 1rem;
+	display: flex;
+	flex-direction: column;
+	font-size: 1.2rem;
+	padding: 1rem 3rem;
+	margin-top: 2rem;
+}
+.container form > input {
+	background-color: var(--white);
+	width: 20rem;
+	margin: 0.5rem 0;
+	padding: 0.5rem;
+}
+.container form > label {
+	margin-top: 0.5rem;
+	color: var(--white);
+}
+.container form div {
+	margin: 1rem auto;
+}
+.container form div button {
+	background-color: var(--orange-dark);
+	color: var(--white);
+	padding: 0.6rem 1.2rem;
+	margin: 0 1rem;
+	border-radius: 0.4rem;
+}
+.container form div button:hover {
+	box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.container form div button:active {
+	transform: scale(0.98);
+}

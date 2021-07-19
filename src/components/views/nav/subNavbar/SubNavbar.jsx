@@ -6,13 +6,24 @@ import ProjectList from '../../modal/projectList/ProjectList';
 import CreateProject from '../../modal/createProject/CreateProject';
 import Search from '../../modal/search/Search';
 import UserProfile from '../../modal/userProfile/UserProfile';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
 const SubNavbar = () => {
+	const { userInfo } = useSelector((state) => state.users);
 	const [projects, setProjects] = useState([]);
 	const [isProjectClicked, setProjectClick] = useState(false);
 	const [isNewProjectClicked, setNewProjectClick] = useState(false);
 	const [isSearchClicked, setSearchClick] = useState(false);
 	const [isProfileClicked, setProfileClick] = useState(false);
+	const [imageChange, setImageChange] = useState('');
+
+	const imgRef = useRef(null);
+
+	useEffect(() => {
+		imgRef.current.src = imageChange;
+	}, [imageChange]);
 
 	const isProjectModalOpen = useCallback(() => {
 		setProjectClick(true);
@@ -72,7 +83,12 @@ const SubNavbar = () => {
 						</button>
 					</div>
 					<div onClick={isProfileModalOpen}>
-						<img className={styles.profile_img} src={profileImg} alt="profile_img" />
+						<img
+							ref={imgRef}
+							className={styles.profile_img}
+							src={imageChange ? imageChange : profileImg}
+							alt="profile_img"
+						/>
 					</div>
 				</div>
 			</div>
@@ -92,7 +108,11 @@ const SubNavbar = () => {
 			)}
 			{isSearchClicked ? <Search isSearchModalClose={isSearchModalClose} /> : ''}
 			{isProfileClicked ? (
-				<UserProfile isProfileClicked={isProfileClicked} isProfileModalClose={isProfileModalClose} />
+				<UserProfile
+					isProfileClicked={isProfileClicked}
+					isProfileModalClose={isProfileModalClose}
+					setImageChange={setImageChange}
+				/>
 			) : (
 				''
 			)}

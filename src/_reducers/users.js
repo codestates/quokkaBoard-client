@@ -8,6 +8,8 @@ const users = (state = {}, action) => {
 			return { ...state, userInfo: null };
 		case USER_NICKNAME:
 			return { ...state, userInfo: { ...state.userInfo, nickname: action.payload } };
+		case 'USER_UPLOAD_IMAGE':
+			return { ...state, userInfo: { ...state.userInfo, ...action.payload } };
 		default:
 			return state;
 	}

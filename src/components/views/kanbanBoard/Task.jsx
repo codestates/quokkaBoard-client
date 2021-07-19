@@ -86,7 +86,7 @@ class Task extends Component {
 						{this.state.isTitleModifyBtnClick ? (
 							<TaskTitleModify
 								handleTaskTitleModalClose={this.handleTaskTitleModalClose}
-								taskTitle={this.props.task?.title}
+								taskTitle={this.props.task?.content}
 							/>
 						) : (
 							''
@@ -94,13 +94,13 @@ class Task extends Component {
 						{this.state.isTitleDeleteBtnClick ? (
 							<TaskDelete
 								handleTaskDeleteModalClose={this.handleTaskDeleteModalClose}
-								taskTitle={this.props.task?.title}
+								taskTitle={this.props.task?.content}
 							/>
 						) : (
 							''
 						)}
 						<section className={style.container} onClick={this.handleTask}>
-							<div className={style.task_content}>{this.props.task?.title}</div>
+							<div className={style.task_content}>{this.props.task?.content}</div>
 							<ul className={style.members}>
 								{this.props.task?.members.map((member, idx) => {
 									return (
