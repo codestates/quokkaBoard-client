@@ -47,26 +47,41 @@ const AddTask = (props) => {
 		[taskLabels],
 	);
 
+	// const handleCreateTask = () => {
+	// 	const title = taskNameinputRef.current?.value;
+	// 	const dueDate = dueDateRef.current?.value;
+	// 	// const userId = taskMembers.map((user) => user.id);
+	// 	const userId = [userInfo?.id];
+	// 	const tagId = taskLabels.map((label) => label.id);
+	// 	const boardId = props.boardId;
+	// 	console.log(title, dueDate, userId, tagId, boardId);
+
+	// 	axios
+	// 		.post(`${env.REACT_APP_SERVER_URI}/task/create-task`, {
+	// 			title,
+	// 			dueDate,
+	// 			userId,
+	// 			tagId,
+	// 			boardId,
+	// 		})
+	// 		.then((res) => console.log(res.data));
+	// };
+
 	const handleCreateTask = () => {
-		const title = taskNameinputRef.current?.value;
+		const id = 't' + Math.floor(Math.random() * 500000000);
+		const content = taskNameinputRef.current?.value;
+		const members = taskMembers.map((member) => member.nickname);
 		const dueDate = dueDateRef.current?.value;
-		// const userId = taskMembers.map((user) => user.id);
-		const userId = [userInfo?.id];
-		const tagId = taskLabels.map((label) => label.id);
-		const boardId = props.boardId;
-		console.log(title, dueDate, userId, tagId, boardId);
+		const labels = [...taskLabels];
 
-		axios
-			.post(`${env.REACT_APP_SERVER_URI}/task/create-task`, {
-				title,
-				dueDate,
-				userId,
-				tagId,
-				boardId,
-			})
-			.then((res) => console.log(res.data));
+		const task = { id, content, members, dueDate, labels };
+
+		if (content && dueDate) {
+			props.updateTasks(task);
+			props.updateBoardTaskIds(props.currentBoarId, id);
+			props.handleAddTaskModalClose();
+		}
 	};
-
 	const handleAddTaskMemberModalOpen = () => {
 		setTaskAddMemberBtn(true);
 	};

@@ -6,7 +6,6 @@ class ColumnDeleteModal extends Component {
 		return (
 			<div className={style.div}>
 				<div className={style.title}>정말 ⟪ {this.props.title} ⟫ Board를 삭제하시겠습니까?</div>
-				<input className={style.input} type="text" />
 				<div className={style.confirm_btn}>
 					<button className={style.cancel} onClick={this.props.handleColumnDeleteModalClose}>
 						취소

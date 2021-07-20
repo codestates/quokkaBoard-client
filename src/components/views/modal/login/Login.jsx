@@ -275,7 +275,7 @@ function Login({ handleCloseLoginModal, handleIsLoadingOn, handleIsLoadingOff })
 						<h1>로그인</h1>
 						<div className="social-container">
 							<a href="#" className="social" onClick={socialLoginHandler}>
-								<i class="fab fa-github"></i>
+								<i className="fab fa-github"></i>
 							</a>
 							<a href="#" className="social">
 								<i className="fab fa-gofore"></i>

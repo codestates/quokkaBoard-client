@@ -410,12 +410,12 @@ function LandingPage() {
 										<img src={jiye} alt="profile_jiye" />
 									</div>
 									<h3>유지예</h3>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<p>쑥쑥자라고 있는 프론트엔드 개발자 유지예입니다.</p>
 									<div>
-										<a href="a" target="_blank">
+										<a href="https://github.com/jiye-7" target="_blank">
 											<i className="fab fa-github"></i> Github
 										</a>
-										<a href="a" target="_blank">
+										<a href="https://velog.io/@jy777hi" target="_blank">
 											<i className="fas fa-blog"></i> Blog
 										</a>
 									</div>
@@ -427,12 +427,12 @@ function LandingPage() {
 										<img src={jiun} alt="profile_jiye" />
 									</div>
 									<h3>정지운</h3>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<p>성장에 욕심이 많은 프론트엔드 개발자 정지운입니다.</p>
 									<div>
-										<a href="a" target="_blank">
+										<a href="https://github.com/wldns0622" target="_blank">
 											<i className="fab fa-github"></i> Github
 										</a>
-										<a href="a" target="_blank">
+										<a href="https://velog.io/@wldns12378" target="_blank">
 											<i className="fas fa-blog"></i> Blog
 										</a>
 									</div>
@@ -444,12 +444,12 @@ function LandingPage() {
 										<img src={sangwoo} alt="profile_jiye" />
 									</div>
 									<h3>박상우</h3>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<p>'새로운 지식을 습득했을 때 가장 보람을 느끼는' 백엔드 개발자</p>
 									<div>
-										<a href="a" target="_blank">
+										<a href="https://github.com/SashainSPb" target="_blank">
 											<i className="fab fa-github"></i> Github
 										</a>
-										<a href="a" target="_blank">
+										<a href="https://velog.io/@sashainspb" target="_blank">
 											<i className="fas fa-blog"></i> Blog
 										</a>
 									</div>
@@ -461,12 +461,15 @@ function LandingPage() {
 										<img src={seungyong} alt="profile_jiye" />
 									</div>
 									<h3>하승용</h3>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<p>DB와 클린코드에 관심많은 성장하는 백엔드 개발자 하승용입니다</p>
 									<div>
-										<a href="a" target="_blank">
+										<a href="https://github.com/skyupguf" target="_blank">
 											<i className="fab fa-github"></i> Github
 										</a>
-										<a href="a" target="_blank">
+										<a
+											href="https://www.notion.so/My-Development-Space-remodeling-204ca0666fc24ae486ba4effc94e25d4"
+											target="_blank"
+										>
 											<i className="fas fa-blog"></i> Blog
 										</a>
 									</div>

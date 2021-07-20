@@ -63,15 +63,15 @@ class Column extends Component {
 	};
 
 	// 제목 수정 axios
-	handleColumnTitleUpdate = (e) => {
-		console.log('제목 수정 클릭');
+	handleColumnTitleUpdate = (title) => {
+		this.props.updateBoardName(this.props.column.id, title);
 		this.handleTitleModalClose();
 	};
 
 	// 컬럼 지우기 axios
 	handleColumnDelete = (e) => {
+		this.props.deleteBoard(this.props.column.id);
 		this.handleColumnDeleteModalClose();
-		console.log('컬럼 지우기');
 	};
 
 	render() {
@@ -120,13 +120,19 @@ class Column extends Component {
 													index={index}
 													handleTaskModalOpen={this.props.handleTaskModalOpen}
 													handleCurrentTaskUpdate={this.props.handleCurrentTaskUpdate}
+													deleteTask={this.props.deleteTask}
+													boardId={this.props.column.id}
+													updateTaskTitle={this.props.updateTaskTitle}
 												/>
 											))}
-
-											<div className={style.task__div}>
-												<span className={style.task__btn} onClick={this.props.handleAddTaskModalOpen}>
-													+
-												</span>
+											<div
+												className={style.task__div}
+												onClick={() => {
+													this.props.updateCurrentBoardId(this.props.column?.id);
+													this.props.handleAddTaskModalOpen();
+												}}
+											>
+												<span className={style.task__btn}>+</span>
 											</div>
 											{provided.placeholder}
 										</TaskList>

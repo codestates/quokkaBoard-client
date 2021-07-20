@@ -23,7 +23,9 @@ const SubNavbar = () => {
 	const imgRef = useRef(null);
 
 	useEffect(() => {
-		imgRef.current.src = imageChange;
+		if (imageChange) {
+			imgRef.current.src = imageChange;
+		}
 	}, [imageChange]);
 
 	// const { projectMember } = useSelector((state) => state.project);

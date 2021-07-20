@@ -36,22 +36,139 @@ class KanbanBoard extends Component {
 		super(props);
 		this.state = {
 			...initialData,
+			// columns: {},
+			// tasks: {},
+			// columnOrder: [],
 			isTaskClick: false,
 			isNewTaskClick: false,
 			isNewColumnClick: false,
 			currentTask: {},
+			currentBoarId: '',
 			newTask: {},
 			isLoading: true,
 		};
 	}
 
+	// 라벨 업데이트
+	updateLabel = (labels, taskId) => {
+		const updateLabels = this.state.tasks[taskId].labels.filter((label) => label.id !== labels.id);
+		console.log(updateLabels);
+		this.setState({
+			tasks: { ...this.state.tasks, [taskId]: { ...this.state.tasks[taskId], labels: updateLabels } },
+		});
+		this.setState({
+			currentTask: { ...this.state.currentTask, labels: updateLabels },
+		});
+	};
+
+	// dueDate 변경
+	updateDueDate = (dueDate, taskId) => {
+		this.setState({
+			tasks: { ...this.state.tasks, [taskId]: { ...this.state.tasks[taskId], dueDate } },
+		});
+		this.setState({
+			currentTask: { ...this.state.currentTask, dueDate },
+		});
+	};
+
+	// task 멤버 삭제
+	updateTaskMember = (members, taskId) => {
+		const updateMembers = this.state.tasks[taskId].members.filter((member) => members !== member);
+		console.log(updateMembers);
+		this.setState({
+			tasks: { ...this.state.tasks, [taskId]: { ...this.state.tasks[taskId], members: updateMembers } },
+		});
+		this.setState({
+			currentTask: { ...this.state.currentTask, members: updateMembers },
+		});
+	};
+
+	// task 제목 변경
+	updateTaskTitle = (taskId, title) => {
+		this.setState({
+			tasks: { ...this.state.tasks, [taskId]: { ...this.state.tasks[taskId], content: title } },
+		});
+	};
+
+	// task 삭제
+	deleteTask = (boardId, taskId) => {
+		let newTasks = {};
+		for (let key in this.state.tasks) {
+			if (key !== taskId) {
+				newTasks = { ...newTasks, [key]: { ...this.state.tasks[key] } };
+			}
+		}
+		const newTaskIds = this.state.columns[boardId].taskIds.filter((task) => task !== taskId);
+
+		this.setState({
+			tasks: newTasks,
+			columns: { ...this.state.columns, [boardId]: { ...this.state.columns[boardId], taskIds: newTaskIds } },
+		});
+	};
+
+	// board 삭제
+	deleteBoard = (boardId) => {
+		let newColumns = {};
+		for (let key in this.state.columns) {
+			if (key !== boardId) {
+				newColumns = { ...newColumns, [key]: this.state.columns[key] };
+			}
+		}
+		const newColumnOrder = this.state.columnOrder.filter((columnId) => columnId !== boardId);
+		this.setState({
+			columns: newColumns,
+			columnOrder: newColumnOrder,
+		});
+	};
+
+	// board name 수정
+	updateBoardName = (boardId, boardName) => {
+		this.setState({
+			columns: { ...this.state.columns, [boardId]: { ...this.state.columns[boardId], title: boardName } },
+		});
+	};
+
 	// 새로운 task 1개 추가 시
-	handleTaskUpdate = (newTask) => {
+	updateTasks = (newTask) => {
 		this.setState({
 			tasks: {
 				...this.state.tasks,
-				newTask,
+				[newTask.id]: newTask,
 			},
+		});
+	};
+
+	// Columns에 있는 taskIds에 만들어진 TaskId를 추가하기
+	updateBoardTaskIds = (boardId, taskId) => {
+		console.log(boardId);
+		this.setState({
+			columns: {
+				...this.state.columns,
+				[boardId]: {
+					...this.state['columns'][boardId],
+					taskIds: [...this.state.columns[boardId].taskIds, taskId],
+				},
+			},
+		});
+	};
+
+	//현재 추가되는 task 의 보드아이디가 저장되는 함수
+	updateCurrentBoardId = (boardId) => {
+		this.setState({
+			currentBoarId: boardId,
+		});
+	};
+
+	// 새로운 보드 추가
+	updateColumns = (newColumn) => {
+		this.setState({
+			columns: { ...this.state.columns, [newColumn.id]: newColumn },
+		});
+	};
+
+	updateColumnOrder = (newColumnId) => {
+		this.setState({
+			columnOrder: [...this.state.columnOrder, newColumnId],
 		});
 	};
 
@@ -238,6 +355,11 @@ class KanbanBoard extends Component {
 													handleTaskModalOpen={this.handleTaskModalOpen}
 													handleCurrentTaskUpdate={this.handleCurrentTaskUpdate}
 													handleAddTaskModalOpen={this.handleAddTaskModalOpen}
+													updateCurrentBoardId={this.updateCurrentBoardId}
+													updateBoardName={this.updateBoardName}
+													deleteBoard={this.deleteBoard}
+													deleteTask={this.deleteTask}
+													updateTaskTitle={this.updateTaskTitle}
 												/>
 											);
 										})}
@@ -249,13 +371,33 @@ class KanbanBoard extends Component {
 										</div>
 									</Container>
 									{this.state.isTaskClick ? (
-										<TaskEdit task={this.state.currentTask} handleTaskModalClose={this.handleTaskModalClose} />
+										<TaskEdit
+											task={this.state.currentTask}
+											handleTaskModalClose={this.handleTaskModalClose}
+											updateLabel={this.updateLabel}
+											updateDueDate={this.updateDueDate}
+											updateTaskMember={this.updateTaskMember}
+											deleteTask={this.deleteTask}
+										/>
 									) : (
 										''
 									)}
-									{this.state.isNewTaskClick ? <AddTask handleAddTaskModalClose={this.handleAddTaskModalClose} /> : ''}
+									{this.state.isNewTaskClick ? (
+										<AddTask
+											handleAddTaskModalClose={this.handleAddTaskModalClose}
+											updateTasks={this.updateTasks}
+											updateBoardTaskIds={this.updateBoardTaskIds}
+											currentBoarId={this.state.currentBoarId}
+										/>
+									) : (
+										''
+									)}
 									{this.state.isNewColumnClick ? (
-										<AddColumn handleColumnModalClose={this.handleColumnModalClose} />
+										<AddColumn
+											handleColumnModalClose={this.handleColumnModalClose}
+											updateColumns={this.updateColumns}
+											updateColumnOrder={this.updateColumnOrder}
+										/>
 									) : (
 										''
 									)}
@@ -284,3 +426,11 @@ const stateToProps = (state) => ({
 }; */
 
 export default connect(stateToProps /* , mapDispatchToProps */)(KanbanBoard);
+
+// updateLabel = (labels, taskId) => {};
+
+// dueDate 변경
+// updateDueDate = (dueDate, taskId) => {};
+
+// task 멤버 삭제
+// updateTaskMember = (members, taskId) => {};

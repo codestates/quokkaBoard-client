@@ -10,17 +10,24 @@ import { data1, data2, data3, data4 } from './fakeData/data';
 import quokka from './sections/quokka_bgR.png';
 import leaf from './sections/leaf.png';
 import Nav from '../nav/Nav';
+import Loading from '../loading/Loading';
 
 const DashBoard = (props) => {
 	const [myStatus, setMyStatus] = useState(data1);
 	const [teamStatus, setTeamStatus] = useState(data2);
 	const [projectStatus, setProjectStatus] = useState(data3);
 	const [completeStatus, setCompleteStatus] = useState(data4);
+	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		aos.init();
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 1500);
 	}, []);
 
-	return (
+	return isLoading ? (
+		<Loading />
+	) : (
 		<>
 			<Nav />
 			<div className={styles.container}>
@@ -36,17 +43,17 @@ const DashBoard = (props) => {
 				<section className={`${styles.totalBoard}`}>
 					<ul>
 						<li>
-							<h2>10</h2>
+							<h2>16</h2>
 							<span>total</span>
 						</li>
 						<span></span>
 						<li>
-							<h2>6</h2>
+							<h2>9</h2>
 							<span>inProgress</span>
 						</li>
 						<span></span>
 						<li>
-							<h2>4</h2>
+							<h2>7</h2>
 							<span>done</span>
 						</li>
 					</ul>
@@ -57,18 +64,18 @@ const DashBoard = (props) => {
 							<i className="fas fa-burn"></i>Urgent Tasks
 						</h3>
 						<li>
-							<span>보드이름</span>
-							<span>task이름</span>
+							<span>Do</span>
+							<span>https 배포</span>
 							<span>오늘</span>
 						</li>
 						<li>
-							<span>보드이름</span>
-							<span>task이름</span>
+							<span>Do</span>
+							<span>Route 기능 만들기</span>
 							<span>1일 남음</span>
 						</li>
 						<li>
-							<span>보드이름</span>
-							<span>task이름</span>
+							<span>Doing</span>
+							<span>CRA 세팅</span>
 							<span>4일 남음</span>
 						</li>
 					</ul>
@@ -77,19 +84,14 @@ const DashBoard = (props) => {
 							<i className="fas fa-star"></i>New Tasks
 						</h3>
 						<li>
-							<span>보드이름</span>
-							<span>task이름</span>
+							<span>Do</span>
+							<span>Redux 적용하기</span>
 							<span>오늘</span>
 						</li>
 						<li>
-							<span>보드이름</span>
-							<span>task이름</span>
+							<span>Do</span>
+							<span>Post Css plugin 설정</span>
 							<span>4일 전</span>
-						</li>
-						<li>
-							<span>보드이름</span>
-							<span>task이름</span>
-							<span>7일 전</span>
 						</li>
 					</ul>
 				</section>

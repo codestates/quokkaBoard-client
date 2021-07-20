@@ -13,11 +13,11 @@ const ProjectListModal = (props) => {
 	const { userInfo } = useSelector((state) => {
 		return state.users;
 	});
+	actionProjectList(dispatch, userInfo.id);
 
-	useEffect(() => {
-		const userId = userInfo?.id;
-		actionProjectList(dispatch, userId);
-	}, []);
+	// useEffect(() => {
+	// 	const userId = userInfo?.id;
+	// }, []);
 
 	const modalClose = useCallback(() => {
 		props.isProjectModalClose();
@@ -30,8 +30,8 @@ const ProjectListModal = (props) => {
 				<i className="fas fa-times"></i>
 			</div>
 			<ul className={styles.ul}>
-				{projectList
-					? projectList.map((project, idx) => {
+				{projectList.length
+					? projectList?.map((project, idx) => {
 							return <ProjectListLi key={idx} project={project} />;
 					  })
 					: ''}
