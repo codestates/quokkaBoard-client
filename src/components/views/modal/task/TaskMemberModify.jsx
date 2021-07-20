@@ -8,7 +8,7 @@ const TaskMemberModify = ({ selectDelMember, handleDeleteMemberModalClose }) => 
 				<i className="fas fa-times"></i>
 			</div>
 			<div>
-				<div className={style.title}>정말 ⟪ {selectDelMember} ⟫ 를 삭제하시겠습니까?</div>
+				<div className={style.title}>⟪ {selectDelMember} ⟫ 를 삭제하시겠습니까?</div>
 			</div>
 			<div className={style.confirm_btn}>
 				<button className={style.cancel} onClick={handleDeleteMemberModalClose}>

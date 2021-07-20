@@ -22,7 +22,6 @@ const CreateProject = (props) => {
 		let users = selectUsers.map((user) => {
 			return user.nickname;
 		});
-		console.log(users);
 
 		const title = `${subjectInputRef.current?.value}`;
 		const userId = `${userInfo?.id}`;

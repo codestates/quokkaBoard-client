@@ -28,8 +28,10 @@ class Task extends Component {
 		this.props.handleCurrentTaskUpdate(this.props.task);
 	};
 
-	handleTaskTitleModify = () => {
+	handleTaskTitleModify = (title) => {
 		// task title modify 요청
+		console.log(this.props.task.id, title);
+		this.props.updateTaskTitle(this.props.task?.id, title);
 	};
 
 	handleTaskDelete = () => {
@@ -52,13 +54,16 @@ class Task extends Component {
 
 	handleTaskDeleteModalOpen = () => {
 		console.log('태스크 삭제');
-		this.setState({
-			isTitleDeleteBtnClick: true,
-		});
+		console.log(this.props.boardId, this.props.task.id);
+		console.log(this.props.deleteTask);
+		this.props.deleteTask(this.props.boardId, this.props.task.id);
+		// this.setState({
+		// 	isTitleDeleteBtnClick: true,
+		// });
 	};
 
 	handleTaskDeleteModalClose = () => {
-		console.log('태스크 삭제 모달 닫음');
+		// this.props.deleteTask(this.props.boardId, this.props.task.id);
 		this.setState({
 			isTitleDeleteBtnClick: false,
 		});
@@ -87,6 +92,7 @@ class Task extends Component {
 							<TaskTitleModify
 								handleTaskTitleModalClose={this.handleTaskTitleModalClose}
 								taskTitle={this.props.task?.content}
+								handleTaskTitleModify={this.handleTaskTitleModify}
 							/>
 						) : (
 							''
@@ -95,6 +101,7 @@ class Task extends Component {
 							<TaskDelete
 								handleTaskDeleteModalClose={this.handleTaskDeleteModalClose}
 								taskTitle={this.props.task?.content}
+								handleTaskDelete={this.handleTaskDelete}
 							/>
 						) : (
 							''

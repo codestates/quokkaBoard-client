@@ -6,6 +6,7 @@ import TaskMemberModify from './TaskMemberModify';
 import TaskDueDateModify from './TaskDueDateModify';
 import TaskLabelModify from './TaskLabelModify';
 import TaskComplete from './TaskComplete';
+import { useRef } from 'react';
 
 const TaskEdit = (props) => {
 	const [isMemberDelBtnClick, setMemberDelete] = useState(false);
@@ -14,6 +15,8 @@ const TaskEdit = (props) => {
 	const [isTaskCompleteBtnClick, setComplete] = useState(false);
 	const [selectDelMember, setSelectDelMember] = useState({});
 	const [selectDelLabel, setSelectDelLabel] = useState({});
+	const dateRef = useRef(null);
+	console.log(props.task);
 
 	const handleDeleteMemberModalOpen = () => {
 		setMemberDelete(true);
@@ -76,6 +79,8 @@ const TaskEdit = (props) => {
 											member={member}
 											handleDeleteMemberModalOpen={handleDeleteMemberModalOpen}
 											handleSelectDelMember={handleSelectDelMember}
+											updateTaskMember={props.updateTaskMember}
+											taskId={props.task.id}
 										/>
 									);
 								})}
@@ -85,8 +90,11 @@ const TaskEdit = (props) => {
 					<div className={style.date_div}>
 						<h3 className={style.due_date}>마감 날짜</h3>
 						<span className={style.date}>{props.task.dueDate}</span>
-						<input type="date" className={style.date_select} />
-						<button className={style.date_change_btn} onClick={handleUpdateDateModalOpen}>
+						<input type="date" className={style.date_select} ref={dateRef} />
+						<button
+							className={style.date_change_btn}
+							onClick={() => props.updateDueDate(dateRef.current.value, props.task.id)}
+						>
 							<span>변경하기</span>
 						</button>
 					</div>
@@ -102,14 +110,16 @@ const TaskEdit = (props) => {
 										label={label}
 										handleLabelDeleteModalOpen={handleLabelDeleteModalOpen}
 										handleSelectDelLabel={handleSelectDelLabel}
+										updateLabel={props.updateLabel}
+										taskId={props.task.id}
 									/>
 								);
 							})}
 						</ul>
 						<div className={style.complete}>
-							<button className={style.complete_btn} onClick={handleTaskCompleteModalOpen}>
+							{/* <button className={style.complete_btn} onClick={props.deleteTask()}>
 								<span>업무 완료</span>
-							</button>
+							</button> */}
 						</div>
 					</div>
 				</div>

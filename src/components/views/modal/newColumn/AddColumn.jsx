@@ -6,23 +6,36 @@ import { actionCreateColumn } from '../../../../_actions';
 import project from '../../../../_reducers/project';
 
 const AddColumn = (props) => {
-	const dispatch = useDispatch();
-	const { userInfo } = useSelector((state) => {
-		return state.users;
-	});
+	// const dispatch = useDispatch();
+	// const { userInfo } = useSelector((state) => {
+	// 	return state.users;
+	// });
 
-	const { currentProject } = useSelector((state) => {
-		return state.project;
-	});
+	// const { currentProject } = useSelector((state) => {
+	// 	return state.project;
+	// });
 
 	const boardTitleRef = useRef();
 
-	const handleNewColumn = async () => {
-		const projectId = currentProject?.projectId;
-		const boardTitle = boardTitleRef.current.value;
-		const newColumns = await actionCreateColumn(projectId, boardTitle, props.handleColumnModalClose); // {[data.id]: {...data, tasks: []}},
-		props.handleColumnUpdate(newColumns);
-		props.handleColumnModalClose();
+	// const handleNewColumn = async () => {
+	// 	const projectId = currentProject?.projectId;
+	// 	const boardTitle = boardTitleRef.current.value;
+	// 	const newColumns = await actionCreateColumn(projectId, boardTitle, props.handleColumnModalClose); // {[data.id]: {...data, tasks: []}},
+	// 	props.handleColumnUpdate(newColumns);
+	// 	props.handleColumnModalClose();
+	// };
+
+	const handleAddColumn = () => {
+		//1. 랜덤한 아이디를 생성
+		const id = 'b' + Math.floor(Math.random() * 500000000);
+		const title = boardTitleRef.current?.value;
+		const taskIds = [];
+		const column = { id, title, taskIds };
+		if (title) {
+			props.updateColumns(column);
+			props.updateColumnOrder(id);
+			props.handleColumnModalClose();
+		}
 	};
 
 	return (
@@ -40,7 +53,7 @@ const AddColumn = (props) => {
 					<button className={style.cancel_btn} onClick={props.handleColumnModalClose}>
 						취소
 					</button>
-					<button className={style.make_btn} onClick={handleNewColumn}>
+					<button className={style.make_btn} onClick={handleAddColumn}>
 						만들기
 					</button>
 				</div>
