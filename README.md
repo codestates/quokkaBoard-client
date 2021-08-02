@@ -5,7 +5,7 @@
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
   <a href="#" target="_blank">
-    <img alt="License: LSIS" src="https://img.shields.io/badge/License-LSIS-yellow.svg" />
+    <img alt="License: QuokkaBoard" src="https://img.shields.io/badge/License-QuokkaBoard-yellow.svg" />
   </a>
 </p>
 
