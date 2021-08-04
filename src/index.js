@@ -8,8 +8,7 @@ import App from './components/layout/App';
 import '@fortawesome/fontawesome-free/js/all.js';
 import axios from 'axios';
 
-// axios.defaults.withCredentials = true;
-// axios.defaults.headers = { 'Access-Control-Allow-Origin': '*' };
+axios.defaults.withCredentials = true;
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -54,7 +54,6 @@ function Login({ handleCloseLoginModal, handleIsLoadingOn, handleIsLoadingOff })
 			const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 			if (e.target.value.match(validRegex)) {
 				try {
-					console.log(env.REACT_APP_SERVER_URI);
 					const { data } = await axios.post(`${env.REACT_APP_SERVER_URI}/user/exist-email`, {
 						email: e.target.value,
 					});
@@ -205,6 +204,7 @@ function Login({ handleCloseLoginModal, handleIsLoadingOn, handleIsLoadingOff })
 	const handleLoginSubmit = useCallback(
 		(e) => {
 			e.preventDefault();
+			console.log(env.REACT_APP_SERVER_URI);
 			loginErrorMessage.current?.classList.remove('shake-animation');
 			const user = {
 				email: loginEmail.current?.value,
