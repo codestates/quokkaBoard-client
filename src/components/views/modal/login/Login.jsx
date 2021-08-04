@@ -54,7 +54,7 @@ function Login({ handleCloseLoginModal, handleIsLoadingOn, handleIsLoadingOff })
 			const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 			if (e.target.value.match(validRegex)) {
 				try {
-					const { data } = await axios.post(`${env.REACT_APP_SERVER_URI}/user/exist-email`, {
+					const { data } = await axios.post(`https://server.quokkaboard.com/user/exist-email`, {
 						email: e.target.value,
 					});
 					console.log(data);
@@ -91,7 +91,7 @@ function Login({ handleCloseLoginModal, handleIsLoadingOn, handleIsLoadingOff })
 			if (e.target.value.length >= 2) {
 				// 닉네임 체크
 				axios
-					.post(`${env.REACT_APP_SERVER_URI}/user/exist-nickname`, {
+					.post(`https://server.quokkaboard.com/user/exist-nickname`, {
 						nickname: e.target.value,
 					})
 					.then((response) => {
@@ -176,7 +176,7 @@ function Login({ handleCloseLoginModal, handleIsLoadingOn, handleIsLoadingOff })
 					registerErrorMessage.current.textContent = '';
 				}
 				axios
-					.post(`${env.REACT_APP_SERVER_URI}/user/register`, {
+					.post(`https://server.quokkaboard.com/user/register`, {
 						...user,
 					})
 					.then((response) => {
@@ -204,14 +204,13 @@ function Login({ handleCloseLoginModal, handleIsLoadingOn, handleIsLoadingOff })
 	const handleLoginSubmit = useCallback(
 		(e) => {
 			e.preventDefault();
-			console.log(env.REACT_APP_SERVER_URI);
 			loginErrorMessage.current?.classList.remove('shake-animation');
 			const user = {
 				email: loginEmail.current?.value,
 				password: loginPassword.current?.value,
 			};
 			axios
-				.post(`${env.REACT_APP_SERVER_URI}/user/login`, user)
+				.post(`https://server.quokkaboard.com/user/login`, user)
 				.then((response) => {
 					// 성공 했을때
 					if (response.data.success) {
