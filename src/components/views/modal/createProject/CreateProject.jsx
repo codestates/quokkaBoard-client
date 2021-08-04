@@ -1,11 +1,13 @@
-import React, { useCallback, useRef, useState } from 'react';
-import axios from 'axios';
-import env from 'react-dotenv';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './sections/createProject.module.css';
 import AddProjectMember from '../addProjectMember/AddProjectMember';
 import SelectUserList from '../addProjectMember/SelectUserList';
+import { actionCreateProject } from '../../../../_actions';
 
 const CreateProject = (props) => {
+	const dispatch = useDispatch();
+	const { userInfo } = useSelector((state) => state.users);
 	const [isNewProjectMember, setNewProjectMember] = useState(false);
 	const [selectUsers, setSelectUsers] = useState([]);
 
@@ -14,29 +16,25 @@ const CreateProject = (props) => {
 	const projectStartDateRef = useRef(null);
 	const projectEndDateRef = useRef(null);
 
-	// 검색했을 때 응답으로 오는 사람 목록 추가할 state (id, 닉네임, 이메일)
-
 	// 프로젝트 만들기 화면에서 제목/설명/프로젝트 멤버(id, 닉네임) 목록을 요청보내기
 	const handleNewProjectMember = (e) => {
-		const title = subjectInputRef.current?.value;
-		const userId = '3485c4e3-03aa-4674-80e1-fe289672c14c';
-		const description = descriptionInputRef.current?.value;
-		const startDate = projectStartDateRef.current?.value;
-		const endDate = projectEndDateRef.current?.value;
+		// projectMember
+		let users = selectUsers.map((user) => {
+			return user.nickname;
+		});
 
-		axios
-			.post(`${env.REACT_APP_SERVER_URI}/project/create-project`, {
-				title,
-				userId,
-				description,
-				startDate,
-				endDate,
-			})
-			.then((response) => console.log(response.data))
-			.catch((err) => {
-				console.log(err.data);
-				console.log(err);
-			});
+		const title = `${subjectInputRef.current?.value}`;
+		const userId = `${userInfo?.id}`;
+		const description = `${descriptionInputRef.current?.value}`;
+		const startDate = `${projectStartDateRef.current?.value}`;
+		const endDate = `${projectEndDateRef.current?.value}`;
+		const nickname = users;
+
+		actionCreateProject(
+			dispatch,
+			{ title, userId, description, startDate, endDate, nickname },
+			props.isNewProjectModalClose,
+		);
 	};
 
 	// selectUser state update

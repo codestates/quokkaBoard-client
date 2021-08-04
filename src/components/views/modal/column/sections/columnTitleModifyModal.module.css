@@ -7,12 +7,13 @@
 	flex-direction: column;
 	align-items: center;
 	position: absolute;
-	top: 3rem;
+	top: 4rem;
 	left: 1rem;
 	text-align: center;
 	padding: 1rem;
 	margin: auto;
 	animation: column_modal_show 0.4s;
+	z-index: 10;
 }
 
 .title {

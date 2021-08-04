@@ -2,10 +2,12 @@ import React, { useState, useCallback, useRef } from 'react';
 import styles from './sections/modifyNickname.module.css';
 import axios from 'axios';
 import env from 'react-dotenv';
+import { actionUpdateNickname } from '../../../../_actions';
+import { useDispatch } from 'react-redux';
 
 const ModifyNickname = (props) => {
+	const dispatch = useDispatch();
 	const [nicknameCheck, setNicknameCheck] = useState(false);
-
 	const nicknameValidMessage = useRef(null);
 
 	const handleCheckNickName = useCallback(
@@ -44,6 +46,15 @@ const ModifyNickname = (props) => {
 	);
 
 	// 닉네임 변경 요청
+	const handleNickNameClick = (e) => {
+		e.preventDefault();
+		const nickname = e.target[0].value;
+		const info = {
+			userId: props.userId,
+			nickname,
+		};
+		actionUpdateNickname(dispatch, info, props.handleNicknameClose);
+	};
 
 	return (
 		<section className={styles.container}>
@@ -51,7 +62,7 @@ const ModifyNickname = (props) => {
 				<i className="far fa-times-circle"></i>
 			</span>
 			<h1>변경할 닉네임을 입력해 주세요</h1>
-			<form>
+			<form onSubmit={handleNickNameClick}>
 				<input type="text" onChange={handleCheckNickName} />
 				<button type="submit">변경하기</button>
 			</form>

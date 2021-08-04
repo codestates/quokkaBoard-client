@@ -15,19 +15,24 @@ export const data1 = [
 
 export const data2 = [
 	{
-		name: '홍길동',
+		name: '유지예',
 		ing: 9,
 		end: 7,
 	},
 	{
-		name: '임꺽정',
+		name: '정지운',
 		ing: 7,
 		end: 10,
 	},
 	{
-		name: '이순신',
+		name: '하승용',
+		ing: 8,
+		end: 9,
+	},
+	{
+		name: '박상우',
 		ing: 10,
-		end: 15,
+		end: 5,
 	},
 ];
 
@@ -35,70 +40,70 @@ export const data3 = {
 	name: 'project',
 	children: [
 		{
-			name: '홍길동',
+			name: '유지예',
 			children: [
 				{
 					name: 'Do',
-					loc: 10,
+					loc: 4,
 				},
 				{
 					name: 'Doing',
-					loc: 12,
+					loc: 5,
 				},
 				{
 					name: 'Done',
-					loc: 14,
+					loc: 7,
 				},
 			],
 		},
 		{
-			name: '정발산',
+			name: '정지운',
 			children: [
 				{
 					name: 'Do',
-					loc: 10,
+					loc: 3,
 				},
 				{
 					name: 'Doing',
-					loc: 12,
+					loc: 4,
 				},
 				{
 					name: 'Done',
-					loc: 14,
+					loc: 10,
 				},
 			],
 		},
 		{
-			name: '산기슭',
+			name: '하승용',
 			children: [
 				{
 					name: 'Do',
-					loc: 10,
+					loc: 3,
 				},
 				{
 					name: 'Doing',
-					loc: 12,
+					loc: 5,
 				},
 				{
 					name: 'Done',
-					loc: 14,
+					loc: 9,
 				},
 			],
 		},
 		{
-			name: '슭곰발',
+			name: '박상우',
 			children: [
 				{
 					name: 'Do',
-					loc: 10,
+					loc: 5,
 				},
 				{
 					name: 'Doing',
-					loc: 12,
+					loc: 5,
 				},
 				{
 					name: 'Done',
-					loc: 14,
+					loc: 5,
 				},
 			],
 		},
@@ -110,23 +115,23 @@ export const data4 = [
 		id: 'complete',
 		data: [
 			{
-				x: '6/24',
-				y: 2,
-			},
-			{
-				x: '6/25',
-				y: 4,
-			},
-			{
-				x: '6/26',
+				x: '7/15',
 				y: 1,
 			},
 			{
-				x: '6/27',
-				y: 0,
+				x: '7/16',
+				y: 4,
 			},
 			{
-				x: '6/28',
+				x: '7/17',
+				y: 1,
+			},
+			{
+				x: '7/18',
+				y: 1,
+			},
+			{
+				x: '7/19',
 				y: 3,
 			},
 		],

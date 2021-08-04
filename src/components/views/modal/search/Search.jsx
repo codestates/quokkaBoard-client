@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './sections/search.module.css';
-import searchResult from './sections/searchResult';
-import followerResult from './sections/followerResult';
 import FollowerUserResult from './FollowerUserResult';
 import SearchUserResult from './SearchUserResult';
 
+import { actionSearchUser } from '../../../../_actions';
+
 const Search = (props) => {
-	const [searchUser, setSearchPerson] = useState(searchResult);
-	const [followerUser, setFollowerUser] = useState(followerResult);
-	const [isSearchListClicked, setSearchList] = useState(true);
+	const dispatch = useDispatch();
+	const { searchUser } = useSelector((state) => state.member);
+	const { projectMember } = useSelector((state) => state.project);
+	const [searchResult, setSearchResult] = useState('');
+	const [isSearchListClicked, setSearchList] = useState(false);
+	const searchInputRef = useRef();
+
+	const handleSearchUser = () => {
+		const searchWord = searchInputRef.current.value;
+		actionSearchUser(dispatch, searchWord);
+		handleSearchListUpdate();
+		// setSearchResult(!searchResult);
+	};
 
 	const handleSearchListUpdate = () => {
 		setSearchList(true);
@@ -17,6 +28,10 @@ const Search = (props) => {
 	const handleSearchListReset = () => {
 		setSearchList(false);
 	};
+
+	// const SearchResultUpdate = (user) => {
+	// 	setSearchResult({ ...user });
+	// };
 
 	return (
 		<section className={styles.container}>
@@ -29,8 +44,10 @@ const Search = (props) => {
 					검색할 닉네임 또는 이메일을 적어주세요 :)
 				</label>
 				<div className={styles.search_div}>
-					<input className={styles.search_name_input} id="search_name" />
-					<button className={styles.search_btn}>검색</button>
+					<input ref={searchInputRef} className={styles.search_name_input} id="search_name" />
+					<button className={styles.search_btn} onClick={handleSearchUser}>
+						검색
+					</button>
 				</div>
 			</div>
 			<div className={styles.div_btn}>
@@ -43,14 +60,14 @@ const Search = (props) => {
 			</div>
 
 			<ul className={styles.ul}>
-				{isSearchListClicked
+				{isSearchListClicked && searchUser?.length
 					? searchUser.map((result) => {
-							return <SearchUserResult key={result.id} result={result} />;
+							console.log(result);
+							return <SearchUserResult key={result.id} result={result} /* SearchResultUpdate={SearchResultUpdate} */ />;
 					  })
-					: followerUser.map((result) => {
-							return <FollowerUserResult key={result.id} result={result} />;
-					  })}
+					: ''}
 			</ul>
+			{searchResult ? '' : ' '}
 		</section>
 	);
 };

@@ -1,16 +1,35 @@
 import React, { useCallback, useState } from 'react';
+// import { useSelector } from 'react-redux';
 import styles from './sections/subNavbar.module.css';
 import profileImg from './sections/profile_img.png';
 import mainLogo2 from './sections/main_logo2.png';
 import ProjectList from '../../modal/projectList/ProjectList';
 import CreateProject from '../../modal/createProject/CreateProject';
 import Search from '../../modal/search/Search';
+import UserProfile from '../../modal/userProfile/UserProfile';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useRef } from 'react';
 
 const SubNavbar = () => {
+	const { userInfo } = useSelector((state) => state.users);
 	const [projects, setProjects] = useState([]);
 	const [isProjectClicked, setProjectClick] = useState(false);
 	const [isNewProjectClicked, setNewProjectClick] = useState(false);
 	const [isSearchClicked, setSearchClick] = useState(false);
+	const [isProfileClicked, setProfileClick] = useState(false);
+	const [imageChange, setImageChange] = useState('');
+
+	const imgRef = useRef(null);
+
+	useEffect(() => {
+		if (imageChange) {
+			imgRef.current.src = imageChange;
+		}
+	}, [imageChange]);
+
+	// const { projectMember } = useSelector((state) => state.project);
+	// console.log(projectMember);
 
 	const isProjectModalOpen = useCallback(() => {
 		setProjectClick(true);
@@ -35,6 +54,14 @@ const SubNavbar = () => {
 	const isSearchModalClose = useCallback(() => {
 		setSearchClick(false);
 	}, [isSearchClicked]);
+
+	const isProfileModalOpen = useCallback(() => {
+		setProfileClick(true);
+	}, [isProfileClicked]);
+
+	const isProfileModalClose = useCallback(() => {
+		setProfileClick(false);
+	}, [isProfileClicked]);
 
 	return (
 		<nav className={styles.container}>
@@ -61,8 +88,13 @@ const SubNavbar = () => {
 							<i className="fas fa-sign-out-alt"></i>
 						</button>
 					</div>
-					<div>
-						<img className={styles.profile_img} src={profileImg} alt="profile_img" />
+					<div onClick={isProfileModalOpen}>
+						<img
+							ref={imgRef}
+							className={styles.profile_img}
+							src={imageChange ? imageChange : profileImg}
+							alt="profile_img"
+						/>
 					</div>
 				</div>
 			</div>
@@ -81,6 +113,15 @@ const SubNavbar = () => {
 				''
 			)}
 			{isSearchClicked ? <Search isSearchModalClose={isSearchModalClose} /> : ''}
+			{isProfileClicked ? (
+				<UserProfile
+					isProfileClicked={isProfileClicked}
+					isProfileModalClose={isProfileModalClose}
+					setImageChange={setImageChange}
+				/>
+			) : (
+				''
+			)}
 		</nav>
 	);
 };

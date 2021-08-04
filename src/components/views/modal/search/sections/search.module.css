@@ -2,7 +2,7 @@
 	position: absolute;
 	top: 5rem;
 	right: 5rem;
-	width: 400px;
+	width: 440px;
 	background-color: var(--deep-orange-light);
 	border-radius: 0.7rem;
 	animation: project_modal_show 0.4s;

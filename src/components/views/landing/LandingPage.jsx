@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styles from './sections/styles.module.css';
 import aos from 'aos';
 import 'aos/dist/aos.css';
+import axios from 'axios';
+import env from 'react-dotenv';
 
 // Componenet
 import LoginModal from '../modal/login/Login';
 import LoadingPage from '../loading/Loading';
+
 // actions
 import { actionLogout } from '../../../_actions/index';
 
@@ -43,6 +47,7 @@ import sangwoo from './sections/images/team/sangwoo.png';
 import seungyong from './sections/images/team/seungyong.png';
 // contact image
 import contact from './sections/images/contact/contact.jpg';
+import LandingProjectList from '../modal/projectList/LandingProjectList';
 
 function LandingPage() {
 	const dispatch = useDispatch();
@@ -53,42 +58,97 @@ function LandingPage() {
 	const hide = styles.hide;
 
 	const { userInfo } = useSelector((state) => state.users);
+	console.log(userInfo);
 	const [isLoginModal, setIsLoginModal] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
+	const [isStart, setIsStart] = useState(false);
+	const [accessToken, setAccessToken] = useState('');
 
-	const handleOpenLoginModal = () => {
-		setIsLoginModal(true);
+	const handleIsStartClick = useCallback(
+		(e) => {
+			e.preventDefault();
+			userInfo?.id && setIsStart(true);
+		},
+		[isStart, userInfo],
+	);
+	const handleIsStartClose = (e) => {
+		e.preventDefault();
+		setIsStart(false);
 	};
+
+	const handleIsLoadingOn = useCallback(
+		(e) => {
+			e.preventDefault();
+			setIsLoading(true);
+		},
+		[isLoading],
+	);
+	const handleIsLoadingOff = () => {
+		setIsLoading(false);
+	};
+	const handleOpenLoginModal = useCallback(
+		(e) => {
+			e.preventDefault();
+			setIsLoginModal(true);
+		},
+		[isLoginModal],
+	);
 	const handleCloseLoginModal = () => {
 		setIsLoginModal(false);
 	};
-	const handleClickLogout = (e) => {
-		e.preventDefault();
-		dispatch(actionLogout());
-	};
+	const handleClickLogout = useCallback(
+		(e) => {
+			e.preventDefault();
+			setIsLoading(true);
+			if (userInfo?.id) {
+				actionLogout(dispatch, userInfo?.id, handleIsLoadingOff);
+			}
+		},
+		[userInfo],
+	);
 
 	const handleArrowClick = useCallback(() => {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}, []);
 
+	const getAccessToken = async (authorizationCode) => {
+		let resp = await axios.post(`${env.REACT_APP_SERVER_URI}/user/social-login`, {
+			authorizationCode: authorizationCode,
+		});
+		setAccessToken(resp.data.accessToken);
+	};
+
 	useEffect(() => {
+		const url = new URL(window.location.href);
+		const authorizationCode = url.searchParams.get('code');
+		if (authorizationCode) {
+			getAccessToken(authorizationCode);
+		}
 		aos.init();
-		window.addEventListener('scroll', () => {
+		window.addEventListener('scroll', (e) => {
 			if (window.scrollY >= 50) {
-				nav.current.classList.add(navMove);
-				arrowUp.current.classList.add(hide);
+				nav.current?.classList.add(navMove);
+				arrowUp.current?.classList.add(hide);
 			} else {
-				nav.current.classList.remove(navMove);
-				arrowUp.current.classList.remove(hide);
+				nav.current?.classList.remove(navMove);
+				arrowUp.current?.classList.remove(hide);
 			}
 		});
 		setIsLoading(false);
-	});
+	}, []);
 	return isLoading ? (
 		<LoadingPage />
 	) : (
 		<div className={styles.container}>
-			{isLoginModal ? <LoginModal handleCloseLoginModal={handleCloseLoginModal} /> : ''}
+			{isLoginModal ? (
+				<LoginModal
+					handleCloseLoginModal={handleCloseLoginModal}
+					handleIsLoadingOn={handleIsLoadingOn}
+					handleIsLoadingOff={handleIsLoadingOff}
+				/>
+			) : (
+				''
+			)}
 			<nav className={styles.nav} ref={nav}>
 				<div className={styles.nav__container}>
 					<h1>
@@ -103,13 +163,24 @@ function LandingPage() {
 									로그아웃
 								</a>
 							) : (
-								<a href="#" onClick={handleOpenLoginModal}>
+								<a
+									href="#"
+									onClick={handleOpenLoginModal}
+									handleIsLoadingOn={handleIsLoadingOn}
+									handleIsLoadingOff={handleIsLoadingOff}
+								>
 									로그인
 								</a>
 							)}
 						</li>
 						<li>
-							<a href="#">시작하기</a>
+							{userInfo ? (
+								<a href="#" onClick={handleIsStartClick}>
+									시작하기
+								</a>
+							) : (
+								''
+							)}
 						</li>
 					</ul>
 				</div>
@@ -190,7 +261,7 @@ function LandingPage() {
 							</li>
 						</ul>
 						<span>쿼카보드를 사용해보시겠어요?</span>
-						<button>시작하기</button>
+						<button onClick={handleIsStartClick}>시작하기</button>
 					</div>
 				</section>
 				<section className={styles.testimonial}>
@@ -339,12 +410,12 @@ function LandingPage() {
 										<img src={jiye} alt="profile_jiye" />
 									</div>
 									<h3>유지예</h3>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<p>쑥쑥자라고 있는 프론트엔드 개발자 유지예입니다.</p>
 									<div>
-										<a href="a" target="_blank">
+										<a href="https://github.com/jiye-7" target="_blank">
 											<i className="fab fa-github"></i> Github
 										</a>
-										<a href="a" target="_blank">
+										<a href="https://velog.io/@jy777hi" target="_blank">
 											<i className="fas fa-blog"></i> Blog
 										</a>
 									</div>
@@ -356,12 +427,12 @@ function LandingPage() {
 										<img src={jiun} alt="profile_jiye" />
 									</div>
 									<h3>정지운</h3>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<p>성장에 욕심이 많은 프론트엔드 개발자 정지운입니다.</p>
 									<div>
-										<a href="a" target="_blank">
+										<a href="https://github.com/wldns0622" target="_blank">
 											<i className="fab fa-github"></i> Github
 										</a>
-										<a href="a" target="_blank">
+										<a href="https://velog.io/@wldns12378" target="_blank">
 											<i className="fas fa-blog"></i> Blog
 										</a>
 									</div>
@@ -373,12 +444,12 @@ function LandingPage() {
 										<img src={sangwoo} alt="profile_jiye" />
 									</div>
 									<h3>박상우</h3>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<p>'새로운 지식을 습득했을 때 가장 보람을 느끼는' 백엔드 개발자</p>
 									<div>
-										<a href="a" target="_blank">
+										<a href="https://github.com/SashainSPb" target="_blank">
 											<i className="fab fa-github"></i> Github
 										</a>
-										<a href="a" target="_blank">
+										<a href="https://velog.io/@sashainspb" target="_blank">
 											<i className="fas fa-blog"></i> Blog
 										</a>
 									</div>
@@ -390,12 +461,15 @@ function LandingPage() {
 										<img src={seungyong} alt="profile_jiye" />
 									</div>
 									<h3>하승용</h3>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, beatae!</p>
+									<p>DB와 클린코드에 관심많은 성장하는 백엔드 개발자 하승용입니다</p>
 									<div>
-										<a href="a" target="_blank">
+										<a href="https://github.com/skyupguf" target="_blank">
 											<i className="fab fa-github"></i> Github
 										</a>
-										<a href="a" target="_blank">
+										<a
+											href="https://www.notion.so/My-Development-Space-remodeling-204ca0666fc24ae486ba4effc94e25d4"
+											target="_blank"
+										>
 											<i className="fas fa-blog"></i> Blog
 										</a>
 									</div>
@@ -441,6 +515,7 @@ function LandingPage() {
 			<div ref={arrowUp} className={styles.arrowUp} onClick={handleArrowClick}>
 				<i className="fas fa-arrow-circle-up"></i>
 			</div>
+			{isStart ? <LandingProjectList handleIsStartClose={handleIsStartClose} /> : ''}
 		</div>
 	);
 }

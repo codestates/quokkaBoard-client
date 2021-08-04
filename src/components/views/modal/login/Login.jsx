@@ -11,10 +11,11 @@ import loginQuokka from './sections/images/signup_img.png';
 // actions
 import { actionLogin } from '../../../../_actions/index';
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
-function Login({ handleCloseLoginModal }) {
+function Login({ handleCloseLoginModal, handleIsLoadingOn, handleIsLoadingOff }) {
 	const dispatch = useDispatch();
+	const GITHUB_LOGIN_URL = 'https://github.com/login/oauth/authorize?client_id=5a0ba47d6cec26f64fda';
 	const [emailCheck, setEmailCheck] = useState(false);
 	const [nickNameCheck, setNickNameCheck] = useState(false);
 	const [passwordCheck, setPasswordCheck] = useState(false);
@@ -53,7 +54,6 @@ function Login({ handleCloseLoginModal }) {
 			const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 			if (e.target.value.match(validRegex)) {
 				try {
-					console.log(env.REACT_APP_SERVER_URI);
 					const { data } = await axios.post(`${env.REACT_APP_SERVER_URI}/user/exist-email`, {
 						email: e.target.value,
 					});
@@ -204,6 +204,7 @@ function Login({ handleCloseLoginModal }) {
 	const handleLoginSubmit = useCallback(
 		(e) => {
 			e.preventDefault();
+			console.log(env.REACT_APP_SERVER_URI);
 			loginErrorMessage.current?.classList.remove('shake-animation');
 			const user = {
 				email: loginEmail.current?.value,
@@ -235,6 +236,11 @@ function Login({ handleCloseLoginModal }) {
 		},
 		[loginEmail, loginPassword],
 	);
+
+	const socialLoginHandler = (e) => {
+		e.preventDefault();
+		window.location.assign(GITHUB_LOGIN_URL);
+	};
 
 	return (
 		<div className="body_container">
@@ -268,8 +274,8 @@ function Login({ handleCloseLoginModal }) {
 					<form action="#" onSubmit={handleLoginSubmit}>
 						<h1>로그인</h1>
 						<div className="social-container">
-							<a href="#" className="social">
-								<i className="fab fa-kickstarter-k"></i>
+							<a href="#" className="social" onClick={socialLoginHandler}>
+								<i className="fab fa-github"></i>
 							</a>
 							<a href="#" className="social">
 								<i className="fab fa-gofore"></i>

@@ -1,8 +1,42 @@
 import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import style from './sections/addColumn.module.css';
 
+import { actionCreateColumn } from '../../../../_actions';
+import project from '../../../../_reducers/project';
+
 const AddColumn = (props) => {
-	const columnTitleRef = useRef();
+	// const dispatch = useDispatch();
+	// const { userInfo } = useSelector((state) => {
+	// 	return state.users;
+	// });
+
+	// const { currentProject } = useSelector((state) => {
+	// 	return state.project;
+	// });
+
+	const boardTitleRef = useRef();
+
+	// const handleNewColumn = async () => {
+	// 	const projectId = currentProject?.projectId;
+	// 	const boardTitle = boardTitleRef.current.value;
+	// 	const newColumns = await actionCreateColumn(projectId, boardTitle, props.handleColumnModalClose); // {[data.id]: {...data, tasks: []}},
+	// 	props.handleColumnUpdate(newColumns);
+	// 	props.handleColumnModalClose();
+	// };
+
+	const handleAddColumn = () => {
+		//1. 랜덤한 아이디를 생성
+		const id = 'b' + Math.floor(Math.random() * 500000000);
+		const title = boardTitleRef.current?.value;
+		const taskIds = [];
+		const column = { id, title, taskIds };
+		if (title) {
+			props.updateColumns(column);
+			props.updateColumnOrder(id);
+			props.handleColumnModalClose();
+		}
+	};
 
 	return (
 		<div className={style.background}>
@@ -10,16 +44,18 @@ const AddColumn = (props) => {
 				<div className={style.close_btn} onClick={props.handleColumnModalClose}>
 					<i className="fas fa-times"></i>
 				</div>
-				<h2 className={style.column_title}>새 Column 만들기</h2>
+				<h2 className={style.column_title}>새 Board 만들기</h2>
 				<label htmlFor="task__name" className={style.column__name}>
 					이름
 				</label>
-				<input ref={columnTitleRef} className={style.input} type="text" id="task__name" />
+				<input ref={boardTitleRef} className={style.input} type="text" id="task__name" />
 				<div className={style.buttons}>
 					<button className={style.cancel_btn} onClick={props.handleColumnModalClose}>
 						취소
 					</button>
-					<button className={style.make_btn}>만들기</button>
+					<button className={style.make_btn} onClick={handleAddColumn}>
+						만들기
+					</button>
 				</div>
 			</section>
 		</div>

@@ -1,16 +1,37 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import styles from './sections/userInfo.module.css';
 import ModifyNickname from './ModifyNickname';
 import ModifyPassword from './ModifyPassword';
+import DeleteUserAlert from './DeleteUserAlert';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionEditUserImg } from '../../../../_actions';
+
+// img
+import quokkaImage from './sections/profile_img.png';
+import { useRef } from 'react';
 
 const UserInfo = (props) => {
+	const dispatch = useDispatch();
+	const { userInfo } = useSelector((state) => state.users);
 	const [isNicknameButton, setIsNicknameButton] = useState(false);
 	const [isPasswordButton, setIsPasswordButton] = useState(false);
+	const [isDeleteUser, setIsDeleteUser] = useState(false);
+
+	const handleDeleteUserOn = useCallback(
+		(e) => {
+			e.preventDefault();
+			setIsDeleteUser(true);
+		},
+		[isDeleteUser],
+	);
+
+	const handleDeleteUserOff = () => {
+		setIsDeleteUser(false);
+	};
 
 	const handleNicknameOpen = useCallback(
 		(e) => {
 			e.preventDefault();
-			console.log('닉네임 변경 버튼 활성');
 			setIsNicknameButton(true);
 		},
 		[isNicknameButton],
@@ -18,7 +39,6 @@ const UserInfo = (props) => {
 
 	const handleNicknameClose = useCallback(
 		(e) => {
-			console.log('닉네임 변경 버튼 비활성');
 			setIsNicknameButton(false);
 		},
 		[isNicknameButton],
@@ -27,32 +47,33 @@ const UserInfo = (props) => {
 	const handlePasswordOpen = useCallback(
 		(e) => {
 			e.preventDefault();
-			console.log('패스워드 변경 버튼 활성');
 			setIsPasswordButton(true);
 		},
 		[isPasswordButton],
 	);
-	const handlePasswordClose = useCallback(
-		(e) => {
-			e.preventDefault();
-			console.log('패스워드 변경 버튼 비활성');
-			setIsPasswordButton(false);
-		},
-		[isPasswordButton],
-	);
+	const handlePasswordClose = (e) => {
+		setIsPasswordButton(false);
+	};
+
+	const imgRef = useRef(null);
+	const fileRef = useRef(null);
+	const uploadBtn = useRef(null);
 
 	// 패스워드 변경 버튼
 
 	return (
 		<section className={styles.container}>
-			<i className="fas fa-times-circle"></i>
+			<div className={styles.close} onClick={props.handleEditUserInfoClose}>
+				<i className="fas fa-times-circle"></i>
+			</div>
+
 			<header className={styles.header}>
 				<h1 className={styles.header__title}>개인 정보</h1>
 				<p className={styles.header__description}>프로필 사진, 닉네임과 같이 정보를 변경해보세요!</p>
 			</header>
 			<main className={styles.main}>
 				<header className={styles.main__header}>
-					<h2 className={styles.main__title}>{`${'TEST'}님의 기본 정보`}</h2>
+					<h2 className={styles.main__title}>{`${userInfo?.name ? userInfo?.name : 'Guest'}님의 기본 정보`}</h2>
 					<p className={styles.main__description}>
 						일부 정보가 QuokkaBoard 서비스를 사용하는 다른 사람에게 표시될 수 있습니다.
 					</p>
@@ -62,16 +83,38 @@ const UserInfo = (props) => {
 					<li className={styles.userInfoContainer__image}>
 						<h3>사진</h3>
 						<span>사진을 추가 또는 변경을 해보세요!</span>
-						<input type="file" name="" id="" />
+						<input
+							type="file"
+							name=""
+							className="file"
+							id="file"
+							ref={fileRef}
+							onChange={() => {
+								const chooseFile = fileRef.current.files[0];
+								if (chooseFile) {
+									const reader = new FileReader();
+									reader.addEventListener('load', () => {
+										imgRef.current.src = reader.result;
+										actionEditUserImg(dispatch, reader.result);
+										props.setImageChange(reader.result);
+									});
+									reader.readAsDataURL(chooseFile);
+								}
+							}}
+						/>
+						<img src={userInfo?.image ? userInfo.image : quokkaImage} alt="" ref={imgRef} />
+						<label htmlFor="file" id="uploadBtn" ref={uploadBtn}>
+							Choose Photo
+						</label>
 					</li>
 					<li className={styles.userInfoContainer__nickname} onClick={handleNicknameOpen}>
 						<h3>닉네임</h3>
-						<span>{`Test`}</span>
+						<span>{`${userInfo?.nickname ? userInfo?.nickname : 'Guest'}`}</span>
 						<i className="fas fa-greater-than"></i>
 					</li>
 					<li className={styles.userInfoContainer__password} onClick={handlePasswordOpen}>
 						<h3>비밀번호</h3>
-						<span>{`*******`}</span>
+						<span>{`***...`}</span>
 						<i className="fas fa-greater-than"></i>
 					</li>
 					<li>
@@ -81,10 +124,13 @@ const UserInfo = (props) => {
 			</main>
 			<footer className={styles.footer}>
 				<h3 className={styles.footer__label}>탈퇴</h3>
-				<button className={styles.deleteUserButton}>회원 탈퇴</button>
+				<button className={styles.deleteUserButton} onClick={handleDeleteUserOn}>
+					회원 탈퇴
+				</button>
 			</footer>
-			{isNicknameButton ? <ModifyNickname handleNicknameClose={handleNicknameClose} /> : ''}
-			{isPasswordButton ? <ModifyPassword handlePasswordClose={handlePasswordClose} /> : ''}
+			{isNicknameButton ? <ModifyNickname handleNicknameClose={handleNicknameClose} userId={userInfo?.id} /> : ''}
+			{isPasswordButton ? <ModifyPassword handlePasswordClose={handlePasswordClose} userId={userInfo?.id} /> : ''}
+			{isDeleteUser ? <DeleteUserAlert handleDeleteUserOff={handleDeleteUserOff} userId={userInfo?.id} /> : ''}
 		</section>
 	);
 };

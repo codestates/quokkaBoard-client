@@ -1,0 +1,75 @@
+.container {
+	background-color: var(--blue-light);
+	padding: 3rem 7rem;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 10;
+	border-radius: 2rem;
+	transform: translate(-50%, -50%);
+	animation: open 0.3s;
+}
+
+@keyframes open {
+	from {
+		opacity: 0;
+		top: 55%;
+	}
+
+	to {
+		opacity: 1;
+		top: 50%;
+	}
+}
+
+.close {
+	cursor: pointer;
+	position: absolute;
+	right: 0.8rem;
+	top: 0.8rem;
+}
+
+.close svg {
+	font-size: 1.4rem;
+	color: black;
+}
+
+.container__img img {
+	position: absolute;
+	top: -17.26rem;
+	left: 50%;
+	transform: translate(-50%, 0);
+	width: 15rem;
+}
+
+.container h1 {
+	text-align: center;
+	color: var(--white);
+	font-size: 2.5rem;
+}
+
+.container ul {
+	margin: 2rem auto;
+	display: flex;
+	flex-direction: column;
+	font-size: 1.5rem;
+}
+
+.container ul li {
+	margin: 0.6rem 0;
+	color: var(--blue-dark);
+	cursor: pointer;
+}
+
+.container ul li:hover {
+	color: var(--blue);
+}
+
+.container div:last-of-type button {
+	color: var(--white);
+	font-size: 1.5rem;
+}
+
+.container div:last-of-type svg {
+	margin-right: 1rem;
+}

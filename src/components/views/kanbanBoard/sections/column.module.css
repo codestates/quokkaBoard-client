@@ -32,3 +32,24 @@
 .task__btn:active {
 	transform: scale(1.1);
 }
+
+.div_container {
+	background-color: blueviolet;
+	display: flex;
+	width: 200px;
+}
+
+.div_1,
+.div_2,
+.div_3 {
+	background-color: burlywood;
+	width: 100%;
+}
+
+.div_1 {
+	height: 500px;
+}
+
+.div_2 {
+	height: 200px;
+}
